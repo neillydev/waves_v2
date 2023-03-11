@@ -48,13 +48,12 @@ export default function ContainerBlock({ children, ...customMeta }: any) {
           <meta property="article:published_time" content={meta.date} />
         )}
       </Head>
-      <div className="containerBlock">
+      <div className={styles.containerBlock}>
         <Navbar />
-        <div className="mainContent">
-          <main className={styles.mainContainer}>
-            {children}
-          </main>
-        </div>
+
+        <main className={styles.mainContainer}>
+          {children}
+        </main>
       </div>
     </div>
   );
