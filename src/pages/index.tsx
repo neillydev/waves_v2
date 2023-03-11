@@ -6,12 +6,15 @@ import styles from '@/styles/Home.module.css'
 import ContainerBlock from '@/components/ContainerBlock/ContainerBlock'
 
 import { AuthContext, AuthProvider } from '@/context/AuthContext';
+import Main from '@/components/Main/Main'
 
 const Home = () => {
   const { authState, authDispatch } = useContext(AuthContext);
 
   return (
-    <ContainerBlock />
+    <ContainerBlock>
+      <Main />
+    </ContainerBlock>
   )
 };
 
