@@ -19,7 +19,9 @@ const Navbar = () => {
             </form>
           </div>
           <div className={styles.navRight}>
-
+            <button className={styles.loginBtn}>
+              Login
+            </button>
           </div>
         </div>
     </div>
