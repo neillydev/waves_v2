@@ -10,6 +10,7 @@ const Navbar = () => {
           <div className={styles.navLeft}>
             <a href="/" className={styles.navLogo}>
               <WaveSVG className={styles.navSvg} />
+              <h2>Waves</h2>
             </a>
           </div>
           <div className={styles.navCenter}>

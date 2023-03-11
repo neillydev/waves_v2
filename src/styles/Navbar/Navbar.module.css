@@ -21,6 +21,27 @@
     align-items: center;
 }
 
+.navLeft a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+}
+
+.navLeft a h2 {
+    font-size: 2rem;
+    font-family: 'Bebas Neue', cursive;
+    margin-left: 6px;
+}
+
+.navCenter {
+    
+}
+
+.navRight {
+    
+}
+
 .navSvg {
     height: 32px;
     width: 32px;
