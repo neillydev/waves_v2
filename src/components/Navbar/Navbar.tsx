@@ -1,5 +1,5 @@
 import React from 'react';
-import WaveSVG from '../../../public/wave.svg'
+import WaveSVG from '../../../public/wave.svg';
 
 import styles from '../../styles/Navbar/Navbar.module.css';
 
