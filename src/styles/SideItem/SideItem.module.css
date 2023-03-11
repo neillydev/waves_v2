@@ -1,0 +1,31 @@
+.sideItemWrapper {
+    display: flex;
+    align-items: center;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 200ms ease-in-out;
+}
+
+.sideItemWrapper:hover {
+    background: rgb(226, 226, 226);
+}
+
+.sideItemHeader {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 14px;
+    margin-left: 8px;
+    letter-spacing: .75px;
+}
+
+.sideItemWrapper svg {
+    margin-left: 0.5rem;
+    width: 22px;
+    height: 22px;
+}
+
+.sideItemSubheader {
+
+}
