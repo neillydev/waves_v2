@@ -14,7 +14,9 @@ const Navbar = () => {
             </a>
           </div>
           <div className={styles.navCenter}>
-
+            <form action="/search" className={styles.navSearchForm}>
+              <input placeholder="Surf creators and videos" autoComplete="off" type="search" className={styles.navSearch} />
+            </form>
           </div>
           <div className={styles.navRight}>
 
