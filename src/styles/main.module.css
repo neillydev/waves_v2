@@ -51,6 +51,51 @@
     padding: 0px;
 }
 
+.leftLogin {
+    display: flex;
+    flex-direction: column;
+}
+
+.leftLogin > h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: rgba(22, 24, 35, 0.5);
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 1.5rem;
+}
+
+.leftLogin > button {
+    display: flex;
+    min-width: 100px;
+    color: #2ba0ff;
+    background-color: transparent;
+    border: 1px solid #2ba0ff;
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 200;
+    font-size: 20px;
+    height: 35px;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 1.5rem;
+    transition: background-color 200ms ease-in-out;
+}
+
+.leftLogin > button:hover {
+    background-color: #2ba0ff21;
+}
+
+.leftFeatured > h2 {
+    font-family: 'Bebas Neue', cursive;
+    padding: 0px 8px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    line-height: 20px;
+}
+
 .mainRight {}
 
 .separator {

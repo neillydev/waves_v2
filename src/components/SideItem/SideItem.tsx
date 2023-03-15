@@ -11,12 +11,12 @@ type SideItemProps = {
 
 const SideItem = ({icon, header, subHeader, path}: SideItemProps) => {
   return (
-    <a href={path ? path : ''} className={styles.sideItemWrapper}>
+    <a href={path ? path : ''} className={subHeader?.includes('@') ? styles.featuredItemWrapper : styles.sideItemWrapper}>
         {icon}
-        <h2 className={styles.sideItemHeader}>{header}</h2>
-        {subHeader ?? <h2 className={styles.sideItemSubheader}>{subHeader}</h2>}
+        <h2 className={`${subHeader?.includes('@') ? styles.featuredItemHeader : ''} ${styles.sideItemHeader}`}>{header}</h2>
+        <h4 className={styles.featuredItemSubheader}>{subHeader}</h4>
     </a>
-  )
-}
+  );
+};
 
-export default SideItem
+export default SideItem;

@@ -12,18 +12,53 @@
 }
 
 .sideItemHeader {
-    font-family: 'Bebas Neue', cursive;
-    font-weight: 400;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
     font-size: 24px;
     line-height: 14px;
-    margin-left: 8px;
     letter-spacing: .75px;
+    margin-left: 8px;
 }
 
 .sideItemWrapper svg {
     margin-left: 0.5rem;
     width: 22px;
     height: 22px;
+}
+
+.featuredItemWrapper {
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 200ms ease-in-out;
+}
+
+.featuredItemHeader {
+    font-size: 16px;
+    max-width: 260px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 4px;
+    line-height: 18px;
+}
+
+.featuredItemSubheader {
+    font-family: 'Oswald', sans-serif;
+    color: rgba(22, 24, 35, 0.75);
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: 8px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 15px;
+    max-width: 260px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
 }
 
 .sideItemSubheader {

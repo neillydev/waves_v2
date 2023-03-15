@@ -17,11 +17,15 @@ const Main = () => {
               </div>
               <div className={styles.separator} />
               <div className={styles.leftLogin}>
-
+                <h2>Login to like videos, interact with creators, and see comments</h2>
+                <button>Login</button>
               </div>
+              <div className={styles.separator} />
               <div className={styles.leftFeatured}>
-
+                <h2>Featured Accounts</h2>
+                <SideItem icon="" header='Vernon Neilly III' subHeader='@neillydev' path='/' />
               </div>
+              <div className={styles.separator} />
               <div className={styles.leftSurf}>
 
               </div>
