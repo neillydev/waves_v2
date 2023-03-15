@@ -11,10 +11,14 @@
     background: rgb(226, 226, 226);
 }
 
+.featuredItemWrapper:hover {
+    background: rgb(226, 226, 226);
+}
+
 .sideItemHeader {
     font-family: 'Oswald', sans-serif;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 14px;
     letter-spacing: .75px;
     margin-left: 8px;
@@ -33,6 +37,7 @@
     text-decoration: none;
     border-radius: 4px;
     transition: background 200ms ease-in-out;
+    margin-bottom: 1rem;
 }
 
 .featuredItemHeader {
@@ -41,6 +46,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    margin-top: 0;
     margin-bottom: 4px;
     line-height: 18px;
 }
