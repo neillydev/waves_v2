@@ -16,9 +16,15 @@
     flex: 1 1 auto;
 }
 
-.mainWrapper {}
+.mainWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
 
-.mainLeft {}
+.mainLeft {
+    width: 356px;
+}
 
 .mainLeftContainer {
     overflow: hidden auto;
@@ -94,9 +100,17 @@
     margin-bottom: 8px;
     font-size: 16px;
     line-height: 20px;
+    letter-spacing: 0.5px;
+    color: rgb(22 24 35 / 58%);
 }
 
-.mainRight {}
+.mainRight {
+
+}
+
+.mainRightWrapper {
+    
+}
 
 .separator {
     height: 1px;
