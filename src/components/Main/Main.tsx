@@ -4,6 +4,7 @@ import FireSVG from '../../../public/fire.svg';
 import FollowersSVG from '../../../public/followers.svg';
 
 import styles from '../../styles/main.module.css';
+import Post from '../Post/Post';
 
 const Main = () => {
   return (
@@ -22,7 +23,7 @@ const Main = () => {
               </div>
               <div className={styles.separator} />
               <div className={styles.leftFeatured}>
-                <h2>Featured Accounts</h2>
+                <h2>Featured Creators</h2>
                 <SideItem icon="" header='Vernon Neilly III' subHeader='@neillydev' path='/' />
               </div>
               <div className={styles.separator} />
@@ -38,7 +39,13 @@ const Main = () => {
         </div>
         <div className={styles.mainRight}>
           <div className={styles.mainRightWrapper}>
-
+            <Post profileImg='https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80'
+              username='pistachio' 
+              name='Pistachio The Cat' 
+              mediaSrc='https://surfwaves.b-cdn.net/cat_video_example.mp4' 
+              caption='Pistachio moves in silence #pistachio #trending #cats #waves' 
+              soundCaption='pistachio' 
+              soundSrc='' />
           </div>
         </div>
     </div>

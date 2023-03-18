@@ -1,0 +1,140 @@
+.postContainer {
+    display: flex;
+}
+
+.postWrapper {
+    display: flex;
+}
+
+.post {
+    margin-left: 0.75rem;
+}
+
+.postProfileContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.profileMeta {
+    display: flex;
+}
+
+.postProfile {
+
+}
+
+.postProfile > img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.profileUsername {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    display: inline-block;
+    margin: 0 4px 0 0;
+}
+
+.profileName {
+    display: flex;
+    align-items: center;
+    line-height: 28px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.postMedia {
+    
+}
+
+.postMediaVideoContainer {
+    height: calc(450px + (100vw - 768px) / 1152 * 100);
+}
+
+.postMediaVideoContainer > video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.caption {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    margin-bottom: 0px;
+}
+
+.hashtag {
+    font-weight: 500;
+}
+
+.hashtag:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.hashtagSpace {
+    display: inline-block;
+    width: 4px;
+}
+
+.postSound {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.postSound > svg {
+    height: 14px;
+    width: 14px;
+    margin-right: 6px;
+}
+
+.soundCaption {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 25px;
+    margin: 0;
+}
+
+.soundCaption:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.followContainer {
+    height: 10px;
+}
+
+.followBtn {
+    display: flex;
+    color: #2ba0ff;
+    background-color: transparent;
+    border: 1px solid #2ba0ff;
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 200;
+    font-size: 16px;
+    height: 10px;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+    transition: background-color 200ms ease-in-out;
+}
+
+.followBtn:hover {
+    background-color: #2ba0ff21;
+}
