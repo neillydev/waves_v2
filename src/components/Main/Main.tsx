@@ -37,7 +37,13 @@ const Main = () => {
               </div>
             </div>
             <div className={styles.separator} />
-            <div className={styles.leftSection}></div>
+            <div className={styles.leftSection}>
+              <div className={styles.leftSubRow}>
+                <a href='/about' className={`${styles.leftSubtitle} ${styles.leftSublink}`}>About</a>
+                <a href='/contact' className={`${styles.leftSubtitle} ${styles.leftSublink}`}>Contact</a>
+              </div>
+              <h3 className={styles.leftSubtitle}>© 2023 Waves</h3>
+            </div>
           </div>
           <div className={styles.mainLeftScroll}>
 

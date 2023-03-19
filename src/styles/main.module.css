@@ -127,5 +127,23 @@
 
 .trendsWrapper {
     display: flex;
-    
+}
+
+.leftSubRow {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.leftSubtitle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    color: rgba(22, 24, 35, .5);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-right: 4px;
+    text-decoration: none;
+}
+
+.leftSublink:hover {
+    text-decoration: underline;
 }
