@@ -1,6 +1,7 @@
 .postContainer {
     display: flex;
     position: relative;
+    margin-bottom: 24px;
 }
 
 .postContainer:after {
