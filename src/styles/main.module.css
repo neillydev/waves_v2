@@ -95,7 +95,7 @@
     background-color: #2ba0ff21;
 }
 
-.leftFeatured > h2 {
+.leftTitle {
     font-family: 'Bebas Neue', cursive;
     padding: 0px 8px;
     margin-bottom: 8px;
@@ -120,4 +120,8 @@
     height: 1px;
     width: 100%;
     background: rgba(22, 24, 35, 0.12);
+}
+
+.trend {
+    
 }
