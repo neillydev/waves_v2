@@ -14,8 +14,8 @@ const Main = () => {
         <div className={styles.mainLeftContainer}>
           <div className={styles.mainLeftWrapper}>
             <div className={styles.leftMain}>
-              <SideItem icon={<FireSVG />} header='Trending' subHeader='' path='/' />
-              <SideItem icon={<FollowersSVG />} header='Following' subHeader='' path='/following' />
+              <SideItem icon={<FireSVG />} header='Trending' subHeader='' path='/' account={false} />
+              <SideItem icon={<FollowersSVG />} header='Following' subHeader='' path='/following' account={false} />
             </div>
             <div className={styles.separator} />
             <div className={styles.leftLogin}>
@@ -25,8 +25,8 @@ const Main = () => {
             <div className={styles.separator} />
             <div className={styles.leftSection}>
               <h2 className={styles.leftTitle}>Featured Creators</h2>
-              <SideItem icon="" header='Vernon Neilly III' subHeader='@neillydev' path='/' />
-              <SideItem icon="" header='Pistachio The Cat' subHeader='@pistachio' path='/' />
+              <SideItem icon="https://surfwaves.b-cdn.net/neillydev.png" header='Vernon Neilly III' subHeader='@neillydev' path='/' account />
+              <SideItem icon="https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80" header='Pistachio The Cat' subHeader='@pistachio' path='/' account />
             </div>
             <div className={styles.separator} />
             <div className={styles.leftSection}>
