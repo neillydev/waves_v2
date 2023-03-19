@@ -25,6 +25,7 @@ const Main = () => {
               <div className={styles.leftFeatured}>
                 <h2>Featured Creators</h2>
                 <SideItem icon="" header='Vernon Neilly III' subHeader='@neillydev' path='/' />
+                <SideItem icon="" header='Pistachio The Cat' subHeader='@pistachio' path='/' />
               </div>
               <div className={styles.separator} />
               <div className={styles.leftSurf}>
