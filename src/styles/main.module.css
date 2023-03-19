@@ -23,7 +23,8 @@
 }
 
 .mainLeft {
-    width: 356px;
+    width: 100%;
+    max-width: 356px;
 }
 
 .mainLeftContainer {
@@ -105,7 +106,10 @@
 }
 
 .mainRight {
-
+    margin-right: 16px;
+    margin-left: 16px;
+    width: 692px;
+    max-width: 692px;
 }
 
 .mainRightWrapper {
