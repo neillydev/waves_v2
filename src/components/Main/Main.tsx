@@ -6,10 +6,12 @@ import FollowersSVG from '../../../public/followers.svg';
 import styles from '../../styles/main.module.css';
 import Post from '../Post/Post';
 import Trend from '../Trend/Trend';
+import SideBar from '../SideBar/SideBar';
 
 const Main = () => {
   return (
     <div className={styles.mainWrapper}>
+      <SideBar />
       <div className={styles.mainLeft}>
         <div className={styles.mainLeftContainer}>
           <div className={styles.mainLeftWrapper}>

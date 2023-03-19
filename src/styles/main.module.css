@@ -147,3 +147,12 @@
 .leftSublink:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 1050px) {
+    .mainLeft {
+        display: none;
+    }
+    .mainRight {
+        margin: 0 8rem;
+    }
+}

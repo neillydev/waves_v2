@@ -1,0 +1,60 @@
+.sideBarContainer {
+    display: none;
+}
+
+@media (max-width: 1050px) {
+    .sideBarContainer {
+        display: flex;
+        width: 75px;
+        border-right: 1px solid rgba(22, 24, 35, .12);
+    }
+
+    .sideBarWrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0 1rem;
+    }
+
+    .sideBarItem {
+        padding: 1rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .sideBarItem svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .separator {
+        display: flex;
+        margin: 0.5rem 0;
+        height: 1px;
+        transform: scaleY(0.5);
+        background: rgba(22, 24, 35, 0.12);
+    }
+
+    .featuredAccountList {
+        margin: 0;
+        padding: 0;
+    }
+
+    .featuredAccountItem {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 8px;
+    }
+
+    .account>img {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
