@@ -1,12 +1,30 @@
 .postContainer {
     display: flex;
+    position: relative;
+}
+
+.postContainer:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    -webkit-transform: scaleY(0.5);
+    -moz-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    background: rgba(22, 24, 35, .2);
 }
 
 .postWrapper {
     display: flex;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .post {
+    width: 100%;
     margin-left: 0.75rem;
 }
 
@@ -25,8 +43,8 @@
 }
 
 .postProfile > img {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
 }
 
@@ -49,7 +67,7 @@
 }
 
 .postMedia {
-    
+    display: flex;
 }
 
 .postMediaVideoContainer {
@@ -64,6 +82,33 @@
     border-radius: 4px;
 }
 
+.postControls {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.postControl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(22, 24, 35, .06);
+    border-radius: 50%;
+    margin-left: 1rem;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.postControl > svg {
+    height: 24px;
+    width: 24px;
+}
+
+
 .caption {
     display: inline-block;
     font-family: 'Oswald', sans-serif;
@@ -71,6 +116,8 @@
     font-size: 16px;
     line-height: 25px;
     margin-bottom: 0px;
+    word-break: break-word;
+
 }
 
 .hashtag {

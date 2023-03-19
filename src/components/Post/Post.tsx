@@ -1,6 +1,10 @@
 import React from 'react';
 
 import SoundSVG from '../../../public/sound.svg';
+import WaveBwSVG from '../../../public/wave_bw.svg';
+import ShareSVG from '../../../public/share.svg';
+import CommentSVG from '../../../public/comment.svg';
+
 
 import styles from '../../styles/Post/Post.module.css';
 
@@ -38,6 +42,17 @@ const Post = ({ profileImg, username, name, mediaSrc, caption, soundCaption, sou
                     <div className={styles.postMedia}>
                         <div className={styles.postMediaVideoContainer}>
                             <video src={mediaSrc} />
+                        </div>
+                        <div className={styles.postControls}>
+                            <button className={styles.postControl}>
+                                <WaveBwSVG />
+                            </button>
+                            <button className={styles.postControl}>
+                                <CommentSVG />
+                            </button>
+                            <button className={styles.postControl}>
+                                <ShareSVG />
+                            </button>
                         </div>
                     </div>
                     <div className={styles.postCaption}>
