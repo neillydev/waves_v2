@@ -100,3 +100,9 @@
 .loginBtn:active {
     background-color: #0f8cf2;
 }
+
+@media (max-width: 750px) {
+    .navCenter {
+        max-width: 20rem;
+    }
+}

@@ -156,3 +156,9 @@
         margin: 0 8rem;
     }
 }
+
+@media (max-width: 750px) {
+    .mainRight {
+        margin: 0 2rem;
+    }
+}
