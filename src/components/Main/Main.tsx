@@ -5,6 +5,7 @@ import FollowersSVG from '../../../public/followers.svg';
 
 import styles from '../../styles/main.module.css';
 import Post from '../Post/Post';
+import Trend from '../Trend/Trend';
 
 const Main = () => {
   return (
@@ -23,14 +24,16 @@ const Main = () => {
               </div>
               <div className={styles.separator} />
               <div className={styles.leftFeatured}>
-                <h2>Featured Creators</h2>
+                <h2 className={styles.leftTitle}>Featured Creators</h2>
                 <SideItem icon="" header='Vernon Neilly III' subHeader='@neillydev' path='/' />
                 <SideItem icon="" header='Pistachio The Cat' subHeader='@pistachio' path='/' />
               </div>
               <div className={styles.separator} />
               <div className={styles.leftSurf}>
-
+                <h2 className={styles.leftTitle}>Surf Trends</h2>
+                <Trend title='waves' />
               </div>
+              <div className={styles.separator} />
               <div className={styles.leftFooter}></div>
             </div>
             <div className={styles.mainLeftScroll}>
