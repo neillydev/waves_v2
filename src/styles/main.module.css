@@ -6,7 +6,6 @@
 }
 
 .mainContainer {
-    margin-top: 60px;
     display: flex;
     width: 100vw;
     max-width: 1100px;
@@ -113,10 +112,11 @@
     margin-left: 16px;
     width: 692px;
     max-width: 692px;
+    padding: 24px 0;
 }
 
 .mainRightWrapper {
-    
+    padding: 20px 0;
 }
 
 .separator {

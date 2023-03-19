@@ -46,11 +46,12 @@
     width: 56px;
     height: 56px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .profileUsername {
     font-family: 'Oswald', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 18px;
     line-height: 25px;
     display: inline-block;
@@ -62,7 +63,7 @@
     align-items: center;
     line-height: 28px;
     font-family: 'Oswald', sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 14px;
 }
 
@@ -161,6 +162,8 @@
 
 .followContainer {
     height: 10px;
+    position: relative;
+    top: 4px;
 }
 
 .followBtn {
