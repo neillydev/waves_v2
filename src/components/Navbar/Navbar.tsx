@@ -1,9 +1,11 @@
-import React from 'react';
+import { ModalContext } from '@/context/ModalContext';
+import React, { useContext } from 'react';
 import WaveSVG from '../../../public/wave.svg';
 
 import styles from '../../styles/Navbar/Navbar.module.css';
 
 const Navbar = () => {
+  const { modalDispatch } = useContext(ModalContext);
   return (
     <div className={styles.navContainer}>
         <div className={styles.navWrapper}>
@@ -19,7 +21,7 @@ const Navbar = () => {
             </form>
           </div>
           <div className={styles.navRight}>
-            <button className={styles.loginBtn}>
+            <button className={styles.loginBtn} onClick={() => modalDispatch({type: true})}>
               Login
             </button>
           </div>
