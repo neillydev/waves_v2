@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SideItem from '../SideItem/SideItem';
+
+import { ModalContext } from '@/context/ModalContext';
+
 import FireSVG from '../../../public/fire.svg';
 import FollowersSVG from '../../../public/followers.svg';
 
@@ -8,7 +11,31 @@ import Post from '../Post/Post';
 import Trend from '../Trend/Trend';
 import SideBar from '../SideBar/SideBar';
 
+enum ViewType {
+  TRENDING,
+  FOLLOWING
+};
+
 const Main = () => {
+  const { modalDispatch } = useContext(ModalContext);
+
+  const [viewType, setViewType] = useState<ViewType>(ViewType.TRENDING);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    switch (viewType) {
+      case ViewType.FOLLOWING:
+        //handleFetchFollowingPosts();
+        break;
+      case ViewType.TRENDING:
+        //handleFetchPosts();
+        break;
+      default:
+        break;
+    }
+  }, [viewType]);
+
   return (
     <div className={styles.mainWrapper}>
       <SideBar />
@@ -22,7 +49,7 @@ const Main = () => {
             <div className={styles.separator} />
             <div className={styles.leftLogin}>
               <h2>Login to like videos, interact with creators, and see comments</h2>
-              <button>Login</button>
+              <button onClick={() => modalDispatch({ type: true })}>Login</button>
             </div>
             <div className={styles.separator} />
             <div className={styles.leftSection}>
