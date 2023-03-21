@@ -25,7 +25,7 @@ const LoginModal = () => {
                     e.stopPropagation();
                 }}>
                     <div className={styles.loginModalWrapper}>
-                        <h2>Login to Waves</h2>
+                        <h2>{loginForm === null || loginForm === FormType.LOGIN ? 'Login to' : 'Sign up for'} Waves</h2>
 
                         {
                             loginForm === null ?
