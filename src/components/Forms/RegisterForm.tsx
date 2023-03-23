@@ -15,6 +15,18 @@ const RegisterForm = () => {
         password: '',
     });
 
+    const handleUsernameChange = (event: any) => {
+        setRegisterFormValues({...registerFormValues, username: event.target.value});
+    };
+
+    const handlePasswordChange = (event: any) => {
+        setRegisterFormValues({...registerFormValues, password: event.target.value});
+    };
+
+    const handleEmailChange = (event: any) => {
+        setRegisterFormValues({...registerFormValues, email: event.target.value});
+    };
+
     const handleRegister = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -43,19 +55,22 @@ const RegisterForm = () => {
                 <h3>Email</h3>
                 <input type="text" placeholder='Email' className={styles.loginInput} onClick={(e) => {
                     e.stopPropagation();
-                }} />
+                }}
+                onChange={handleEmailChange} />
             </div>
             <div className={styles.inputContainer}>
                 <h3>Username</h3>
                 <input type="text" placeholder='Username' className={styles.loginInput} onClick={(e) => {
                     e.stopPropagation();
-                }} />
+                }} 
+                onChange={handleUsernameChange} />
             </div>
             <div className={styles.inputContainer}>
                 <h3>Password</h3>
                 <input type="password" placeholder='Password' className={`${styles.loginInput} ${styles.passwordInput}`} onClick={(e) => {
                     e.stopPropagation();
-                }} />
+                }}
+                onChange={handlePasswordChange} />
             </div>
             <button type='submit' className={styles.loginFormSubmit}>Register</button>
         </form>

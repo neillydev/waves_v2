@@ -14,6 +14,14 @@ const LoginForm = () => {
         password: '',
     });
 
+    const handleLoginChange = (event: any) => {
+        setLoginFormValues({...loginFormValues, login: event.target.value});
+    };
+
+    const handlePasswordChange = (event: any) => {
+        setLoginFormValues({...loginFormValues, password: event.target.value});
+    };
+
     const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -40,12 +48,14 @@ const LoginForm = () => {
                 <h3>Email or username</h3>
                 <input type="text" placeholder='Email or username' className={styles.loginInput} onClick={(e) => {
                     e.stopPropagation();
-                }} />
+                }}
+                onChange={handleLoginChange} />
             </div>
             <div className={styles.inputContainer}>
                 <input type="password" placeholder='Password' className={`${styles.loginInput} ${styles.passwordInput}`} onClick={(e) => {
                     e.stopPropagation();
-                }} />
+                }}
+                onChange={handlePasswordChange} />
                 <h4>Forgot password?</h4>
             </div>
             <button type='submit' className={styles.loginFormSubmit}>Login</button>

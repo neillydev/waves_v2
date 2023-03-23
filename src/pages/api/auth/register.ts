@@ -15,24 +15,24 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<RegisterResBody>
 ) {
-  const {method} = req;
+  const { method } = req;
 
-  switch(method) {
+  switch (method) {
     case "POST":
       const { email, username, password }: RegisterReqBody = req.body;
 
 
-      try{
+      try {
         const response = await axios.post('http://localhost:8022/auth/register', {
           username,
           email,
           password,
         });
 
-        if(response.status === 200){
+        if (response.status === 200) {
           return res.status(200).json({
-            
-           });
+
+          });
         } else {
           return res.status(400).json({ message: '' });
         }
