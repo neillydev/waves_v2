@@ -5,9 +5,9 @@ export const AuthContext = createContext<any| undefined>(undefined);
 const initialState = false;
 const reducer = (state: boolean, action: any) => {
   switch(action.type) {
-    case 'true':
+    case true:
         return true;
-    case 'false':
+    case false:
       return false;
     default:
         return state;

@@ -33,8 +33,10 @@ const LoginForm = () => {
             });
 
             if (response.status === 200) {
-                //const data = await response.json();
+                const {token} = await response.json();
+                localStorage.setItem('token', token);
 
+                window.location.reload();
             } else {
                 // switch errors and handle accordingly
             }

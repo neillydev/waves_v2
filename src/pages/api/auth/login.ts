@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 type LoginReqBody = {
   login: string;
@@ -27,9 +28,12 @@ export default async function handler(
         });
 
         if(response.status === 200){
-          return res.status(200).json({
-            
-          });
+          const data = await response.data;
+
+          //@ts-ignore
+          const [cookie] = response.headers['set-cookie'];
+          
+          return res.status(200).json(data);
         } else {
           return res.status(400).json({ message: '' });
         }

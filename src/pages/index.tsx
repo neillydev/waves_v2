@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
@@ -12,6 +12,26 @@ import { ModalProvider } from '@/context/ModalContext';
 
 const Home = () => {
   const { authState, authDispatch } = useContext(AuthContext);
+
+  const handleAuth = () => {
+    if(!authState) {
+      const token = localStorage.getItem('token');
+
+      if(token && token.length > 0) {
+        //Check if token is expired
+
+        //If expired, remove token from localStorage
+        //localStorage.removeItem('token');
+
+        //Else, set authDispatch to true
+        authDispatch({type: true});
+      }
+    } else {
+      console.log('Logged in');
+    }
+  };
+
+  useEffect(() => handleAuth(), [authState]);
 
   return (
     <>
