@@ -110,6 +110,10 @@
     width: 24px;
 }
 
+.postControl:hover {
+    background-color: #00000011;
+}
+
 
 .caption {
     display: inline-block;

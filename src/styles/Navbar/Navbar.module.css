@@ -101,6 +101,28 @@
     background-color: #0f8cf2;
 }
 
+.profileBtn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.profileBtn > svg {
+
+    width: 24px;
+    height: 24px;
+
+}
+
+.profileBtn:hover {
+    background-color: #00000011;
+}
+
 @media (max-width: 750px) {
     .navCenter {
         max-width: 20rem;
