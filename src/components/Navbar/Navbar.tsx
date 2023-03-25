@@ -4,12 +4,13 @@ import React, { useContext } from 'react';
 import WaveSVG from '../../../public/wave.svg';
 import UserSVG from '../../../public/user.svg';
 
-
 import styles from '../../styles/Navbar/Navbar.module.css';
+import Dropdown from '../Dropdown/Dropdown';
 
 const Navbar = () => {
   const { authState } = useContext(AuthContext);
   const { modalState, modalDispatch } = useContext(ModalContext);
+  const DEFAULT_PROFILE_IMG = "https://surfwaves.b-cdn.net/user_picture.png";
   return (
     <div className={styles.navContainer}>
       <div className={styles.navWrapper}>
@@ -27,12 +28,17 @@ const Navbar = () => {
         <div className={styles.navRight}>
           {
             !authState ?
-            <button className={styles.loginBtn} onClick={() => modalDispatch({ type: true })}>
-              Login
-            </button>
-            : <div className={styles.profileBtn}>
-              <UserSVG />
-            </div>
+              <button className={styles.loginBtn} onClick={() => modalDispatch({ type: true })}>
+                Login
+              </button>
+              :
+              <div  style={
+                {
+                  backgroundImage: `url(${DEFAULT_PROFILE_IMG})`,
+                }
+              } className={styles.profileBtn}>
+                <Dropdown />
+              </div>
           }
         </div>
       </div>

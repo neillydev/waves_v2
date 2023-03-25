@@ -104,23 +104,92 @@
 .profileBtn {
     width: 36px;
     height: 36px;
-    border: 1px solid;
     border-radius: 50%;
     cursor: pointer;
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: center;
+    background-size: cover;
+    position: relative;
 }
 
-.profileBtn > svg {
-
-    width: 24px;
-    height: 24px;
-
+.dropContainer {
+    display: none;
+    background-color: rgb(255, 255, 255);
+    right: -12px;
+    position: absolute;
+    z-index: 1;
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+    top: calc(100% + 1px);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
+    transition: opacity 300ms ease-in-out 0s;
+    opacity: 0;
+    max-width: 200px;
 }
 
-.profileBtn:hover {
-    background-color: #00000011;
+.dropWrapper{
+    
+}
+
+.profileBtn:hover > .dropContainer,
+.dropContainer:hover {
+  opacity: 1;
+  display: inline-flex;
+}
+
+.profileBtn:hover > .dropContainer {
+  display: inline-flex;
+}
+
+.profileBtn:hover ~ .dropContainer {
+  display: none;
+  opacity: 0;
+}
+
+
+.dropList {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 8px 0px;
+    margin: 0px;
+    min-width: 200px;
+    list-style: none;
+    width: 100%;
+}
+
+.dropHeader {
+    padding: .5rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.dropItem {
+    color: rgb(22, 24, 35);
+    padding: 0px;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.dropItem > span {
+    display: flex;
+    white-space: nowrap;
+    flex-direction: row;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(22, 24, 35);
+    padding: 10px 8px;
+}
+
+.separator {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: rgba(22, 24, 35, 0.12);
 }
 
 @media (max-width: 750px) {

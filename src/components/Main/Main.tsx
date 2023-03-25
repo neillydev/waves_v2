@@ -10,6 +10,7 @@ import styles from '../../styles/main.module.css';
 import Post from '../Post/Post';
 import Trend from '../Trend/Trend';
 import SideBar from '../SideBar/SideBar';
+import { AuthContext } from '@/context/AuthContext';
 
 enum ViewType {
   TRENDING,
@@ -17,6 +18,7 @@ enum ViewType {
 };
 
 const Main = () => {
+  const { authState } = useContext(AuthContext);
   const { modalDispatch } = useContext(ModalContext);
 
   const [viewType, setViewType] = useState<ViewType>(ViewType.TRENDING);
@@ -46,11 +48,12 @@ const Main = () => {
               <SideItem icon={<FireSVG />} header='Trending' subHeader='' path='/' account={false} />
               <SideItem icon={<FollowersSVG />} header='Following' subHeader='' path='/following' account={false} />
             </div>
-            <div className={styles.separator} />
-            <div className={styles.leftLogin}>
-              <h2>Login to like videos, interact with creators, and see comments</h2>
-              <button onClick={() => modalDispatch({ type: true })}>Login</button>
-            </div>
+
+            {authState ? <></> : <>
+              <div className={styles.separator} /><div className={styles.leftLogin}>
+                <h2>Login to like videos, interact with creators, and see comments</h2>
+                <button onClick={() => modalDispatch({ type: true })}>Login</button>
+              </div></>}
             <div className={styles.separator} />
             <div className={styles.leftSection}>
               <h2 className={styles.leftTitle}>Featured Creators</h2>
