@@ -168,10 +168,16 @@
 
 .dropItem {
     color: rgb(22, 24, 35);
-    padding: 0px;
+    padding: 0px 0px 0px 20px;
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
+    align-items: center;
+}
+
+.dropItem > svg {
+    width: 18px;
+    height: 18px;
 }
 
 .dropItem > span {
@@ -182,7 +188,14 @@
     -webkit-box-align: center;
     align-items: center;
     color: rgb(22, 24, 35);
-    padding: 10px 8px;
+    padding: 8px 10px;
+    letter-spacing: 0.25px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.dropItem:hover {
+    background-color: #f6f6f6;
 }
 
 .separator {
@@ -190,6 +203,7 @@
     height: 1px;
     width: 100%;
     background: rgba(22, 24, 35, 0.12);
+    margin: 8px 0;
 }
 
 @media (max-width: 750px) {
