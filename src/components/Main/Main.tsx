@@ -45,8 +45,8 @@ const Main = () => {
         <div className={styles.mainLeftContainer}>
           <div className={styles.mainLeftWrapper}>
             <div className={styles.leftMain}>
-              <SideItem icon={<FireSVG />} header='Trending' subHeader='' path='/' account={false} />
-              <SideItem icon={<FollowersSVG />} header='Following' subHeader='' path='/following' account={false} />
+              <SideItem icon={<FireSVG className={viewType !== ViewType.TRENDING || styles.selectedSvg} />} header='Trending' subHeader='' path='/' account={false} selected={viewType === ViewType.TRENDING} />
+              <SideItem icon={<FollowersSVG className={viewType !== ViewType.FOLLOWING || styles.selectedSvg} />} header='Following' subHeader='' path='/following' account={false} selected={viewType === ViewType.FOLLOWING} />
             </div>
 
             {authState ? <></> : <>

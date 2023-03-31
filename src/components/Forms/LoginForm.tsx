@@ -33,8 +33,9 @@ const LoginForm = () => {
             });
 
             if (response.status === 200) {
-                const {token} = await response.json();
+                const {token, user_profile: { avatar }} = await response.json();
                 localStorage.setItem('token', token);
+                localStorage.setItem('avatar', avatar);
 
                 window.location.reload();
             } else {
