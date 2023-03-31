@@ -25,6 +25,9 @@ const Home = () => {
 
         //Else, set authDispatch to true
         authDispatch({type: true});
+      } else {
+        console.log('Logged out')
+        authDispatch({type: false});
       }
     } else {
       console.log('Logged in');
