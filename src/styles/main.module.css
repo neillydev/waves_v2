@@ -149,6 +149,10 @@
     text-decoration: underline;
 }
 
+.selectedSvg {
+    fill: #2ba0ff;
+}
+
 @media (max-width: 1050px) {
     .mainLeft {
         display: none;
