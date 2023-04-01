@@ -23,15 +23,23 @@ const Main = () => {
 
   const [viewType, setViewType] = useState<ViewType>(ViewType.TRENDING);
 
+  const handleFetchPosts = () => {
+
+  };
+
+  const handleFetchFollowingPosts = () => {
+
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
     switch (viewType) {
       case ViewType.FOLLOWING:
-        //handleFetchFollowingPosts();
+        handleFetchFollowingPosts();
         break;
       case ViewType.TRENDING:
-        //handleFetchPosts();
+        handleFetchPosts();
         break;
       default:
         break;
@@ -45,8 +53,8 @@ const Main = () => {
         <div className={styles.mainLeftContainer}>
           <div className={styles.mainLeftWrapper}>
             <div className={styles.leftMain}>
-              <SideItem icon={<FireSVG className={viewType !== ViewType.TRENDING || styles.selectedSvg} />} header='Trending' subHeader='' path='/' account={false} selected={viewType === ViewType.TRENDING} />
-              <SideItem icon={<FollowersSVG className={viewType !== ViewType.FOLLOWING || styles.selectedSvg} />} header='Following' subHeader='' path='/following' account={false} selected={viewType === ViewType.FOLLOWING} />
+              <SideItem icon={<FireSVG className={viewType !== ViewType.TRENDING || styles.selectedSvg} />} header='Trending' subHeader='' path='' account={false} selected={viewType === ViewType.TRENDING} />
+              <SideItem icon={<FollowersSVG className={viewType !== ViewType.FOLLOWING || styles.selectedSvg} />} header='Following' subHeader='' path='' account={false} selected={viewType === ViewType.FOLLOWING} />
             </div>
 
             {authState ? <></> : <>
