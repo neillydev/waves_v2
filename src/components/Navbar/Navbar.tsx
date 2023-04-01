@@ -33,6 +33,13 @@ const Navbar = () => {
           </form>
         </div>
         <div className={styles.navRight}>
+          <button className={styles.uploadBtn} onClick={() => { 
+            if(!authState) {
+              modalDispatch({ type: true });
+            }
+          }}>
+            Upload
+          </button>
           {
             !authState ?
               <button className={styles.loginBtn} onClick={() => modalDispatch({ type: true })}>
