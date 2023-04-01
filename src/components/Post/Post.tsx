@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import SoundSVG from '../../../public/sound.svg';
 import WaveBwSVG from '../../../public/wave_bw.svg';
@@ -7,6 +7,8 @@ import CommentSVG from '../../../public/comment.svg';
 
 
 import styles from '../../styles/Post/Post.module.css';
+import { AuthContext } from '@/context/AuthContext';
+import { ModalContext } from '@/context/ModalContext';
 
 type PostProps = {
     profileImg: string;
@@ -19,6 +21,8 @@ type PostProps = {
 };
 
 const Post = ({ profileImg, username, name, mediaSrc, caption, soundCaption, soundSrc }: PostProps) => {
+    const { authState } = useContext(AuthContext);
+    const { modalState, modalDispatch } = useContext(ModalContext);
     return (
         <div className={styles.postContainer}>
             <div className={styles.postWrapper}>
@@ -36,7 +40,11 @@ const Post = ({ profileImg, username, name, mediaSrc, caption, soundCaption, sou
                             </div>
                         </div>
                         <div className={styles.followContainer}>
-                            <button className={styles.followBtn}>Follow</button>
+                            <button className={styles.followBtn} onClick={() => {
+                                if (!authState) {
+                                    modalDispatch({ type: true });
+                                }
+                            }}>Follow</button>
                         </div>
                     </div>
                     <div className={styles.postMedia}>
@@ -57,10 +65,10 @@ const Post = ({ profileImg, username, name, mediaSrc, caption, soundCaption, sou
                     </div>
                     <div className={styles.postCaption}>
                         <h2 className={styles.caption}>{
-                            caption.includes('#') ? 
-                            caption.split(' ').map((word) => word.includes('#') ? <><span className={styles.hashtag}>{`${word}`}</span><span className={styles.hashtagSpace}></span></> : `${word} `)
-                            : 
-                            caption
+                            caption.includes('#') ?
+                                caption.split(' ').map((word) => word.includes('#') ? <><span className={styles.hashtag}>{`${word}`}</span><span className={styles.hashtagSpace}></span></> : `${word} `)
+                                :
+                                caption
                         }</h2>
                     </div>
                     <div className={styles.postSound}>
