@@ -35,7 +35,6 @@
     top: 60px;
     bottom: 0px;
     width: 356px;
-    background: rgb(255, 255, 255);
     position: fixed;
     z-index: 99;
     padding-right: 8px;
@@ -82,7 +81,7 @@
     color: #2ba0ff;
     background-color: transparent;
     border: 1px solid #2ba0ff;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Bebas Neue';
     font-weight: 200;
     font-size: 20px;
     height: 35px;
@@ -100,7 +99,7 @@
 }
 
 .leftTitle {
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Bebas Neue';
     margin-bottom: 8px;
     font-size: 16px;
     line-height: 20px;

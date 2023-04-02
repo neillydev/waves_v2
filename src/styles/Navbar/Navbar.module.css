@@ -7,6 +7,7 @@
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
     z-index: 100;
     position: relative;
+    background-color: #fff;
 }
 
 .navWrapper {
@@ -34,7 +35,7 @@
 
 .navLeft a h2 {
     font-size: 2rem;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Bebas Neue';
     margin-left: 6px;
 }
 
@@ -85,7 +86,7 @@
     min-width: 100px;
     background-color: #2ba0ff;
     color: #fff;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Bebas Neue';
     font-size: 15px;
     height: 36px;
     justify-content: center;
@@ -105,9 +106,14 @@
     background-color: #0f8cf2;
 }
 
+.link {
+    text-decoration: none;
+}
+
 .uploadBtn {
+    text-decoration: none;
     margin: 0 1.25rem 0 0;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Bebas Neue';
     font-size: 15px;
     position: relative;
     height: 36px;
@@ -249,7 +255,7 @@
 
 .uploadBtn {
     margin: 0 1.25rem 0 0;
-    font-family: 'Bebas Neue', cursive;
+    font-family: 'Bebas Neue';
     font-size: 15px;
     position: relative;
     height: 36px;
