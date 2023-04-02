@@ -5,6 +5,7 @@ import { ModalContext } from '@/context/ModalContext';
 
 import FireSVG from '../../../public/fire.svg';
 import FollowersSVG from '../../../public/followers.svg';
+import VideoSVG from '../../../public/video.svg';
 
 import styles from '../../styles/main.module.css';
 import Post from '../Post/Post';
@@ -14,7 +15,8 @@ import { AuthContext } from '@/context/AuthContext';
 
 enum ViewType {
   TRENDING,
-  FOLLOWING
+  FOLLOWING,
+  LIVE,
 };
 
 const Main = () => {
@@ -55,8 +57,8 @@ const Main = () => {
             <div className={styles.leftMain}>
               <SideItem icon={<FireSVG className={viewType !== ViewType.TRENDING || styles.selectedSvg} />} header='Trending' subHeader='' path='' account={false} selected={viewType === ViewType.TRENDING} />
               <SideItem icon={<FollowersSVG className={viewType !== ViewType.FOLLOWING || styles.selectedSvg} />} header='Following' subHeader='' path='' account={false} selected={viewType === ViewType.FOLLOWING} />
+              <SideItem icon={<VideoSVG className={viewType !== ViewType.LIVE || styles.selectedSvg} />} header='Live' subHeader='' path='' account={false} selected={viewType === ViewType.LIVE} />
             </div>
-
             {authState ? <></> : <>
               <div className={styles.separator} /><div className={styles.leftLogin}>
                 <h2>Login to like videos, interact with creators, and see comments</h2>
