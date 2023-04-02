@@ -1,13 +1,39 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
 import styles from '../../styles/main.module.css';
 import Navbar from "../Navbar/Navbar";
+import { AuthContext } from "@/context/AuthContext";
 
 export default function ContainerBlock({ children, ...customMeta }: any) {
   const router = useRouter();
 
+  const { authState, authDispatch } = useContext(AuthContext);
+
+  const handleAuth = () => {
+    if(!authState) {
+      const token = localStorage.getItem('token');
+
+      if(token && token.length > 0) {
+        //Check if token is expired
+
+        //If expired, remove token from localStorage
+        //localStorage.removeItem('token');
+
+        //Else, set authDispatch to true
+        authDispatch({type: true});
+      } else {
+        console.log('Logged out')
+        authDispatch({type: false});
+      }
+    } else {
+      console.log('Logged in');
+    }
+  };
+
+  useEffect(() => handleAuth(), [authState]);
+  
   const meta = {
     title: "Waves - Surf Trends",
     description: ``,
