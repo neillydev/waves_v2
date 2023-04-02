@@ -6,6 +6,7 @@ import UserSVG from '../../../public/user.svg';
 
 import styles from '../../styles/Navbar/Navbar.module.css';
 import Dropdown from '../Dropdown/Dropdown';
+import Link from 'next/link';
 
 const Navbar = () => {
   const { authState } = useContext(AuthContext);
@@ -14,7 +15,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (!avatar) {
-        setAvatar(localStorage?.getItem('avatar') || 'https://surfwaves.b-cdn.net/user_picture.png');
+      setAvatar(localStorage?.getItem('avatar') || 'https://surfwaves.b-cdn.net/user_picture.png');
     }
   }, [])
 
@@ -33,13 +34,16 @@ const Navbar = () => {
           </form>
         </div>
         <div className={styles.navRight}>
-          <button className={styles.uploadBtn} onClick={() => { 
-            if(!authState) {
-              modalDispatch({ type: true });
-            }
-          }}>
-            Upload
-          </button>
+          <Link href="/upload" className={styles.link} onClick={(e) => {
+              if (!authState) {
+                e.preventDefault();
+                modalDispatch({ type: true });
+              }
+            }}>
+            <button className={styles.uploadBtn}>
+              Upload
+            </button>
+          </Link>
           {
             !authState ?
               <button className={styles.loginBtn} onClick={() => modalDispatch({ type: true })}>
