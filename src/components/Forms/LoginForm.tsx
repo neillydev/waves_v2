@@ -33,8 +33,10 @@ const LoginForm = () => {
             });
 
             if (response.status === 200) {
-                const {token, user_profile: { avatar }} = await response.json();
+                const {token, user_profile: { avatar, user_id, username }} = await response.json();
                 localStorage.setItem('token', token);
+                localStorage.setItem('user_id', user_id);
+                localStorage.setItem('username', username);
                 localStorage.setItem('avatar', avatar);
 
                 window.location.reload();
