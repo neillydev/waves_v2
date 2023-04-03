@@ -46,15 +46,15 @@
     display: flex;
     margin-top: 1.25rem;
     margin-bottom: 8rem;
-
+    justify-content: space-between;
 }
 
 .uploadMeta {
-
+    width: 100%;
 }
 
 .uploadPreviewWrapper {
-
+    margin: 0 0 0 4rem;
 }
 
 .uploadCaption > h3, .uploadAccessControls > h3, .uploadAllowanceControls > h3 {
@@ -145,6 +145,106 @@
     letter-spacing: 0.25px;
 }
 
+.uploadSubmitControls > button:hover {
+    background: rgba(244, 244, 244, 0.726);
+} 
+
+.uploadSubmitControls > button:active {
+    background: rgba(235, 235, 235, 0.726);
+}
+
 .uploadSubmitControls > button:nth-child(1) {
     margin-right: 3rem;
+}
+
+.uploadPreview {
+    height: 458px;
+    width: 260px;
+    border: 2px dashed rgba(22, 24, 35, 0.2);
+    box-sizing: border-box;
+}
+
+.uploadPreviewBefore {
+    border-radius: 8px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out 0s;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.previewTitle {
+    font-family: 'Oswald', sans-serif;
+}
+
+.previewTitle > h2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    margin: 16px 0 0 0;
+}
+
+.previewTitle > h3 {
+    color: rgba(22, 24, 35, 0.5);
+    text-align: center;
+    font-weight: 400;
+    margin-top: 6px;
+}
+
+.uploadPreview > svg {
+    height: 40px;
+    width: 40px;
+}
+
+.mediaSelectBtn {
+    margin-top: 1rem;
+    text-decoration: none;
+    font-family: 'Bebas Neue';
+    font-size: 18px;
+    position: relative;
+    height: 44px;
+    color: #fff;
+    background-color: #2ba0ff;
+    width: 164px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 2px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    cursor: pointer;
+    letter-spacing: 0.25px;
+}
+
+.mediaSelectBtn:hover {
+    background-color: #2095f5;
+}
+
+.mediaSelectBtn:active {
+    background-color: #0f8cf2;
+}
+
+.media {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+
+.invalid {
+    border: 1px solid rgb(255 0 0 / 30%) !important;
 }
