@@ -1,9 +1,95 @@
-import React from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import ContainerBlock from '@/components/ContainerBlock/ContainerBlock';
 
+import UploadSVG from '../../../public/gallery.svg';
+
 import styles from '../../styles/Upload/Upload.module.css';
+import { AuthContext } from '@/context/AuthContext';
+
+enum ACCESS {
+    PUBLIC = 0,
+    PRIVATE = 1,
+}
 
 const Upload = () => {
+    const { authState } = useContext(AuthContext);
+
+    const mediaInput = useRef<HTMLInputElement>(null);
+    const captionRef = useRef<HTMLInputElement>(null);
+    const [mediaPreview, setMediaPreview] = useState('');
+    const [media, setMedia] = useState<File>();
+    const [access, setAccess] = useState<any>(ACCESS.PUBLIC);
+    const [caption, setCaption] = useState('');
+    const [invalid, setInvalid] = useState<any>([]);
+
+    const handlePostMedia = async () => {
+        if (!authState) {
+
+            return;
+        }
+        else if (!caption) {
+            setInvalid([...invalid, captionRef]);
+            return;
+        }
+        const user_id = localStorage.getItem('user_id');
+        const username = localStorage.getItem('username');
+        const token = localStorage.getItem('token');
+
+        if (!username || !token || !user_id || !media) {
+            //Attempt to retrieve proper data and replace them in localStorage
+            //If not, log user out and send to home page
+            return;
+        }
+        const formData = new FormData();
+        const reader: any = new FileReader();
+
+        reader.readAsArrayBuffer(media);
+
+        reader.onload = async () => {
+            const blob = new Blob([reader.result], { type: media.type });
+            const formData = new FormData();
+            formData.append('file', blob, media.name);
+            formData.append('token', token);
+            formData.append('username', username);
+            formData.append('user_id', user_id);
+            formData.append('caption', caption);
+            formData.append('access', access);
+            try {
+                const response = await fetch('http://localhost:8022/post', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.status === 200) {
+                    window.location.href = `/`
+                } else {
+                    // switch errors and handle accordingly
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+    };
+
+    const handleDeletePost = async () => {
+        if (!authState) {
+            return;
+        }
+
+        window.location.href = `/`
+    };
+
+    useEffect(() => {
+        if (invalid.length > 0) {
+            invalid.forEach((element: HTMLInputElement) => {
+                element.className += ` ${styles.invalid}`
+            });
+        }
+    }, [invalid]);
+
     return (
         <div className={styles.mainUpload}>
             <ContainerBlock>
@@ -17,7 +103,7 @@ const Upload = () => {
                             <div className={styles.uploadMeta}>
                                 <div className={styles.uploadCaption}>
                                     <h3>Caption</h3>
-                                    <input type="text" />
+                                    <input type="text" value={caption} onChange={(e) => setCaption(e.currentTarget.value)} />
                                 </div>
                                 <div className={styles.uploadAccessControls}>
                                     <h3>Post visible to</h3>
@@ -35,12 +121,32 @@ const Upload = () => {
                                     </div>
                                 </div>
                                 <div className={styles.uploadSubmitControls}>
-                                    <button>Delete</button>
-                                    <button>Post</button>
+                                    <button onClick={handleDeletePost}>Delete</button>
+                                    <button onClick={handlePostMedia}>Post</button>
                                 </div>
                             </div>
-                            <div className={styles.uploadPreviewWrapper}>
-
+                            <div className={styles.uploadPreviewWrapper} onClick={() => mediaInput.current?.click()}>
+                                <input ref={mediaInput} type="file" accept="video/*" style={{ display: 'none' }} onChange={(e) => {
+                                    if (e && e.target && e.target.files) {
+                                        setMedia(e.target.files[0])
+                                    }
+                                }} />
+                                <div className={`${styles.uploadPreview} ${styles.uploadPreviewBefore}`}>
+                                    {media ? (
+                                        <video className={styles.media} controls>
+                                            <source src={URL.createObjectURL(media)} type={media.type} />
+                                        </video>
+                                    ) :
+                                        <>
+                                            <UploadSVG />
+                                            <div className={styles.previewTitle}>
+                                                <h2>Select media to upload</h2>
+                                                <h3>or drag and drop</h3>
+                                            </div>
+                                            <button className={styles.mediaSelectBtn}>Select Media</button>
+                                        </>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
