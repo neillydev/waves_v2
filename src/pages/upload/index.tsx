@@ -22,6 +22,8 @@ const Upload = () => {
     const [caption, setCaption] = useState('');
     const [invalid, setInvalid] = useState<any>([]);
 
+    const [loading, setLoading] = useState(false);
+
     const handlePostMedia = async () => {
         if (!authState) {
 
@@ -31,6 +33,10 @@ const Upload = () => {
             setInvalid([...invalid, captionRef]);
             return;
         }
+        
+        //set loading to true for spinner animation
+        setLoading(true);
+
         const user_id = localStorage.getItem('user_id');
         const username = localStorage.getItem('username');
         const token = localStorage.getItem('token');
@@ -64,6 +70,7 @@ const Upload = () => {
                 });
 
                 if (response.status === 200) {
+                    setLoading(false);
                     window.location.href = `/`
                 } else {
                     // switch errors and handle accordingly
@@ -95,6 +102,9 @@ const Upload = () => {
             <ContainerBlock>
                 <div className={styles.uploadContainer}>
                     <div className={styles.uploadWrapper}>
+                        <div className={styles.loaderContainer} style={{display: loading ? 'flex' : 'none'}}>
+                            <span className={styles.loader}></span>
+                        </div>
                         <div className={styles.uploadTitleContainer}>
                             <h1>Upload post</h1>
                             <h2>Post content to your account</h2>

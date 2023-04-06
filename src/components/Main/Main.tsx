@@ -1,22 +1,37 @@
-import React, { useContext, useEffect, useState } from 'react';
-import SideItem from '../SideItem/SideItem';
+import React, { useContext, useEffect, useState } from "react";
+import SideItem from "../SideItem/SideItem";
 
-import { ModalContext } from '@/context/ModalContext';
+import { ModalContext } from "@/context/ModalContext";
 
-import FireSVG from '../../../public/fire.svg';
-import FollowersSVG from '../../../public/followers.svg';
-import VideoSVG from '../../../public/video.svg';
+import FireSVG from "../../../public/fire.svg";
+import FollowersSVG from "../../../public/followers.svg";
+import VideoSVG from "../../../public/video.svg";
 
-import styles from '../../styles/main.module.css';
-import Post from '../Post/Post';
-import Trend from '../Trend/Trend';
-import SideBar from '../SideBar/SideBar';
-import { AuthContext } from '@/context/AuthContext';
+import styles from "../../styles/main.module.css";
+import Post from "../Post/Post";
+import Trend from "../Trend/Trend";
+import SideBar from "../SideBar/SideBar";
+import { AuthContext } from "@/context/AuthContext";
 
 enum ViewType {
   TRENDING,
   FOLLOWING,
   LIVE,
+}
+
+type PostType = {
+  post_id: number;
+  avatar: string;
+  name: string;
+  wavecreators_id: string;
+  username: string;
+  caption: string;
+  mediaType: "video" | "image";
+  media: string;
+  date_posted: string;
+  audiodesc: string;
+  likes: number;
+  comments: any;
 };
 
 const Main = () => {
@@ -25,13 +40,33 @@ const Main = () => {
 
   const [viewType, setViewType] = useState<ViewType>(ViewType.TRENDING);
 
-  const handleFetchPosts = () => {
+  const [posts, setPosts] = useState<PostType[]>();
+  const [suggested, setSuggested] = useState<any>(undefined);
 
+  const [followingList, setFollowingList] = useState<any>([]);
+
+  const handleFetchPosts = async () => {
+    //start loading animation and skeleton screen
+    try {
+      const response = await fetch("http://localhost:8022/posts", {
+        method: "GET",
+      });
+
+      if (response.status === 200) {
+        const data = await response.json();
+        setPosts(data);
+        setTimeout(() => {
+          //loading_dispatch({ loading: true, type: "bar" });
+        }, 200);
+      } else {
+        // switch errors and handle accordingly
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleFetchFollowingPosts = () => {
-
-  };
+  const handleFetchFollowingPosts = async () => {};
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,56 +90,131 @@ const Main = () => {
         <div className={styles.mainLeftContainer}>
           <div className={styles.mainLeftWrapper}>
             <div className={styles.leftMain}>
-              <SideItem icon={<FireSVG className={viewType !== ViewType.TRENDING || styles.selectedSvg} />} header='Trending' subHeader='' path='' account={false} selected={viewType === ViewType.TRENDING} />
-              <SideItem icon={<FollowersSVG className={viewType !== ViewType.FOLLOWING || styles.selectedSvg} />} header='Following' subHeader='' path='' account={false} selected={viewType === ViewType.FOLLOWING} />
-              <SideItem icon={<VideoSVG className={viewType !== ViewType.LIVE || styles.selectedSvg} />} header='Live' subHeader='' path='' account={false} selected={viewType === ViewType.LIVE} />
+              <SideItem
+                icon={
+                  <FireSVG
+                    className={
+                      viewType !== ViewType.TRENDING || styles.selectedSvg
+                    }
+                  />
+                }
+                header="Trending"
+                subHeader=""
+                path=""
+                account={false}
+                selected={viewType === ViewType.TRENDING}
+              />
+              <SideItem
+                icon={
+                  <FollowersSVG
+                    className={
+                      viewType !== ViewType.FOLLOWING || styles.selectedSvg
+                    }
+                  />
+                }
+                header="Following"
+                subHeader=""
+                path=""
+                account={false}
+                selected={viewType === ViewType.FOLLOWING}
+              />
+              <SideItem
+                icon={
+                  <VideoSVG
+                    className={viewType !== ViewType.LIVE || styles.selectedSvg}
+                  />
+                }
+                header="Live"
+                subHeader=""
+                path=""
+                account={false}
+                selected={viewType === ViewType.LIVE}
+              />
             </div>
-            {authState ? <></> : <>
-              <div className={styles.separator} /><div className={styles.leftLogin}>
-                <h2>Login to like videos, interact with creators, and see comments</h2>
-                <button onClick={() => modalDispatch({ type: true })}>Login</button>
-              </div></>}
+            {authState ? (
+              <></>
+            ) : (
+              <>
+                <div className={styles.separator} />
+                <div className={styles.leftLogin}>
+                  <h2>
+                    Login to like videos, interact with creators, and see
+                    comments
+                  </h2>
+                  <button onClick={() => modalDispatch({ type: true })}>
+                    Login
+                  </button>
+                </div>
+              </>
+            )}
             <div className={styles.separator} />
             <div className={styles.leftSection}>
               <h2 className={styles.leftTitle}>Featured Creators</h2>
-              <SideItem icon="https://surfwaves.b-cdn.net/neillydev.png" header='Vernon Neilly III' subHeader='@neillydev' path='/' account />
-              <SideItem icon="https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80" header='Pistachio The Cat' subHeader='@pistachio' path='/' account />
+              <SideItem
+                icon="https://surfwaves.b-cdn.net/neillydev.png"
+                header="Vernon Neilly III"
+                subHeader="@neillydev"
+                path="/"
+                account
+              />
+              <SideItem
+                icon="https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80"
+                header="Pistachio The Cat"
+                subHeader="@pistachio"
+                path="/"
+                account
+              />
             </div>
             <div className={styles.separator} />
             <div className={styles.leftSection}>
               <h2 className={styles.leftTitle}>Surf Trends</h2>
               <div className={styles.trendsWrapper}>
-                <Trend title='waves' />
-                <Trend title='surf' />
+                <Trend title="waves" />
+                <Trend title="surf" />
               </div>
             </div>
             <div className={styles.separator} />
             <div className={styles.leftSection}>
               <div className={styles.leftSubRow}>
-                <a href='/about' className={`${styles.leftSubtitle} ${styles.leftSublink}`}>About</a>
-                <a href='/contact' className={`${styles.leftSubtitle} ${styles.leftSublink}`}>Contact</a>
+                <a
+                  href="/about"
+                  className={`${styles.leftSubtitle} ${styles.leftSublink}`}
+                >
+                  About
+                </a>
+                <a
+                  href="/contact"
+                  className={`${styles.leftSubtitle} ${styles.leftSublink}`}
+                >
+                  Contact
+                </a>
               </div>
               <h3 className={styles.leftSubtitle}>© 2023 Waves</h3>
             </div>
           </div>
-          <div className={styles.mainLeftScroll}>
-
-          </div>
+          <div className={styles.mainLeftScroll}></div>
         </div>
       </div>
       <div className={styles.mainRight}>
         <div className={styles.mainRightWrapper}>
-          <Post profileImg='https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80'
-            username='pistachio'
-            name='Pistachio The Cat'
-            mediaSrc='https://surfwaves.b-cdn.net/cat_video_example.mp4'
-            caption='Pistachio moves in silence #pistachio #trending #cats #waves'
-            soundCaption='pistachio'
-            soundSrc='' />
+              { posts ? 
+                posts.map((post) => 
+                <Post
+                    profileImg={post.avatar}
+                    username={post.username}
+                    name={post.name}
+                    mediaSrc={post.media}
+                    caption={post.caption}
+                    soundCaption={post.audiodesc}
+                    soundSrc=""
+                  />
+                )
+                : null
+              }
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default Main;
