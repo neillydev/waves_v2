@@ -49,7 +49,7 @@ const Post = ({ profileImg, username, name, mediaSrc, caption, soundCaption, sou
                     </div>
                     <div className={styles.postMedia}>
                         <div className={styles.postMediaVideoContainer}>
-                            <video src={mediaSrc} />
+                            <video src={mediaSrc} autoPlay loop playsInline />
                         </div>
                         <div className={styles.postControls}>
                             <button className={styles.postControl}>
@@ -72,7 +72,7 @@ const Post = ({ profileImg, username, name, mediaSrc, caption, soundCaption, sou
                         }</h2>
                     </div>
                     <div className={styles.postSound}>
-                        <SoundSVG /><h4 className={styles.soundCaption}>original sound - {soundCaption}</h4>
+                        <SoundSVG /><h4 className={styles.soundCaption}>{soundCaption}</h4>
                     </div>
                 </div>
             </div>
