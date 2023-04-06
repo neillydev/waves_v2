@@ -113,6 +113,9 @@
     width: 692px;
     max-width: 692px;
     padding: 24px 0;
+    top: 60px;
+    position: relative;
+    bottom: 0px;
 }
 
 .mainRightWrapper {
