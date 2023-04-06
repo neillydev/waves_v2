@@ -23,7 +23,7 @@
 
 .mainLeft {
     width: 100%;
-    max-width: 356px;
+    max-width: 300px;
 }
 
 .mainLeftContainer {
@@ -34,7 +34,7 @@
     perspective-origin: right top;
     top: 60px;
     bottom: 0px;
-    width: 356px;
+    width: 300px;
     position: fixed;
     z-index: 99;
     padding-right: 8px;

@@ -54,7 +54,7 @@
     font-family: 'Oswald', sans-serif;
     font-weight: 500;
     font-size: 18px;
-    line-height: 25px;
+    line-height: 28px;
     display: inline-block;
     margin: 0 4px 0 0;
     letter-spacing: 0.5px;
@@ -67,6 +67,7 @@
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
     font-size: 14px;
+    letter-spacing: 0.5px;
 }
 
 .postMedia {
@@ -123,11 +124,12 @@
 .caption {
     display: inline-block;
     font-family: 'Oswald', sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 16px;
     line-height: 25px;
     margin-bottom: 0px;
     word-break: break-word;
+    letter-spacing: 0.15px;
 }
 
 .hashtag {
@@ -160,7 +162,7 @@
     display: inline-block;
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 25px;
     margin: 0;
 }

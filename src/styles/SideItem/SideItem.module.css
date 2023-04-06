@@ -18,8 +18,8 @@
 
 .sideItemHeader {
     font-family: 'Oswald', sans-serif;
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: 700;
+    font-size: 17px;
     line-height: 14px;
     letter-spacing: .75px;
     margin-left: 8px;
@@ -43,14 +43,15 @@
 }
 
 .featuredItemHeader {
-    font-size: 16px;
+    font-size: 14px;
     max-width: 260px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
     margin-top: 0;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     line-height: 18px;
+    letter-spacing: 0.25px;
 }
 
 .featuredItemSubheader {
