@@ -32,6 +32,7 @@ type PostType = {
   audiodesc: string;
   likes: number;
   comments: any;
+  following: boolean;
 };
 
 const Main = () => {
@@ -48,8 +49,13 @@ const Main = () => {
   const handleFetchPosts = async () => {
     //start loading animation and skeleton screen
     try {
+      const token = localStorage.getItem("token") || "";
+      const header = token ? { Authorization: `Bearer ${token}` } : undefined;
       const response = await fetch("http://localhost:8022/posts", {
         method: "GET",
+        headers: {
+          ...header,
+        }
       });
 
       if (response.status === 200) {
@@ -197,20 +203,20 @@ const Main = () => {
       </div>
       <div className={styles.mainRight}>
         <div className={styles.mainRightWrapper}>
-              { posts ? 
-                posts.map((post) => 
+          {posts
+            ? posts.map((post) => (
                 <Post
-                    profileImg={post.avatar}
-                    username={post.username}
-                    name={post.name}
-                    mediaSrc={post.media}
-                    caption={post.caption}
-                    soundCaption={post.audiodesc}
-                    soundSrc=""
-                  />
-                )
-                : null
-              }
+                  isFollowing={post.following}
+                  profileImg={post.avatar}
+                  username={post.username}
+                  name={post.name}
+                  mediaSrc={post.media}
+                  caption={post.caption}
+                  soundCaption={post.audiodesc}
+                  soundSrc=""
+                />
+              ))
+            : null}
         </div>
       </div>
     </div>
