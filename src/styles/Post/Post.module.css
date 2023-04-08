@@ -116,6 +116,29 @@
     width: 24px;
 }
 
+.postDeleteBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.postDeleteBtn > svg {
+    height: 24px;
+    width: 24px;
+}
+
+.postDeleteBtn > svg:hover { 
+    opacity: .65;
+}
+
+.postDeleteBtn > svg:active { 
+    opacity: .95;
+}
+
+
 .postControl:hover {
     background-color: #00000011;
 }
