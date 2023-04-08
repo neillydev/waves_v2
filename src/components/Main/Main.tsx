@@ -14,7 +14,7 @@ import SideBar from "../SideBar/SideBar";
 import { AuthContext } from "@/context/AuthContext";
 import { PostContext } from "@/context/PostContext";
 
-enum ViewType {
+export enum ViewType {
   TRENDING,
   FOLLOWING,
   LIVE,
@@ -44,7 +44,6 @@ const Main = () => {
   const { authState } = useContext(AuthContext);
   const { modalDispatch } = useContext(ModalContext);
   const { postState, postDispatch } = useContext(PostContext);
-  
 
   const [viewType, setViewType] = useState<ViewType>(ViewType.TRENDING);
 
@@ -54,9 +53,9 @@ const Main = () => {
   const [followingList, setFollowingList] = useState<any>([]);
 
   const removePost = (post_id: string) => {
-    if(!posts || posts.length === 0) return;
+    if (!posts || posts.length === 0) return;
 
-    const updatedPosts = posts.filter(post => post.post_id !== post_id);
+    const updatedPosts = posts.filter((post) => post.post_id !== post_id);
 
     setPosts(updatedPosts);
   };
@@ -70,15 +69,15 @@ const Main = () => {
         method: "GET",
         headers: {
           ...header,
-        }
+        },
       });
 
       if (response.status === 200) {
         const data = await response.json(); //Data is dependent on what is returned from the trending algorithm
         let postsData = data;
-        if(!isEmptyObject(postState)) {
+        if (!isEmptyObject(postState)) {
           postsData = [postState, ...data];
-          postDispatch({ type: 'SET_DATA', payload: {} });
+          postDispatch({ type: "SET_DATA", payload: {} });
         }
 
         setPosts(postsData);
@@ -93,7 +92,38 @@ const Main = () => {
     }
   };
 
-  const handleFetchFollowingPosts = async () => {};
+  const handleFetchFollowingPosts = async () => {
+    //start loading animation and skeleton screen
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+      const header = { Authorization: `Bearer ${token}` };
+      const response = await fetch("/api/posts/followers", {
+        method: "GET",
+        headers: {
+          ...header,
+        },
+      });
+
+      if (response.status === 200) {
+        const data = await response.json(); //Data is dependent on what is returned from the trending algorithm
+        let postsData = data;
+        if (!isEmptyObject(postState)) {
+          postsData = [postState, ...data];
+          postDispatch({ type: "SET_DATA", payload: {} });
+        }
+
+        setPosts(postsData);
+        setTimeout(() => {
+          //loading_dispatch({ loading: true, type: "bar" });
+        }, 200);
+      } else {
+        // switch errors and handle accordingly
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -104,6 +134,9 @@ const Main = () => {
         break;
       case ViewType.TRENDING:
         handleFetchPosts();
+        break;
+      case ViewType.LIVE:
+        //handleLiveSessions();
         break;
       default:
         break;
@@ -130,6 +163,8 @@ const Main = () => {
                 path=""
                 account={false}
                 selected={viewType === ViewType.TRENDING}
+                viewType={ViewType.TRENDING}
+                setViewType={setViewType}
               />
               <SideItem
                 icon={
@@ -144,6 +179,8 @@ const Main = () => {
                 path=""
                 account={false}
                 selected={viewType === ViewType.FOLLOWING}
+                viewType={ViewType.FOLLOWING}
+                setViewType={setViewType}
               />
               <SideItem
                 icon={
@@ -156,6 +193,8 @@ const Main = () => {
                 path=""
                 account={false}
                 selected={viewType === ViewType.LIVE}
+                viewType={ViewType.LIVE}
+                setViewType={setViewType}
               />
             </div>
             {authState ? (
