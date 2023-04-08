@@ -12,6 +12,7 @@ import Post from "../Post/Post";
 import Trend from "../Trend/Trend";
 import SideBar from "../SideBar/SideBar";
 import { AuthContext } from "@/context/AuthContext";
+import { PostContext } from "@/context/PostContext";
 
 enum ViewType {
   TRENDING,
@@ -35,9 +36,15 @@ type PostType = {
   following: boolean;
 };
 
+function isEmptyObject(obj: any) {
+  return Object.keys(obj).length === 0;
+}
+
 const Main = () => {
   const { authState } = useContext(AuthContext);
   const { modalDispatch } = useContext(ModalContext);
+  const { postState, postDispatch } = useContext(PostContext);
+  
 
   const [viewType, setViewType] = useState<ViewType>(ViewType.TRENDING);
 
@@ -59,8 +66,14 @@ const Main = () => {
       });
 
       if (response.status === 200) {
-        const data = await response.json();
-        setPosts(data);
+        const data = await response.json(); //Data is dependent on what is returned from the trending algorithm
+        let postsData = data;
+        if(!isEmptyObject(postState)) {
+          postsData = [...data,postState];
+          postDispatch({ type: 'SET_DATA', payload: {} });
+        }
+
+        setPosts(postsData);
         setTimeout(() => {
           //loading_dispatch({ loading: true, type: "bar" });
         }, 200);
