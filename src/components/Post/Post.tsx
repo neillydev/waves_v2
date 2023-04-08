@@ -10,6 +10,7 @@ import { AuthContext } from "@/context/AuthContext";
 import { ModalContext } from "@/context/ModalContext";
 
 type PostProps = {
+  isFollowing: boolean;
   profileImg: string;
   username: string;
   name: string;
@@ -20,6 +21,7 @@ type PostProps = {
 };
 
 const Post = ({
+  isFollowing,
   profileImg,
   username,
   name,
@@ -30,7 +32,7 @@ const Post = ({
 }: PostProps) => {
   const { authState } = useContext(AuthContext);
   const { modalState, modalDispatch } = useContext(ModalContext);
-  const [following, setFollowing] = useState(false);
+  const [following, setFollowing] = useState(isFollowing || false);
 
   const myUsername = localStorage.getItem("username") || "";
 
@@ -53,7 +55,6 @@ const Post = ({
       switch (response.status) {
         case 200:
           const { following } = await response.json();
-
           setFollowing(following);
           break;
         default:
@@ -88,7 +89,7 @@ const Post = ({
                     handleFollow();
                   }}
                 >
-                  {following ? "Following" : "Follow"}
+                  {following === true ? "Following" : "Follow"}
                 </button>
               )}
             </div>
