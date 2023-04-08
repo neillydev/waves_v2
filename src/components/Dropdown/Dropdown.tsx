@@ -24,6 +24,8 @@ const Dropdown = () => {
 
             if (response.status === 201) {
                 localStorage.removeItem('token');
+                localStorage.removeItem('username');
+                localStorage.removeItem('user_id');
                 authDispatch({type: false});
 
                 window.location.reload();
