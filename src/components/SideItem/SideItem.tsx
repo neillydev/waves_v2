@@ -3,6 +3,7 @@ import { ModalContext } from '@/context/ModalContext';
 import React, { useContext } from 'react';
 
 import styles from '../../styles/SideItem/SideItem.module.css';
+import { ViewType } from '../Main/Main';
 
 type SideItemProps = {
   icon: any;
@@ -11,16 +12,18 @@ type SideItemProps = {
   path: string | null;
   account: boolean | null;
   selected?: boolean | null;
+  viewType?: ViewType;
+  setViewType?: React.Dispatch<React.SetStateAction<any>>;
 };
 
-const SideItem = ({ icon, header, subHeader, path, account, selected }: SideItemProps) => {
+const SideItem = ({ icon, header, subHeader, path, account, selected, viewType, setViewType, }: SideItemProps) => {
 
   const { authState } = useContext(AuthContext);
   const { modalDispatch } = useContext(ModalContext);
 
   const handleSideItem = (event: React.MouseEvent) => {
-    if(selected) event.preventDefault();
-
+    event.preventDefault();
+    if(viewType && setViewType) setViewType(viewType);
     if(!authState && !selected) {
       event.preventDefault();
       modalDispatch({ type: true })
