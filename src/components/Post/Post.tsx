@@ -4,12 +4,14 @@ import SoundSVG from "../../../public/sound.svg";
 import WaveBwSVG from "../../../public/wave_bw.svg";
 import ShareSVG from "../../../public/share.svg";
 import CommentSVG from "../../../public/comment.svg";
+import MenuSVG from "../../../public/dots.svg";
 
 import styles from "../../styles/Post/Post.module.css";
 import { AuthContext } from "@/context/AuthContext";
 import { ModalContext } from "@/context/ModalContext";
 
 type PostProps = {
+  postID: string;
   isFollowing: boolean;
   profileImg: string;
   username: string;
@@ -18,9 +20,11 @@ type PostProps = {
   caption: string;
   soundCaption: string;
   soundSrc: string;
+  removePost: (post_id: string) => void;
 };
 
 const Post = ({
+  postID,
   isFollowing,
   profileImg,
   username,
@@ -29,6 +33,7 @@ const Post = ({
   caption,
   soundCaption,
   soundSrc,
+  removePost,
 }: PostProps) => {
   const { authState } = useContext(AuthContext);
   const { modalState, modalDispatch } = useContext(ModalContext);
@@ -38,7 +43,7 @@ const Post = ({
 
   const handleFollow = async () => {
     try {
-      const token = localStorage.getItem("token") || "";
+      const token = localStorage.getItem("token");
       if (!token) return;
 
       const response = await fetch("/api/user/follow", {
@@ -64,6 +69,31 @@ const Post = ({
     }
   };
 
+  const handleDeletePost = async () => {
+    if (!authState) {
+      return;
+    }
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch(`http://localhost:8022/post/${postID}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 201) {
+        removePost(postID);
+      } else {
+        // switch errors and handle accordingly
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className={styles.postContainer}>
       <div className={styles.postWrapper}>
@@ -77,7 +107,11 @@ const Post = ({
               <div className={styles.profileName}>{name}</div>
             </div>
             <div className={styles.followContainer}>
-              {username === myUsername ? null : (
+              {username === myUsername ? (
+                <button className={styles.postDeleteBtn} onClick={handleDeletePost}>
+                  <MenuSVG />
+                </button>
+              ) : (
                 <button
                   className={styles.followBtn}
                   onClick={() => {

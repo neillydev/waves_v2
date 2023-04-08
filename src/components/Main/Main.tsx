@@ -21,7 +21,7 @@ enum ViewType {
 }
 
 type PostType = {
-  post_id: number;
+  post_id: string;
   avatar: string;
   name: string;
   wavecreators_id: string;
@@ -52,6 +52,14 @@ const Main = () => {
   const [suggested, setSuggested] = useState<any>(undefined);
 
   const [followingList, setFollowingList] = useState<any>([]);
+
+  const removePost = (post_id: string) => {
+    if(!posts || posts.length === 0) return;
+
+    const updatedPosts = posts.filter(post => post.post_id !== post_id);
+
+    setPosts(updatedPosts);
+  };
 
   const handleFetchPosts = async () => {
     //start loading animation and skeleton screen
@@ -219,6 +227,7 @@ const Main = () => {
           {posts
             ? posts.map((post) => (
                 <Post
+                  postID={post.post_id}
                   isFollowing={post.following}
                   profileImg={post.avatar}
                   username={post.username}
@@ -227,6 +236,7 @@ const Main = () => {
                   caption={post.caption}
                   soundCaption={post.audiodesc}
                   soundSrc=""
+                  removePost={removePost}
                 />
               ))
             : null}

@@ -89,7 +89,6 @@ const Upload = () => {
     if (!authState) {
       return;
     }
-
     router.push("/");
   };
 
