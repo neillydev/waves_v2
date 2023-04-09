@@ -6,9 +6,12 @@ import LogOutSVG from '../../../public/logout.svg';
 
 import styles from '../../styles/Navbar/Navbar.module.css';
 import { AuthContext } from '@/context/AuthContext';
+import { useRouter } from 'next/router';
 
 const Dropdown = () => {
+    const router = useRouter();
     const { authDispatch } = useContext(AuthContext);
+    const username = localStorage.getItem('username');
 
     const handleLogout = async (event: any) => {
         event.preventDefault();
@@ -44,7 +47,9 @@ const Dropdown = () => {
             <ul className={styles.dropList}>
                 <li className={styles.dropHeader}>
                 </li>
-                <li className={styles.dropItem}>
+                <li className={styles.dropItem} onClick={() => {
+                    if(username) router.push(`/@${username}`)
+                }}>
                     <UserSVG />
                     <span>Profile</span>
                 </li>
