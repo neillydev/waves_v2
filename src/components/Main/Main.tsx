@@ -109,7 +109,7 @@ const Main = () => {
         const data = await response.json(); //Data is dependent on what is returned from the trending algorithm
         let postsData = data;
         if (!isEmptyObject(postState)) {
-          postsData = [postState, ...data];
+          //postsData = [postState, ...data]; //fix when changing the trending algorithm 
           postDispatch({ type: "SET_DATA", payload: {} });
         }
 
