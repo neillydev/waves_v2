@@ -23,7 +23,8 @@ const SideItem = ({ icon, header, subHeader, path, account, selected, viewType, 
 
   const handleSideItem = (event: React.MouseEvent) => {
     event.preventDefault();
-    if(viewType && setViewType) setViewType(viewType);
+    console.log(viewType);
+    if(setViewType) setViewType(viewType);
     if(!authState && !selected) {
       event.preventDefault();
       modalDispatch({ type: true })
