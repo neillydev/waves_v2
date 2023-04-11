@@ -1,8 +1,151 @@
 .profileContainer {
-
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    margin: 0px auto;
+    padding: 32px 24px;
+    box-sizing: content-box;
+    min-height: calc(100vh - 60px);
+    max-width: 2000px;
+    top: 60px;
+    position: relative;
+    bottom: 0px;
 }
 
 .profileWrapper {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+}
+
+.profileHeaderGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileHeaderGroupWrapper {
+    display: flex;
+}
+
+.profileHeaderWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.avatar {
+    width: 96px;
+    height: 96px;
+}
+
+.headerCenter {
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.headerCenterName {
+    display: flex;
+    flex-direction: column;
+    margin: 0 2rem;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.45px;
+}
+
+.headerCenterControls {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.editProfileBtn {
+    text-decoration: none;
+    margin: 0 1.25rem 0 0;
+    font-family: 'Bebas Neue';
+    font-size: 15px;
+    position: relative;
+    height: 36px;
+    color: rgba(22, 24, 35, 1);
+    min-width: 110px;
+    padding: 0 16px;
+    height: 36px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    border-radius: 2px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 1);
+    cursor: pointer;
+    letter-spacing: 0.25px;
+}
+
+.editProfileBtn:hover {
+    background: rgba(244, 244, 244, 0.726);
+}
+
+.editProfileBtn:active {
+    background: rgba(235, 235, 235, 0.726);
+}
+
+.headerCenterName > h2 {
+    margin-top: 6px;
+    margin-bottom: 4px;
+    font-weight: 400;
+    font-size: 32px;
+}
+
+.headerCenterName > h3 {
+    margin: 0;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.headerCenterName > h2, .headerCenterName > h3 {
+    padding: 0;
+}
+
+.profileStatsWrapper {
 
 }
 
+.profileBioWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 2rem;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.45px;
+}
+
+.profileBioWrapper {
+    
+}
+
+.interactBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.interactBtn > svg {
+    height: 24px;
+    width: 24px;
+}
+
+.interactBtn > svg:hover { 
+    opacity: .5;
+}
+
+.interactBtn > svg:active { 
+    opacity: .95;
+}
