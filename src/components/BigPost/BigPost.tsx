@@ -1,22 +1,22 @@
 import React from "react";
 
-import ExitSVG from '../../../public/close.svg'
+import ExitSVG from "../../../public/close.svg";
 
 import styles from "../../styles/BigPost/BigPost.module.css";
 
 type BigPostProps = {
-    postID: string;
-    isFollowing: boolean;
-    profileImg: string;
-    username: string;
-    name: string;
-    mediaSrc: string;
-    caption: string;
-    soundCaption: string;
-    soundSrc: string;
-    removePost: (post_id: string) => void;
-    setEnlarge: React.Dispatch<React.SetStateAction<boolean>>;
-}
+  postID: string;
+  isFollowing: boolean;
+  profileImg: string;
+  username: string;
+  name: string;
+  mediaSrc: string;
+  caption: string;
+  soundCaption: string;
+  soundSrc: string;
+  removePost: (post_id: string) => void;
+  setEnlarge: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 const BigPost = ({
   postID,
@@ -31,17 +31,45 @@ const BigPost = ({
   removePost,
   setEnlarge,
 }: BigPostProps) => {
+  const myUsername = localStorage.getItem("username") || "";
+
   return (
     <div className={styles.postContainer}>
-        <button className={styles.exitBtn} onClick={() => setEnlarge(false)}>
-          <ExitSVG />
-        </button>
+      <button className={styles.exitBtn} onClick={() => setEnlarge(false)}>
+        <ExitSVG />
+      </button>
       <div className={styles.postLeftWrapper}>
         <div className={styles.postVideoWrapper}>
-            <video className={styles.postVideo} src={mediaSrc} autoPlay></video>
+          <video className={styles.postVideo} src={mediaSrc} autoPlay></video>
         </div>
       </div>
-      <div className={styles.postRightWrapper}></div>
+      <div className={styles.postRightWrapper}>
+        <div className={styles.postProfileWrapper}>
+          <div className={styles.postUserWrapper}>
+            <div className={styles.avatar}>
+              <img src={profileImg} />
+            </div>
+            <div className={styles.profileMeta}>
+              <div className={styles.profileUsername}>{username}</div>
+              <div className={styles.nameMeta}>
+                <div className={styles.profileName}>{name}</div>
+                <span> · </span>
+                <h4>12h ago</h4>
+              </div>
+            </div>
+          </div>
+          {username !== myUsername ? (
+            <div className={styles.followBtnWrapper}>
+              <button className={styles.postFollowBtn}>
+                {isFollowing ? "Following" : "Follow"}
+              </button>
+            </div>
+          ) : null}
+        </div>
+        <div className={styles.postCaption}></div>
+        <div className={styles.postSound}></div>
+        <div className={styles.postControls}></div>
+      </div>
     </div>
   );
 };
