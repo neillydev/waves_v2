@@ -1,151 +1,235 @@
 .profileContainer {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    margin: 0px auto;
-    padding: 32px 24px;
-    box-sizing: content-box;
-    min-height: calc(100vh - 60px);
-    max-width: 2000px;
-    top: 60px;
-    position: relative;
-    bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  margin: 0px auto;
+  padding: 32px 24px;
+  box-sizing: content-box;
+  min-height: calc(100vh - 60px);
+  max-width: 2000px;
+  top: 60px;
+  position: relative;
+  bottom: 0px;
 }
 
 .profileWrapper {
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+  display: flex;
+  flex-direction: column;
 }
 
 .profileHeaderGroup {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .profileHeaderGroupWrapper {
-    display: flex;
+  display: flex;
 }
 
 .profileHeaderWrapper {
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
 }
 
 .avatar {
-    width: 96px;
-    height: 96px;
+  width: 96px;
+  height: 96px;
 }
 
 .headerCenter {
-    display: flex;
-    /* flex-direction: column; */
+  display: flex;
+  /* flex-direction: column; */
 }
 
 .headerCenterName {
-    display: flex;
-    flex-direction: column;
-    margin: 0 2rem;
-    font-family: 'Oswald', sans-serif;
-    letter-spacing: 0.45px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 2rem;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.45px;
 }
 
 .headerCenterControls {
-    margin: 0;
-    display: flex;
-    align-items: center;
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .editProfileBtn {
-    text-decoration: none;
-    margin: 0 1.25rem 0 0;
-    font-family: 'Bebas Neue';
-    font-size: 15px;
-    position: relative;
-    height: 36px;
-    color: rgba(22, 24, 35, 1);
-    min-width: 110px;
-    padding: 0 16px;
-    height: 36px;
-    border: 1px solid rgba(22, 24, 35, 0.12);
-    border-radius: 2px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 1);
-    cursor: pointer;
-    letter-spacing: 0.25px;
+  text-decoration: none;
+  margin: 0 1.25rem 0 0;
+  font-family: "Bebas Neue";
+  font-size: 15px;
+  position: relative;
+  height: 36px;
+  color: rgba(22, 24, 35, 1);
+  min-width: 110px;
+  padding: 0 16px;
+  height: 36px;
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  letter-spacing: 0.25px;
 }
 
 .editProfileBtn:hover {
-    background: rgba(244, 244, 244, 0.726);
+  background: rgba(244, 244, 244, 0.726);
 }
 
 .editProfileBtn:active {
-    background: rgba(235, 235, 235, 0.726);
+  background: rgba(235, 235, 235, 0.726);
 }
 
 .headerCenterName > h2 {
-    margin-top: 6px;
-    margin-bottom: 4px;
-    font-weight: 400;
-    font-size: 32px;
+  margin-top: 6px;
+  margin-bottom: 4px;
+  font-weight: 400;
+  font-size: 32px;
 }
 
 .headerCenterName > h3 {
-    margin: 0;
-    font-weight: 300;
-    font-size: 16px;
+  margin: 0;
+  font-weight: 300;
+  font-size: 16px;
 }
 
-.headerCenterName > h2, .headerCenterName > h3 {
-    padding: 0;
+.headerCenterName > h2,
+.headerCenterName > h3 {
+  padding: 0;
 }
 
 .profileStatsWrapper {
+  margin: 1rem 0;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+}
 
+.profileStat {
+  margin-right: 1rem;
+}
+
+.profileStat > span {
+  font-weight: 400;
 }
 
 .profileBioWrapper {
-    display: flex;
-    flex-direction: column;
-    margin: 0 2rem;
-    font-family: 'Oswald', sans-serif;
-    letter-spacing: 0.45px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  margin-bottom: 1rem;
 }
 
-.profileBioWrapper {
-    
+.bio {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
 }
 
 .interactBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .interactBtn > svg {
-    height: 24px;
-    width: 24px;
+  height: 24px;
+  width: 24px;
 }
 
-.interactBtn > svg:hover { 
-    opacity: .5;
+.interactBtn > svg:hover {
+  opacity: 0.5;
 }
 
-.interactBtn > svg:active { 
-    opacity: .95;
+.interactBtn > svg:active {
+  opacity: 0.95;
+}
+
+.profileBodyWrapper {
+  font-family: "Oswald", sans-serif;
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+  font-weight: 300;
+  display: flex;
+}
+
+.profilePostContainer {
+  position: relative;
+  max-width: 150px;
+  height: 250px;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.profilePost {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(22, 24, 35, 0.06);
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgba(35, 35, 35, 0.1);
+}
+
+.profilePost > video {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.profileStats {
+}
+
+.profilePostStats {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.profilePostStat {
+  position: absolute;
+  bottom: 0;
+  margin: 8px 12px;
+  display: flex;
+  align-items: center;
+}
+
+.profilePostStat > h4 {
+  margin: 0 8px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.profilePostStat > svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
 }
