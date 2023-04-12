@@ -1,0 +1,71 @@
+.postContainer {
+  display: flex;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.postLeftWrapper {
+  flex: 1 0 600px;
+  max-width: 100%;
+  background: rgb(0, 0, 0);
+  position: relative;
+  overflow: hidden;
+  padding: 0px 80px;
+}
+
+.postVideoWrapper {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: rgba(22, 24, 35, 0.06);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.postVideo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.postRightWrapper {
+}
+
+.exitBtn {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    background: rgba(84, 84, 84, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: opacity 0.3s ease 0s;
+}
+
+.exitBtn:hover {
+    opacity: 0.75;
+}
+
+.exitBtn > svg {
+    fill: #fff;
+    width: 16px;
+    height: 16px;
+}

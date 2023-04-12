@@ -5,6 +5,7 @@ import MenuSVG from "../../public/dots.svg";
 import ViewSVG from "../../public/view.svg";
 
 import { useRouter } from "next/router";
+import BigPost from "@/components/BigPost/BigPost";
 
 type Profile = {
   user_id: string;
@@ -18,14 +19,16 @@ type Profile = {
   likes: number;
   posts: [];
   bio: string;
+  isFollowing: boolean;
 };
 
 const Profile = ({ user_id }: any) => {
   const router = useRouter();
-  const videoRefs = useRef<any>({})
+  const videoRefs = useRef<any>({});
 
   const [profile, setProfile] = useState<Profile>();
   const [localUserID, setLocalUserID] = useState<string | null>();
+  const [enlarge, setEnlarge] = useState(false);
 
   if (!user_id || !user_id.includes("@")) {
     if (typeof window !== "undefined") {
@@ -124,12 +127,31 @@ const Profile = ({ user_id }: any) => {
         <div className={styles.profileBodyWrapper}>
           {profile && profile.posts.length > 0 ? (
             profile.posts.map((post: any) => (
-              <div className={styles.profilePostContainer} key={post.post_id} 
-              onMouseEnter={() => handleMouseEnter(post.post_id)}
-              onMouseLeave={() => handleMouseLeave(post.post_id)}>
+              <div
+                className={styles.profilePostContainer}
+                key={post.post_id}
+                onMouseEnter={() => handleMouseEnter(post.post_id)}
+                onMouseLeave={() => handleMouseLeave(post.post_id)}
+                onClick={() => setEnlarge(true)}
+              >
+                {enlarge ? (
+                  <BigPost
+                    postID={post.post_id}
+                    isFollowing={profile.isFollowing}
+                    profileImg={profile.avatar}
+                    username={profile.username}
+                    name={profile.name}
+                    mediaSrc={post.media}
+                    caption={post.caption}
+                    soundCaption={post.soundCaption}
+                    soundSrc={``}
+                    removePost={() => {}}
+                    setEnlarge={setEnlarge}
+                  />
+                ):null}
                 <div className={styles.profilePost}>
                   <video
-                    ref={ref => videoRefs.current[post.post_id] = ref}
+                    ref={(ref) => (videoRefs.current[post.post_id] = ref)}
                     src={post.media}
                     muted
                   ></video>

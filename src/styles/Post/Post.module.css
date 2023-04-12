@@ -80,6 +80,7 @@
     background-color: rgb(0, 0, 0);
     object-fit: cover;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .postMediaVideoContainer > video {
