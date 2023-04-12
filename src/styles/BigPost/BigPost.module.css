@@ -52,9 +52,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
     position: relative;
-    padding: 2rem;
+    padding: 2rem 2rem 24px 2rem;
 }
 
 .postUserWrapper {
@@ -144,6 +143,61 @@
 
 .postFollowBtn:hover {
     background-color: #2ba0ff21;
+}
+
+.postCaption {
+    margin-top: 4px;
+    padding: 0 2rem;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: .50px;
+}
+
+.postCaption > h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.hashtag {
+    font-weight: 400;
+}
+
+.hashtag:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.hashtagSpace {
+    display: inline-block;
+    width: 4px;
+}
+
+.postSound {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.postSound > svg {
+    height: 18px;
+    width: 18px;
+    margin-right: 8px;
+}
+
+.soundCaption {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 25px;
+    margin: 0;
+}
+
+.soundCaption:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .exitBtn {

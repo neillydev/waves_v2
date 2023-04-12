@@ -1,6 +1,7 @@
 import React from "react";
 
 import ExitSVG from "../../../public/close.svg";
+import SoundSVG from "../../../public/sound.svg";
 
 import styles from "../../styles/BigPost/BigPost.module.css";
 
@@ -66,8 +67,26 @@ const BigPost = ({
             </div>
           ) : null}
         </div>
-        <div className={styles.postCaption}></div>
-        <div className={styles.postSound}></div>
+        <div className={styles.postCaption}>
+          <h3>
+            {caption.includes("#")
+              ? caption.split(" ").map((word) =>
+                  word.includes("#") ? (
+                    <>
+                      <span className={styles.hashtag}>{`${word}`}</span>
+                      <span className={styles.hashtagSpace}></span>
+                    </>
+                  ) : (
+                    `${word} `
+                  )
+                )
+              : caption}
+          </h3>
+        </div>
+        <div className={styles.postSound}>
+              <SoundSVG />
+              <h4 className={styles.soundCaption}>{soundCaption}</h4>
+            </div>
         <div className={styles.postControls}></div>
       </div>
     </div>
