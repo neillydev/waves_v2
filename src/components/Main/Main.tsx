@@ -275,6 +275,8 @@ const Main = () => {
                   caption={post.caption}
                   soundCaption={post.audiodesc}
                   soundSrc=""
+                  likes={post.likes}
+                  comments={post.likes}
                   removePost={removePost}
                 />
               ))

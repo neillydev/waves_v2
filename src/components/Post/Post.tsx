@@ -21,6 +21,8 @@ export type PostProps = {
   caption: string;
   soundCaption: string;
   soundSrc: string;
+  likes: number;
+  comments: any;
   removePost: (post_id: string) => void;
 };
 
@@ -34,6 +36,8 @@ const Post = ({
   caption,
   soundCaption,
   soundSrc,
+  likes,
+  comments,
   removePost,
 }: PostProps) => {
   const { authState } = useContext(AuthContext);
@@ -109,6 +113,8 @@ const Post = ({
           caption={caption}
           soundCaption={soundCaption}
           soundSrc={soundSrc}
+          likes={likes}
+          comments={comments}
           removePost={removePost}
           setEnlarge={setEnlarge}
         />
