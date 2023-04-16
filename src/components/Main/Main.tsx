@@ -77,7 +77,7 @@ const Main = () => {
         let postsData = data;
         if (!isEmptyObject(postState)) {
           postsData = [postState, ...data];
-          postDispatch({ type: "SET_DATA", payload: {} });
+          postDispatch({ type: "SET_DATA", payload: {} }); //resetting the postState
         }
 
         setPosts(postsData);
@@ -110,7 +110,7 @@ const Main = () => {
         let postsData = data;
         if (!isEmptyObject(postState)) {
           //postsData = [postState, ...data]; //fix when changing the trending algorithm 
-          postDispatch({ type: "SET_DATA", payload: {} });
+          postDispatch({ type: "SET_DATA", payload: {} }); //resetting the postState
         }
 
         setPosts(postsData);
@@ -276,7 +276,7 @@ const Main = () => {
                   soundCaption={post.audiodesc}
                   soundSrc=""
                   likes={post.likes}
-                  comments={post.likes}
+                  comments={post.comments}
                   removePost={removePost}
                 />
               ))
