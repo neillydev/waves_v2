@@ -512,7 +512,7 @@ const BigPost = ({
             className={styles.commentInput}
             placeholder="Post a comment..."
             onChange={(event) => handleCommentChange(event.target.value)}
-            //onKeyDown={handleKeyDown}
+            onKeyDown={handleKeyDown}
           />
           <button
             className={styles.postCommentBtn}
