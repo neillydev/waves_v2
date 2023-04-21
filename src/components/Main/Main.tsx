@@ -34,6 +34,7 @@ type PostType = {
   likes: number;
   comments: any;
   following: boolean;
+  hasLiked: boolean;
 };
 
 function isEmptyObject(obj: any) {
@@ -268,6 +269,7 @@ const Main = () => {
                 <Post
                   postID={post.post_id}
                   isFollowing={post.following}
+                  hasLiked={post.hasLiked}
                   profileImg={post.avatar}
                   username={post.username}
                   name={post.name}

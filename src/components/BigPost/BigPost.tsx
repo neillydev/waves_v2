@@ -12,6 +12,7 @@ import { AuthContext } from "@/context/AuthContext";
 type BigPostProps = {
   postID: string;
   isFollowing: boolean;
+  hasLiked: boolean;
   profileImg: string;
   username: string;
   name: string;
@@ -23,11 +24,14 @@ type BigPostProps = {
   comments: any;
   removePost: (post_id: string) => void;
   setEnlarge: React.Dispatch<React.SetStateAction<boolean>>;
+  handleLike: () => void;
+  handleDeleteLike: () => void;
 };
 
 const BigPost = ({
   postID,
   isFollowing,
+  hasLiked,
   profileImg,
   username,
   name,
@@ -39,6 +43,8 @@ const BigPost = ({
   comments,
   removePost,
   setEnlarge,
+  handleLike,
+  handleDeleteLike,
 }: BigPostProps) => {
   const myUserID = localStorage.getItem("user_id") || "";
   const myUsername = localStorage.getItem("username") || "";
@@ -47,6 +53,7 @@ const BigPost = ({
 
   const { authState } = useContext(AuthContext);
 
+  const [likeAmount, setLikeAmount] = useState(likes);
   const [comment, setComment] = useState("");
   const [commentsArray, setCommentsArray] = useState(comments);
   const [replies, setReplies] = useState(0);
@@ -279,7 +286,10 @@ const BigPost = ({
 
       if (response.status === 200) {
         const data = await response.json(); //Data is dependent on what is returned from the trending algorithm
+
         setCommentsArray(data.comments);
+
+        hasLiked = data.hasLiked;
         
         setTimeout(() => {
           //loading_dispatch({ loading: true, type: "bar" });
@@ -363,7 +373,7 @@ const BigPost = ({
         <div className={styles.postControls}>
           <div className={styles.postControlGroup}>
             <div className={styles.postControlGroupItem}>
-              <button className={styles.likeBtn}>
+              <button className={`${hasLiked ? styles.liked : ''} ${styles.likeBtn}`} onClick={() => hasLiked !== true ? handleLike() : handleDeleteLike()}>
                 <LikeSVG />
               </button>
               <h3>{likes}</h3>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import SoundSVG from "../../../public/sound.svg";
 import WaveBwSVG from "../../../public/wave_bw.svg";
@@ -14,6 +14,7 @@ import BigPost from "../BigPost/BigPost";
 export type PostProps = {
   postID: string;
   isFollowing: boolean;
+  hasLiked: boolean;
   profileImg: string;
   username: string;
   name: string;
@@ -29,6 +30,7 @@ export type PostProps = {
 const Post = ({
   postID,
   isFollowing,
+  hasLiked,
   profileImg,
   username,
   name,
@@ -44,6 +46,9 @@ const Post = ({
   const { modalState, modalDispatch } = useContext(ModalContext);
   const [following, setFollowing] = useState(isFollowing || false);
   const [enlarge, setEnlarge] = useState(false);
+
+  const [likeAmount, setLikeAmount] = useState(likes);
+  const [likeBoolean, setLikeBoolean] = useState(hasLiked);
 
   const myUsername = localStorage.getItem("username") || "";
 
@@ -100,12 +105,65 @@ const Post = ({
     }
   };
 
+  const handleLike = async () => {
+    try {
+      if (!authState) {
+        return;
+      }
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch(`/api/like/${postID}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      switch (response.status) {
+        case 200:
+          setLikeAmount(likeAmount+1);
+          setLikeBoolean(true);
+          break;
+        default:
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDeleteLike = async () => {
+    try {
+      if (!authState) {
+        return;
+      }
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch(`/api/like/${postID}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      switch (response.status) {
+        case 200:
+          setLikeAmount(likeAmount-1);
+          setLikeBoolean(false);
+          break;
+        default:
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className={styles.postContainer}>
       {enlarge ? (
         <BigPost
           postID={postID}
           isFollowing={isFollowing}
+          hasLiked={likeBoolean}
           profileImg={profileImg}
           username={username}
           name={name}
@@ -113,10 +171,12 @@ const Post = ({
           caption={caption}
           soundCaption={soundCaption}
           soundSrc={soundSrc}
-          likes={likes}
+          likes={likeAmount}
           comments={comments}
           removePost={removePost}
           setEnlarge={setEnlarge}
+          handleLike={handleLike}
+          handleDeleteLike={handleDeleteLike}
         />
       ) : (
         <div className={styles.postWrapper}>
