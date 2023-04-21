@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
-import styles from "../styles/Profile/Profile.module.css";
-import MenuSVG from "../../public/dots.svg";
-import ViewSVG from "../../public/view.svg";
+import styles from "../../styles/Profile/Profile.module.css";
+import MenuSVG from "../../../public/dots.svg";
+import ViewSVG from "../../../public/view.svg";
 
 import { useRouter } from "next/router";
 import BigPost from "@/components/BigPost/BigPost";
+import { AuthContext } from "@/context/AuthContext";
 
 type Profile = {
   user_id: string;
@@ -25,10 +26,14 @@ type Profile = {
 const Profile = ({ user_id }: any) => {
   const router = useRouter();
   const videoRefs = useRef<any>({});
+  const { authState } = useContext(AuthContext);
 
   const [profile, setProfile] = useState<Profile>();
   const [localUserID, setLocalUserID] = useState<string | null>();
   const [enlarge, setEnlarge] = useState(false);
+  const [likeAmount, setLikeAmount] = useState<any>(0);
+  const [likeBoolean, setLikeBoolean] = useState<any>(false);
+  const [postID, setPostID] = useState();
 
   if (!user_id || !user_id.includes("@")) {
     if (typeof window !== "undefined") {
@@ -71,14 +76,64 @@ const Profile = ({ user_id }: any) => {
     }
   };
 
+  const handleLike = async () => {
+    try {
+      if (!authState) {
+        return;
+      }
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch(`/api/like/${postID}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      switch (response.status) {
+        case 200:
+          setLikeAmount(likeAmount + 1);
+          setLikeBoolean(true);
+          break;
+        default:
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDeleteLike = async () => {
+    try {
+      if (!authState) {
+        return;
+      }
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch(`/api/like/${postID}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      switch (response.status) {
+        case 200:
+          setLikeAmount(likeAmount - 1);
+          setLikeBoolean(false);
+          break;
+        default:
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     handleFetchProfile();
-
     if (typeof window !== "undefined" && !localUserID) {
-      console.log(localStorage?.getItem("username"), user_id);
       setLocalUserID(localStorage?.getItem("username"));
     }
-  }, []);
+  }, [,enlarge]);
 
   return (
     <div className={styles.profileContainer}>
@@ -132,12 +187,13 @@ const Profile = ({ user_id }: any) => {
                 key={post.post_id}
                 onMouseEnter={() => handleMouseEnter(post.post_id)}
                 onMouseLeave={() => handleMouseLeave(post.post_id)}
-                onClick={() => setEnlarge(true)}
+                onClick={() => { (!enlarge ? (setEnlarge(true), setPostID(post.post_id),setLikeBoolean(post.hasLiked),setLikeAmount(post.likes)) : null) }}
               >
                 {enlarge ? (
                   <BigPost
                     postID={post.post_id}
                     isFollowing={profile.isFollowing}
+                    hasLiked={likeBoolean}
                     profileImg={profile.avatar}
                     username={profile.username}
                     name={profile.name}
@@ -145,10 +201,14 @@ const Profile = ({ user_id }: any) => {
                     caption={post.caption}
                     soundCaption={post.soundCaption}
                     soundSrc={``}
+                    likes={likeAmount}
+                    comments={[]}
                     removePost={() => {}}
                     setEnlarge={setEnlarge}
+                    handleLike={handleLike}
+                    handleDeleteLike={handleDeleteLike}
                   />
-                ):null}
+                ) : null}
                 <div className={styles.profilePost}>
                   <video
                     ref={(ref) => (videoRefs.current[post.post_id] = ref)}
