@@ -7,6 +7,8 @@ import ViewSVG from "../../../public/view.svg";
 import { useRouter } from "next/router";
 import BigPost from "@/components/BigPost/BigPost";
 import { AuthContext } from "@/context/AuthContext";
+import Link from "next/link";
+import { ModalContext } from "@/context/ModalContext";
 
 type Profile = {
   user_id: string;
@@ -27,6 +29,7 @@ const Profile = ({ user_id }: any) => {
   const router = useRouter();
   const videoRefs = useRef<any>({});
   const { authState } = useContext(AuthContext);
+  const { modalState, modalDispatch } = useContext(ModalContext);
 
   const [profile, setProfile] = useState<Profile>();
   const [localUserID, setLocalUserID] = useState<string | null>();
@@ -151,9 +154,16 @@ const Profile = ({ user_id }: any) => {
                 </div>
                 <div className={styles.headerCenterControls}>
                   {localUserID && user_id === localUserID ? (
+                    <Link href={`/@${user_id}/edit/profile`} onClick={(e) => {
+                        if (!authState) {
+                          e.preventDefault();
+                          modalDispatch({ type: true });
+                        }
+                      }}>
                     <button className={styles.editProfileBtn}>
                       Edit Profile
                     </button>
+                    </Link>
                   ) : null}
                 </div>
               </div>
