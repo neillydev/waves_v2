@@ -1,0 +1,21 @@
+.editContainer {
+    position: absolute;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(248, 248, 248);
+    overflow: hidden;
+}
+
+.editWrapper {
+    width: 1100px;
+    height: 100%;
+    overflow-y: hidden;
+    margin: 0px auto;
+    margin-top: 100px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
