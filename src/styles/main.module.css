@@ -10,7 +10,7 @@
     max-width: 1100px;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    align-self: center;
+    /* align-self: center; */
     flex: 1 1 auto;
     overflow-y: hidden;
 }
@@ -119,7 +119,7 @@
 }
 
 .mainRightWrapper {
-    padding: 20px 0;
+    padding-bottom: 24px;
 }
 
 .separator {
