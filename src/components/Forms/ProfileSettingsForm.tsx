@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import PencilSVG from "../../../public/pencil.svg";
 
@@ -23,11 +23,12 @@ const ProfileSettingsForm = () => {
     localStorage.getItem("avatar") ||
     "https://surfwaves.b-cdn.net/user_picture.png";
 
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState(localAvatar);
   const [username, setUsername] = useState("@neillydev");
   const [name, setName] = useState("wavecreator");
   const [bio, setBio] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const avatarInput = useRef<HTMLInputElement>(null);
 
   const [usernameErrors, setUsernameErrors] = useState<any>([]);
 
@@ -103,6 +104,15 @@ const ProfileSettingsForm = () => {
     setUsername(e.currentTarget.value);
   };
 
+  const handleAvatarSelect = (e: any) => {
+    e.preventDefault();
+
+    if (e && e.target && e.target.files) {
+        const newAvatarURL = URL.createObjectURL(e.target.files[0]);
+        setAvatar(newAvatarURL);
+      }
+  };
+
   return (
     <div className={styles.settingsContainer}>
       <h1 className={styles.settingsHeader}>Profile</h1>
@@ -171,8 +181,14 @@ const ProfileSettingsForm = () => {
           <div
             className={`${styles.settingsItem} ${styles.settingsMarginLeft} ${styles.settingsPosition}`}
           >
-            <img className={styles.settingsAvatar} src={localAvatar} alt="" />
-            <div className={styles.settingsEditAvatarBtn}>
+            <img className={styles.settingsAvatar} src={avatar} alt="" onClick={() => avatarInput.current?.click()} />
+            <input
+                ref={avatarInput}
+                type="file"
+                accept="image/jpeg, image/png"
+                style={{display: 'none'}}
+                onChange={handleAvatarSelect} />
+            <div className={styles.settingsEditAvatarBtn} onClick={() => avatarInput.current?.click()}>
               <PencilSVG />
               Edit
             </div>
