@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import styles from "../../styles/EditProfile/EditProfile.module.css";
 
+enum Errors {
+    ERROR_TOO_MANY_REQUESTS,
+    ERROR_INPUT_TOO_SHORT,
+    ERROR_INPUT_TOO_LONG,
+    ERROR_USERNAME_TAKEN,
+}
+
 const ProfileSettingsForm = () => {
   const [username, setUsername] = useState("@neillydev");
   const [name, setName] = useState("wavecreator");
   const [bio, setBio] = useState("");
+
+  const [errors, setErrors] = useState([]);
 
   return (
     <div className={styles.settingsContainer}>
@@ -42,8 +51,8 @@ const ProfileSettingsForm = () => {
               <h3 className={styles.settingsLabel}>Bio</h3>
               <textarea
                 className={styles.settingsTextarea}
-                placeholder='Write bio here...'
-                value={bio.length > 0 ? bio : ''}
+                placeholder="Write bio here..."
+                value={bio.length > 0 ? bio : ""}
                 onChange={(e) => setBio(e.currentTarget.value)}
               />
             </div>
@@ -56,9 +65,7 @@ const ProfileSettingsForm = () => {
               src="https://surfwaves.b-cdn.net/user_picture.png"
               alt=""
             />
-            <div className={styles.settingsEditAvatarBtn}>
-                Edit
-            </div>
+            <div className={styles.settingsEditAvatarBtn}>Edit</div>
           </div>
         </div>
       </div>
