@@ -159,12 +159,14 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    padding: 6px 18px;
+    padding: 6px 10px;
     font-size: 12px;
     font-weight: 600;
     background-color: #fff;
     cursor: pointer;
     z-index: 100;
+    display: flex;
+    align-items: center;
 }
 
 .settingsEditAvatarBtn:hover {
@@ -173,6 +175,12 @@
 
 .settingsEditAvatarBtn:active {
     background-color: #e6e6e6;
+}
+
+.settingsEditAvatarBtn > svg {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
 }
 
 .settingsInput {

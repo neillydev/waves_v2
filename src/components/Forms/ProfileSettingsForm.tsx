@@ -1,14 +1,18 @@
 import React, { useState } from "react";
+
+import PencilSVG from '../../../public/pencil.svg';
+
 import styles from "../../styles/EditProfile/EditProfile.module.css";
 
 enum Errors {
-    ERROR_TOO_MANY_REQUESTS,
-    ERROR_INPUT_TOO_SHORT,
-    ERROR_INPUT_TOO_LONG,
-    ERROR_USERNAME_TAKEN,
+  ERROR_TOO_MANY_REQUESTS,
+  ERROR_INPUT_TOO_SHORT,
+  ERROR_INPUT_TOO_LONG,
+  ERROR_USERNAME_TAKEN,
 }
 
 const ProfileSettingsForm = () => {
+  const [avatar, setAvatar] = useState("https://surfwaves.b-cdn.net/user_picture.png");
   const [username, setUsername] = useState("@neillydev");
   const [name, setName] = useState("wavecreator");
   const [bio, setBio] = useState("");
@@ -18,9 +22,8 @@ const ProfileSettingsForm = () => {
 
   const handleSubmitProfile = () => {
     try {
-        
     } catch (err) {
-        console.error(err);
+      console.error(err);
     }
   };
 
@@ -65,20 +68,27 @@ const ProfileSettingsForm = () => {
                 onChange={(e) => setBio(e.currentTarget.value)}
               />
             </div>
-          <button className={`${styles.submitProfile} ${!submitting || styles.submitProfileInactive}`}
-          onClick={handleSubmitProfile}>
-            Update Profile
-          </button>
+            <button
+              className={`${styles.submitProfile} ${
+                !submitting || styles.submitProfileInactive
+              }`}
+              onClick={handleSubmitProfile}
+            >
+              Update Profile
+            </button>
           </div>
           <div
             className={`${styles.settingsItem} ${styles.settingsMarginLeft} ${styles.settingsPosition}`}
           >
             <img
               className={styles.settingsAvatar}
-              src="https://surfwaves.b-cdn.net/user_picture.png"
+              src={avatar}
               alt=""
             />
-            <div className={styles.settingsEditAvatarBtn}>Edit</div>
+            <div className={styles.settingsEditAvatarBtn}>
+                <PencilSVG />
+                Edit
+            </div>
           </div>
         </div>
       </div>
