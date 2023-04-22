@@ -12,8 +12,17 @@ const ProfileSettingsForm = () => {
   const [username, setUsername] = useState("@neillydev");
   const [name, setName] = useState("wavecreator");
   const [bio, setBio] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const [errors, setErrors] = useState([]);
+
+  const handleSubmitProfile = () => {
+    try {
+        
+    } catch (err) {
+        console.error(err);
+    }
+  };
 
   return (
     <div className={styles.settingsContainer}>
@@ -56,6 +65,10 @@ const ProfileSettingsForm = () => {
                 onChange={(e) => setBio(e.currentTarget.value)}
               />
             </div>
+          <button className={`${styles.submitProfile} ${!submitting || styles.submitProfileInactive}`}
+          onClick={handleSubmitProfile}>
+            Update Profile
+          </button>
           </div>
           <div
             className={`${styles.settingsItem} ${styles.settingsMarginLeft} ${styles.settingsPosition}`}
