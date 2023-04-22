@@ -25,8 +25,8 @@ const ProfileSettingsForm = () => {
 
   const [avatar, setAvatar] = useState<any>(localAvatar);
   const [avatarBlob, setAvatarBlob] = useState<any>();
-  const [username, setUsername] = useState("neillydev");
-  const [name, setName] = useState("wavecreator");
+  const [username, setUsername] = useState(user_id.split('@')[1]);
+  const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const avatarInput = useRef<HTMLInputElement>(null);
@@ -36,7 +36,7 @@ const ProfileSettingsForm = () => {
   const getErrorMessage = (error: Errors) => {
     switch (error) {
       case Errors.ERROR_INPUT_EMPTY:
-        return "Username cannot be emnpty";
+        return "Username cannot be empty";
       case Errors.ERROR_INPUT_TOO_SHORT:
       case Errors.ERROR_INPUT_TOO_LONG:
         return "Username must be between 4-20 characters";
