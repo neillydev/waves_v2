@@ -14,9 +14,7 @@ const Navbar = () => {
   const [avatar, setAvatar] = useState<string | undefined>();
 
   useEffect(() => {
-    if (!avatar) {
-      setAvatar(localStorage?.getItem('avatar') || 'https://surfwaves.b-cdn.net/user_picture.png');
-    }
+    setAvatar(localStorage?.getItem('avatar') || 'https://surfwaves.b-cdn.net/user_picture.png');
   }, [])
 
   return (

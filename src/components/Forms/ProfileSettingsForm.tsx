@@ -23,8 +23,9 @@ const ProfileSettingsForm = () => {
     localStorage.getItem("avatar") ||
     "https://surfwaves.b-cdn.net/user_picture.png";
 
-  const [avatar, setAvatar] = useState(localAvatar);
-  const [username, setUsername] = useState("@neillydev");
+  const [avatar, setAvatar] = useState<any>(localAvatar);
+  const [avatarBlob, setAvatarBlob] = useState<any>();
+  const [username, setUsername] = useState("neillydev");
   const [name, setName] = useState("wavecreator");
   const [bio, setBio] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -69,25 +70,37 @@ const ProfileSettingsForm = () => {
         return;
       }
 
-      const body: any = {
-        avatar,
-        username,
-        name,
-        bio,
-      };
-
       const token = localStorage.getItem("token");
+      if(!token || token.length === 0) return;
 
-      const response = await fetch(`/api/@${user_id}/edit/settings`, {
+      const formData = new FormData();
+      const emptyBlob = new Blob();
+
+      formData.append("file", avatarBlob ? avatarBlob : emptyBlob, avatarBlob ? avatarBlob.name : '');
+      formData.append("token", token);
+      formData.append("username", username);
+      formData.append("name", name);
+      formData.append("bio", bio);
+
+
+      const response = await fetch(`http://localhost:8022/user/${user_id}`, {
         method: "PUT",
-        body: JSON.stringify(body),
+        body: formData,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       if (response.status === 200) {
-        const data = await response.json();
+        const {avatar, username, name, bio} = await response.json();
+
+        setUsername(username);
+        setName(name);
+        setBio(bio);
+
+        localStorage.setItem('avatar', avatar)
+        localStorage.setItem('username', username)
+        localStorage.setItem('name', name)
       } else {
         // switch errors and handle accordingly
       }
@@ -110,6 +123,7 @@ const ProfileSettingsForm = () => {
     if (e && e.target && e.target.files) {
         const newAvatarURL = URL.createObjectURL(e.target.files[0]);
         setAvatar(newAvatarURL);
+        setAvatarBlob(e.target.files[0]);
       }
   };
 
@@ -165,7 +179,7 @@ const ProfileSettingsForm = () => {
               <textarea
                 className={styles.settingsTextarea}
                 placeholder="Write bio here..."
-                value={bio.length > 0 ? bio : ""}
+                value={bio}
                 onChange={(e) => setBio(e.currentTarget.value)}
               />
             </div>
