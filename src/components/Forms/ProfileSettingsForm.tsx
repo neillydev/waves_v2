@@ -1,30 +1,106 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-import PencilSVG from '../../../public/pencil.svg';
+import PencilSVG from "../../../public/pencil.svg";
 
 import styles from "../../styles/EditProfile/EditProfile.module.css";
+import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/router";
 
 enum Errors {
-  ERROR_TOO_MANY_REQUESTS,
-  ERROR_INPUT_TOO_SHORT,
-  ERROR_INPUT_TOO_LONG,
-  ERROR_USERNAME_TAKEN,
+  ERROR_TOO_MANY_REQUESTS = "error_0",
+  ERROR_INPUT_TOO_SHORT = "error_1",
+  ERROR_INPUT_EMPTY = "error_2",
+  ERROR_INPUT_TOO_LONG = "error_3",
+  ERROR_USERNAME_TAKEN = "error_4",
 }
 
 const ProfileSettingsForm = () => {
-  const [avatar, setAvatar] = useState("https://surfwaves.b-cdn.net/user_picture.png");
+  const router = useRouter();
+  const { authState } = useContext(AuthContext);
+
+  let user_id: any = router.query["@user_id"];
+  let localAvatar: string =
+    localStorage.getItem("avatar") ||
+    "https://surfwaves.b-cdn.net/user_picture.png";
+
+  const [avatar, setAvatar] = useState("");
   const [username, setUsername] = useState("@neillydev");
   const [name, setName] = useState("wavecreator");
   const [bio, setBio] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  const [errors, setErrors] = useState([]);
+  const [usernameErrors, setUsernameErrors] = useState<any>([]);
 
-  const handleSubmitProfile = () => {
+  const getErrorMessage = (error: Errors) => {
+    switch (error) {
+      case Errors.ERROR_INPUT_EMPTY:
+        return "Username cannot be emnpty";
+      case Errors.ERROR_INPUT_TOO_SHORT:
+      case Errors.ERROR_INPUT_TOO_LONG:
+        return "Username must be between 4-20 characters";
+      default:
+        return "";
+    }
+  };
+  const handleSubmitProfile = async (e: any) => {
+    e.preventDefault();
+
+    const newUsernameErrors: any = [];
     try {
+      if (!authState) {
+        return;
+      }
+
+      if (!username || username.length === 0) {
+        newUsernameErrors.push(Errors.ERROR_INPUT_EMPTY);
+      }
+
+      if (username.length > 20) {
+        newUsernameErrors.push(Errors.ERROR_INPUT_TOO_LONG);
+      }
+
+      if (username.length > 0 && username.length < 4) {
+        newUsernameErrors.push(Errors.ERROR_INPUT_TOO_SHORT);
+      }
+
+      if(newUsernameErrors.length > 0){
+        setUsernameErrors(newUsernameErrors);
+        return;
+      }
+
+      const body: any = {
+        avatar,
+        username,
+        name,
+        bio,
+      };
+
+      const token = localStorage.getItem("token");
+
+      const response = await fetch(`/api/@${user_id}/edit/settings`, {
+        method: "PUT",
+        body: JSON.stringify(body),
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 200) {
+        const data = await response.json();
+      } else {
+        // switch errors and handle accordingly
+      }
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const handleUsernameChange = (e: any) => {
+    e.preventDefault();
+
+    setUsernameErrors([]);
+
+    setUsername(e.currentTarget.value);
   };
 
   return (
@@ -37,13 +113,28 @@ const ProfileSettingsForm = () => {
               className={`${styles.settingsItem} ${styles.settingsWidth100}`}
             >
               <h3 className={styles.settingsLabel}>Username</h3>
-              <input
-                type="text"
-                className={styles.settingsInput}
-                placeholder="Username..."
-                value={username}
-                onChange={(e) => setUsername(e.currentTarget.value)}
-              />
+              {usernameErrors.length > 0 ? (
+                <div className={styles.errorInputContainer}>
+                  <input
+                    type="text"
+                    className={`${styles.settingsInput} ${styles.settingsInputError}`}
+                    placeholder="Username..."
+                    value={username}
+                    onChange={handleUsernameChange}
+                  />
+                  {usernameErrors.map((error: any) => (
+                    <span className={styles.settingsInputErrorMessage}>{getErrorMessage(error)}</span>
+                  ))}
+                </div>
+              ) : (
+                <input
+                  type="text"
+                  className={styles.settingsInput}
+                  placeholder="Username..."
+                  value={username}
+                  onChange={handleUsernameChange}
+                />
+              )}
             </div>
             <div
               className={`${styles.settingsItem} ${styles.settingsWidth100}`}
@@ -80,14 +171,10 @@ const ProfileSettingsForm = () => {
           <div
             className={`${styles.settingsItem} ${styles.settingsMarginLeft} ${styles.settingsPosition}`}
           >
-            <img
-              className={styles.settingsAvatar}
-              src={avatar}
-              alt=""
-            />
+            <img className={styles.settingsAvatar} src={localAvatar} alt="" />
             <div className={styles.settingsEditAvatarBtn}>
-                <PencilSVG />
-                Edit
+              <PencilSVG />
+              Edit
             </div>
           </div>
         </div>
