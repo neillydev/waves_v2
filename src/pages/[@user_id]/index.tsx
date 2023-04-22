@@ -154,7 +154,7 @@ const Profile = ({ user_id }: any) => {
                 </div>
                 <div className={styles.headerCenterControls}>
                   {localUserID && user_id === localUserID ? (
-                    <Link href={`/@${user_id}/edit/profile`} onClick={(e) => {
+                    <Link href={`/@${user_id}/edit/settings`} onClick={(e) => {
                         if (!authState) {
                           e.preventDefault();
                           modalDispatch({ type: true });
