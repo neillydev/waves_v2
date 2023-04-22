@@ -93,14 +93,19 @@ const ProfileSettingsForm = () => {
 
       if (response.status === 200) {
         const {avatar, username, name, bio} = await response.json();
+        if(avatar) localStorage.setItem('avatar', avatar)
+        if(username) {
+            setUsername(username);
+            localStorage.setItem('username', username)
+        }
+        if(name) {
+            setName(name);
+            localStorage.setItem('name', name)
+        }
+        if(bio) {
+            setBio(bio);
+        }
 
-        setUsername(username);
-        setName(name);
-        setBio(bio);
-
-        localStorage.setItem('avatar', avatar)
-        localStorage.setItem('username', username)
-        localStorage.setItem('name', name)
       } else {
         // switch errors and handle accordingly
       }
