@@ -36,7 +36,7 @@ const Profile = ({ user_id }: any) => {
   const [enlarge, setEnlarge] = useState(false);
   const [likeAmount, setLikeAmount] = useState<any>(0);
   const [likeBoolean, setLikeBoolean] = useState<any>(false);
-  const [postID, setPostID] = useState();
+  const [postID, setPostID] = useState<any>();
 
   if (!user_id || !user_id.includes("@")) {
     if (typeof window !== "undefined") {
@@ -131,12 +131,20 @@ const Profile = ({ user_id }: any) => {
     }
   };
 
+  const handleClickPost = (e: any, post: any) => {
+    e.preventDefault();
+    setEnlarge(true);
+    setPostID(post.post_id);
+    setLikeBoolean(post.hasLiked);
+    setLikeAmount(post.likes);
+  };
+
   useEffect(() => {
     handleFetchProfile();
     if (typeof window !== "undefined" && !localUserID) {
       setLocalUserID(localStorage?.getItem("username"));
     }
-  }, [,enlarge]);
+  }, [, enlarge]);
 
   return (
     <div className={styles.profileContainer}>
@@ -154,15 +162,18 @@ const Profile = ({ user_id }: any) => {
                 </div>
                 <div className={styles.headerCenterControls}>
                   {localUserID && user_id === localUserID ? (
-                    <Link href={`/@${user_id}/edit/settings`} onClick={(e) => {
+                    <Link
+                      href={`/@${user_id}/edit/settings`}
+                      onClick={(e) => {
                         if (!authState) {
                           e.preventDefault();
                           modalDispatch({ type: true });
                         }
-                      }}>
-                    <button className={styles.editProfileBtn}>
-                      Edit Profile
-                    </button>
+                      }}
+                    >
+                      <button className={styles.editProfileBtn}>
+                        Edit Profile
+                      </button>
                     </Link>
                   ) : null}
                 </div>
@@ -194,12 +205,16 @@ const Profile = ({ user_id }: any) => {
             profile.posts.map((post: any) => (
               <div
                 className={styles.profilePostContainer}
-                key={post.post_id}
                 onMouseEnter={() => handleMouseEnter(post.post_id)}
                 onMouseLeave={() => handleMouseLeave(post.post_id)}
-                onClick={() => { (!enlarge ? (setEnlarge(true), setPostID(post.post_id),setLikeBoolean(post.hasLiked),setLikeAmount(post.likes)) : null) }}
+                onClick={(e: any) => {
+                  if (!enlarge) {
+                    handleClickPost(e, post);
+                    return;
+                  }
+                }}
               >
-                {enlarge ? (
+                {enlarge && postID === post.post_id ? (
                   <BigPost
                     postID={post.post_id}
                     isFollowing={profile.isFollowing}
@@ -209,7 +224,7 @@ const Profile = ({ user_id }: any) => {
                     name={profile.name}
                     mediaSrc={post.media}
                     caption={post.caption}
-                    soundCaption={post.soundCaption}
+                    soundCaption={post.audiodesc}
                     soundSrc={``}
                     likes={likeAmount}
                     comments={[]}

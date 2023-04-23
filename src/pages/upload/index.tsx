@@ -58,7 +58,6 @@ const Upload = () => {
       const formData = new FormData();
       formData.append("file", blob, media.name);
       formData.append("token", token);
-      formData.append("username", username);
       formData.append("user_id", user_id);
       formData.append("caption", caption);
       formData.append("access", access);

@@ -313,7 +313,7 @@ const BigPost = ({
   }, []);
 
   return (
-    <div className={styles.postContainer}>
+    <div className={styles.postContainer} onClick={(e: any) => e.preventDefault()}>
       <button
         className={styles.exitBtn}
         onClick={() => {
