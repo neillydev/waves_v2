@@ -53,7 +53,9 @@ const Dropdown = () => {
                     <UserSVG />
                     <span>Profile</span>
                 </li>
-                <li className={styles.dropItem}>
+                <li className={styles.dropItem} onClick={() => {
+                    if(username) router.push(`/@${username}/edit/settings`)
+                }}>
                     <CogSVG />
                     <span>Settings</span>
                 </li>
