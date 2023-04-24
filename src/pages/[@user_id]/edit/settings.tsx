@@ -8,7 +8,11 @@ import AccountSettingsForm from "@/components/Forms/AccountSettingsForm";
 const EditProfile = () => {
   const router = useRouter();
 
+  const [email, setEmail] = useState('');
+  
   let user_id: any = router.query["@user_id"];
+
+
 
   const [tabs, setTabs] = useState<any>([
     {
@@ -44,6 +48,37 @@ const EditProfile = () => {
     });
     setTabs(updatedTabs);
   };
+  
+  const handleFetchAccount = async () => {
+
+    //start loading animation and skeleton screen
+    try {
+      const token = localStorage.getItem("token") || "";
+      const header = token ? { Authorization: `Bearer ${token}` } : undefined;
+      const response = await fetch(`/api/user/${user_id}`, {
+        method: "GET",
+        headers: {
+          ...header,
+        },
+      });
+
+      if (response.status === 200) {
+        const data = await response.json();
+        setEmail(data.email);
+        setTimeout(() => {
+          //loading_dispatch({ loading: true, type: "bar" });
+        }, 200);
+      } else {
+        // switch errors and handle accordingly
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(()=>{
+    handleFetchAccount()
+  },[])
 
   return (
     <div className={styles.editContainer}>
@@ -58,7 +93,7 @@ const EditProfile = () => {
           </ul>
         </div>
         <div className={styles.editRightWrapper}>
-          {selected === 'settings_profile' ? <ProfileSettingsForm /> : <AccountSettingsForm />}
+          {selected === 'settings_profile' ? <ProfileSettingsForm /> : <AccountSettingsForm email={email} setEmail={setEmail} />}
         </div>
       </div>
     </div>
