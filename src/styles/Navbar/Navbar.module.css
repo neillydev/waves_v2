@@ -28,14 +28,19 @@
 
 .navLeft a {
     display: flex;
-    align-items: center;
+    align-items: normal;
     text-decoration: none;
     color: #000;
 }
 
+.navLeft a svg {
+    line-height: 22px;
+}
+
 .navLeft a h2 {
-    font-size: 2rem;
+    font-size: 32px;
     font-family: 'Bebas Neue';
+    margin: 0;
     margin-left: 6px;
     letter-spacing: 1px;
 }
