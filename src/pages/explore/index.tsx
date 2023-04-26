@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import styles from "../../styles/Explore/Explore.module.css";
 import { useRouter } from "next/router";
+import { PostProps } from "@/components/Post/Post";
+import ExplorePost from "@/components/ExplorePost/ExplorePost";
 
 export enum ExploreViewType {
   TOP,
@@ -12,16 +14,67 @@ export enum ExploreViewType {
 const Explore = () => {
   const router = useRouter();
   const { q } = router.query;
+  const videoRefs = useRef<any>({});
 
   const [viewType, setViewType] = useState<ExploreViewType>(
     ExploreViewType.TOP
   );
 
+  const [posts, setPosts] = useState<any[]>([]);
+  const [enlarge, setEnlarge] = useState(false);
+
+  const handleMouseEnter = (post_id: string) => {
+    if (videoRefs.current[post_id]) {
+      videoRefs.current[post_id].currentTime = 0;
+      videoRefs.current[post_id].play();
+    }
+  };
+
+  const handleMouseLeave = (post_id: string) => {
+    if (videoRefs.current[post_id]) {
+      videoRefs.current[post_id].currentTime = 0;
+      videoRefs.current[post_id].pause();
+    }
+  };
+  
+  const handleFetchExplore = async () => {
+    //start loading animation and skeleton screen
+    try {
+      const token = localStorage.getItem("token") || "";
+      const header = token ? { Authorization: `Bearer ${token}` } : undefined;
+      const response = await fetch(`/api/explore?q=${q}`, {
+        method: "GET",
+        headers: {
+          ...header,
+        },
+      });
+
+      if (response.status === 200) {
+        const data = await response.json(); //Data is dependent on what is returned from the trending algorithm
+
+        setPosts(data);
+
+        setTimeout(() => {
+          //loading_dispatch({ loading: true, type: "bar" });
+        }, 200);
+      } else {
+        // switch errors and handle accordingly
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const qParam = params.get('q');
+    const qParam = params.get("q");
     if (!qParam) {
       router.push("/");
+      return;
+    }
+
+    if(q) {
+        handleFetchExplore();
     }
   }, [q, router]);
 
@@ -60,7 +113,19 @@ const Explore = () => {
             </li>
           </ul>
         </div>
-        <div className={styles.exploreBody}></div>
+        <div className={styles.exploreBody}>
+          {viewType !== ExploreViewType.CREATORS
+            ? posts.map((post: any) => 
+            <ExplorePost 
+                postID={post.postID}
+                profileImg={post.profileImg}
+                username={post.username}
+                mediaSrc={post.media}
+                caption={post.caption}
+                setEnlarge={setEnlarge}
+            />)
+            : null}
+        </div>
       </div>
     </div>
   );
