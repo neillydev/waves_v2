@@ -158,7 +158,7 @@ const Post = ({
   };
 
   return (
-    <div className={styles.postContainer}>
+    <div className={styles.postContainer} key={postID}>
       {enlarge ? (
         <BigPost
           postID={postID}

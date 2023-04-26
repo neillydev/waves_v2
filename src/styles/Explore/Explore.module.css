@@ -55,3 +55,8 @@
 .selected {
   color: rgb(22, 24, 35);
 }
+
+.exploreBody {
+  display: flex;
+  flex-wrap: wrap;
+}
