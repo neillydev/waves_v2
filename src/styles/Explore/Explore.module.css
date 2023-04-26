@@ -1,0 +1,57 @@
+.exploreContainer {
+  display: flex;
+  margin: 0px auto;
+  position: relative;
+  min-width: 420px;
+  top: 60px;
+  position: relative;
+  bottom: 0px;
+}
+
+.exploreTabsWrapper {
+  flex: 1 1 auto;
+  padding: 16px 24px 67px 16px;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.exploreTabsList::before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: 12px;
+  left: 0px;
+  border-bottom: 1px solid rgba(22, 24, 35, 0.12);
+  transform: scaleY(0.5);
+}
+
+.exploreTabsList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+}
+
+.exploreTabsItem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px 0px;
+  font-size: 15px;
+  line-height: 22px;
+  color: rgba(22, 24, 35, 0.5);
+  transition: all 0s ease 0s, all 0.3s ease 0s;
+  width: 120px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-weight: 600;
+}
+
+.selected {
+  color: rgb(22, 24, 35);
+}
