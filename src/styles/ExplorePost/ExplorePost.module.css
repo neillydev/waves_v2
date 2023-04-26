@@ -4,6 +4,8 @@
   width: 100%;
   height: 315px;
   cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
 .explorePostVideo {
@@ -14,11 +16,9 @@
   overflow: hidden;
   border-radius: 4px;
   border: 1px solid rgba(35, 35, 35, 0.1);
-  
 }
 
 .explorePostVideo > video {
-
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -28,5 +28,33 @@
 }
 
 .explorePostFooter {
-    
+    margin-top: 6px;
+    pointer-events: auto;
+    padding: 0px 8px;
+}
+
+.explorePostCaption {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 22px;
+    word-break: break-word;
+}
+
+.explorePostCaption > a {
+    text-decoration: none;
+    color: black;
+}
+
+.hashtag {
+  font-weight: 600;
+}
+
+.hashtag:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.hashtagSpace {
+    display: inline-block;
+    width: 4px;
 }
