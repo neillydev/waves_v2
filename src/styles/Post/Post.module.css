@@ -156,6 +156,11 @@
     letter-spacing: 0.15px;
 }
 
+.caption > a {
+    text-decoration: none;
+    color: black;
+}
+
 .hashtag {
     font-weight: 400;
 }

@@ -10,6 +10,7 @@ import styles from "../../styles/Post/Post.module.css";
 import { AuthContext } from "@/context/AuthContext";
 import { ModalContext } from "@/context/ModalContext";
 import BigPost from "../BigPost/BigPost";
+import Link from "next/link";
 
 export type PostProps = {
   postID: string;
@@ -239,7 +240,7 @@ const Post = ({
                   ? caption.split(" ").map((word) =>
                       word.includes("#") ? (
                         <>
-                          <span className={styles.hashtag}>{`${word}`}</span>
+                          <Link href={`/explore?q=${word.split('#')[1]}`}><span className={styles.hashtag}>{`${word}`}</span></Link>
                           <span className={styles.hashtagSpace}></span>
                         </>
                       ) : (
