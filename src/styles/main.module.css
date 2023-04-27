@@ -7,7 +7,7 @@
 .mainContainer {
     display: flex;
     width: 100vw;
-    max-width: 1100px;
+    max-width: 1175px;
     -webkit-box-pack: justify;
     justify-content: space-between;
     /* align-self: center; */
