@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import styles from "../../styles/Explore/Explore.module.css";
+import loaders from "../../styles/loaders.module.css";
 import { useRouter } from "next/router";
 import { PostProps } from "@/components/Post/Post";
 import ExplorePost from "@/components/ExplorePost/ExplorePost";
@@ -19,6 +20,8 @@ const Explore = () => {
   const [viewType, setViewType] = useState<ExploreViewType>(
     ExploreViewType.TOP
   );
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [posts, setPosts] = useState<any[]>([]);
   const [enlarge, setEnlarge] = useState(false);
@@ -40,6 +43,7 @@ const Explore = () => {
   const handleFetchExplore = async () => {
     //start loading animation and skeleton screen
     try {
+      setIsLoading(true);
       const token = localStorage.getItem("token") || "";
       const header = token ? { Authorization: `Bearer ${token}` } : undefined;
       const response = await fetch(`/api/explore?q=${q}`, {
@@ -60,7 +64,11 @@ const Explore = () => {
       } else {
         // switch errors and handle accordingly
       }
+
+      setIsLoading(false);
+
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
     }
   };
@@ -113,9 +121,12 @@ const Explore = () => {
             </li>
           </ul>
         </div>
-        <div className={styles.exploreBody}>
+        <div className={`${styles.exploreBody} ${isLoading ? loaders.loadingJustify : ''}`}>
           {viewType !== ExploreViewType.CREATORS
-            ? posts.map((post: any) => 
+            ? (isLoading ? 
+              <div className={loaders.loader}></div>
+              : 
+              (posts.length > 0 ? posts.map((post: any) => 
             <ExplorePost 
                 postID={post.postID}
                 profileImg={post.profileImg}
@@ -123,7 +134,7 @@ const Explore = () => {
                 mediaSrc={post.media}
                 caption={post.caption}
                 setEnlarge={setEnlarge}
-            />)
+            />) : null))
             : null}
         </div>
       </div>
