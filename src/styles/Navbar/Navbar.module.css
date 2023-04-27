@@ -1,188 +1,187 @@
 .navContainer {
-    display: flex;
-    justify-content: space-around;
-    border-bottom: 2px rgba(255, 255, 255, 1) solid;
-    height: 60px;
-    width: 100%;
-    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
-    z-index: 100;
-    position: fixed;
-    background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 2px rgba(255, 255, 255, 1) solid;
+  height: 60px;
+  width: 100%;
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+  z-index: 100;
+  position: fixed;
+  background-color: #fff;
 }
 
 .navWrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    max-width: 1100px;
-    justify-content: space-between;
-    padding-right: 24px;
-    padding-left: 20px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 1100px;
+  justify-content: space-between;
+  padding-right: 24px;
+  padding-left: 20px;
 }
 
 .navLeft {
-    display: flex;
-    align-items: center;
-    min-width: 300px;
+  display: flex;
+  align-items: center;
+  min-width: 300px;
 }
 
 .navLeft a {
-    display: flex;
-    align-items: normal;
-    text-decoration: none;
-    color: #000;
+  display: flex;
+  align-items: normal;
+  text-decoration: none;
+  color: #000;
 }
 
 .navLeft a svg {
-    line-height: 22px;
+  line-height: 22px;
 }
 
 .navLeft a h2 {
-    font-size: 32px;
-    font-family: 'Bebas Neue';
-    margin: 0;
-    margin-left: 6px;
-    letter-spacing: 1px;
+  font-size: 32px;
+  font-family: "Bebas Neue";
+  margin: 0;
+  margin-left: 6px;
+  letter-spacing: 1px;
 }
 
 .navCenter {
-    display: flex;
-    align-items: center;
-    min-width: 300px;
+  display: flex;
+  align-items: center;
+  min-width: 300px;
 }
 
 .navRight {
-    display: flex;
-    align-items: center;
-    min-width: 300px;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  min-width: 300px;
+  justify-content: flex-end;
 }
 
 .navSvg {
-    height: 32px;
-    width: 32px;
+  height: 32px;
+  width: 32px;
 }
 
 .navSearchForm {
-    display: flex;
-    align-items: center;
-    background: rgba(22, 24, 35, 0.1);
-    border-radius: 100px;
-    overflow: hidden;
-    padding: 10px;
-    width: 1250px;
+  display: flex;
+  align-items: center;
+  background: rgba(22, 24, 35, 0.1);
+  border-radius: 100px;
+  overflow: hidden;
+  padding: 12px;
+  width: 1250px;
 }
 
 .navSearch {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 14px;
-    width: 30rem;
-    border: none;
-    background: transparent;
-    outline: none;
-    padding: 0;
-    caret-color: #2ba0ff;
-    appearance: textfield;
-    z-index: 10;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-weight: 400;
+  font-size: 14px;
+  width: 1000px;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 0;
+  caret-color: #2ba0ff;
+  appearance: textfield;
+  z-index: 10;
 }
 
 .loginBtn {
-    min-width: 100px;
-    background-color: #2ba0ff;
-    color: #fff;
-    font-family: 'Bebas Neue';
-    font-size: 15px;
-    height: 36px;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    padding: 6px 8px;
-    letter-spacing: 0.25px;
+  min-width: 100px;
+  background-color: #2ba0ff;
+  color: #fff;
+  font-family: "Bebas Neue";
+  font-size: 15px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 6px 8px;
+  letter-spacing: 0.25px;
 }
 
 .loginBtn:hover {
-    background-color: #2095f5;
+  background-color: #2095f5;
 }
 
 .loginBtn:active {
-    background-color: #0f8cf2;
+  background-color: #0f8cf2;
 }
 
 .link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .uploadBtn {
-    text-decoration: none;
-    margin: 0 1.25rem 0 0;
-    font-family: 'Bebas Neue';
-    font-size: 15px;
-    position: relative;
-    height: 36px;
-    color: rgba(22, 24, 35, 1);
-    min-width: 110px;
-    padding: 0 16px;
-    height: 36px;
-    border: 1px solid rgba(22, 24, 35, 0.12);
-    border-radius: 2px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 1);
-    cursor: pointer;
-    letter-spacing: 0.25px;
+  text-decoration: none;
+  margin: 0 1.25rem 0 0;
+  font-family: "Bebas Neue";
+  font-size: 15px;
+  position: relative;
+  height: 36px;
+  color: rgba(22, 24, 35, 1);
+  min-width: 110px;
+  padding: 0 16px;
+  height: 36px;
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  letter-spacing: 0.25px;
 }
 
 .uploadBtn:hover {
-    background: rgba(244, 244, 244, 0.726);
+  background: rgba(244, 244, 244, 0.726);
 }
 
 .uploadBtn:active {
-    background: rgba(235, 235, 235, 0.726);
+  background: rgba(235, 235, 235, 0.726);
 }
 
 .profileBtn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-size: cover;
-    position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  position: relative;
 }
 
 .dropContainer {
-    display: none;
-    background-color: rgb(255, 255, 255);
-    right: -12px;
-    position: absolute;
-    z-index: 1;
-    background: rgb(255, 255, 255);
-    border-radius: 8px;
-    top: calc(100% + 1px);
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
-    transition: opacity 300ms ease-in-out 0s;
-    opacity: 0;
-    max-width: 200px;
+  display: none;
+  background-color: rgb(255, 255, 255);
+  right: -12px;
+  position: absolute;
+  z-index: 1;
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+  top: calc(100% + 1px);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
+  transition: opacity 300ms ease-in-out 0s;
+  opacity: 0;
+  max-width: 200px;
 }
 
-.dropWrapper{
-    
+.dropWrapper {
 }
 
 .profileBtn:hover > .dropContainer,
@@ -200,104 +199,103 @@
   opacity: 0;
 }
 
-
 .dropList {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    padding: 8px 0px;
-    margin: 0px;
-    min-width: 200px;
-    list-style: none;
-    width: 100%;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 8px 0px;
+  margin: 0px;
+  min-width: 200px;
+  list-style: none;
+  width: 100%;
 }
 
 .dropHeader {
-    padding: .5rem;
-    color: #fff;
-    font-weight: 500;
+  padding: 0.5rem;
+  color: #fff;
+  font-weight: 500;
 }
 
 .dropItem {
-    color: rgb(22, 24, 35);
-    padding: 0px 0px 0px 20px;
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    align-items: center;
+  color: rgb(22, 24, 35);
+  padding: 0px 0px 0px 20px;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dropItem > svg {
-    width: 18px;
-    height: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 .dropItem > span {
-    display: flex;
-    white-space: nowrap;
-    flex-direction: row;
-    width: 100%;
-    -webkit-box-align: center;
-    align-items: center;
-    color: rgb(22, 24, 35);
-    padding: 8px 10px;
-    letter-spacing: 0.25px;
-    font-size: 14px;
-    font-weight: 400;
+  display: flex;
+  white-space: nowrap;
+  flex-direction: row;
+  width: 100%;
+  -webkit-box-align: center;
+  align-items: center;
+  color: rgb(22, 24, 35);
+  padding: 8px 10px;
+  letter-spacing: 0.25px;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .dropItem:hover {
-    background-color: #f6f6f6;
+  background-color: #f6f6f6;
 }
 
 .separator {
-    display: block;
-    height: 1px;
-    width: 100%;
-    background: rgba(22, 24, 35, 0.12);
-    margin: 8px 0;
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: rgba(22, 24, 35, 0.12);
+  margin: 8px 0;
 }
 
 .uploadBtn {
-    margin: 0 1.25rem 0 0;
-    font-family: 'Bebas Neue';
-    font-size: 15px;
-    position: relative;
-    height: 36px;
-    color: rgba(22, 24, 35, 1);
-    min-width: 110px;
-    padding: 0 16px;
-    height: 36px;
-    border: 1px solid rgba(22, 24, 35, 0.12);
-    border-radius: 2px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 1);
-    cursor: pointer;
-    letter-spacing: 0.25px;
+  margin: 0 1.25rem 0 0;
+  font-family: "Bebas Neue";
+  font-size: 15px;
+  position: relative;
+  height: 36px;
+  color: rgba(22, 24, 35, 1);
+  min-width: 110px;
+  padding: 0 16px;
+  height: 36px;
+  border: 1px solid rgba(22, 24, 35, 0.12);
+  border-radius: 2px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 1);
+  cursor: pointer;
+  letter-spacing: 0.25px;
 }
 
 .uploadBtn:hover {
-    background: rgba(244, 244, 244, 0.726);
+  background: rgba(244, 244, 244, 0.726);
 }
 
 .uploadBtn:active {
-    background: rgba(235, 235, 235, 0.726);
+  background: rgba(235, 235, 235, 0.726);
 }
 
 @media (max-width: 750px) {
-    .navCenter {
-        max-width: 20rem;
-    }
+  .navCenter {
+    max-width: 20rem;
+  }
 }
