@@ -263,19 +263,17 @@
 }
 
 .liked {
-    background-color: #2ba0ff;
+    background-color: #56b3ff;
 }
 
-.liked + h3 {
-    color: #2ba0ff;
+.liked + span {
+    color: #56b3ff;
 }
 
 .liked > svg {
     fill: #fff;
     stroke: #fff;
 }
-
-
 
 .commentBtn > svg {
     width: 18px;

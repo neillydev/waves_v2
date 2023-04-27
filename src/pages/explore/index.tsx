@@ -124,7 +124,7 @@ const Explore = () => {
         </div>
         <div
           className={`${styles.exploreBody} ${
-            isLoading || posts.length === 0 ? loaders.loadingJustify : ""
+            isLoading || (posts.length === 0 && !isLoading) ? loaders.loadingJustify : ""
           }`}
         >
           {viewType !== ExploreViewType.CREATORS ? (

@@ -122,7 +122,7 @@ const Post = ({
       });
       switch (response.status) {
         case 200:
-          setLikeAmount(likeAmount+1);
+          setLikeAmount(likeAmount + 1);
           setLikeBoolean(true);
           break;
         default:
@@ -148,7 +148,7 @@ const Post = ({
       });
       switch (response.status) {
         case 200:
-          setLikeAmount(likeAmount-1);
+          setLikeAmount(likeAmount - 1);
           setLikeBoolean(false);
           break;
         default:
@@ -223,15 +223,18 @@ const Post = ({
                 <video src={mediaSrc} autoPlay loop playsInline />
               </div>
               <div className={styles.postControls}>
-                <button className={styles.postControl}>
+                <button className={`${styles.postControl} ${hasLiked ? styles.liked : ''}`}>
                   <WaveBwSVG />
                 </button>
+                <span className={styles.stat}>{likeAmount}</span>
                 <button className={styles.postControl}>
                   <CommentSVG />
                 </button>
+                <span className={styles.stat}>{comments.length}</span>
                 <button className={styles.postControl}>
                   <ShareSVG />
                 </button>
+                <span className={styles.stat}>{0}</span>
               </div>
             </div>
             <div className={styles.postCaption}>
@@ -240,7 +243,9 @@ const Post = ({
                   ? caption.split(" ").map((word) =>
                       word.includes("#") ? (
                         <>
-                          <Link href={`/explore?q=${word.split('#')[1]}`}><span className={styles.hashtag}>{`${word}`}</span></Link>
+                          <Link href={`/explore?q=${word.split("#")[1]}`}>
+                            <span className={styles.hashtag}>{`${word}`}</span>
+                          </Link>
                           <span className={styles.hashtagSpace}></span>
                         </>
                       ) : (

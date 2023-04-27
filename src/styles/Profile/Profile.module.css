@@ -182,7 +182,7 @@
 
 .profilePostContainer {
   position: relative;
-  max-width: 150px;
+  min-width: 160px;
   height: 250px;
   margin-right: 1rem;
   cursor: pointer;
