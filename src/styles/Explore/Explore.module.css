@@ -7,6 +7,7 @@
   top: 60px;
   position: relative;
   bottom: 0px;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
 }
 
 .exploreWrapper {
@@ -53,7 +54,6 @@
   color: rgba(22, 24, 35, 0.5);
   transition: all 0s ease 0s, all 0.3s ease 0s;
   width: 120px;
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
   font-weight: 600;
 }
 
@@ -65,4 +65,20 @@
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
+}
+
+.nothingFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(22, 24, 35, 0.5);
+  font-weight: 600;
+  font-size: 28px;
+}
+
+.nothingFound > svg {
+  stroke: rgba(22, 24, 35, 0.5);
+  width: 148px;
+  height: 148px;
+  margin: 16px 0;
 }

@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import { PostProps } from "@/components/Post/Post";
 import ExplorePost from "@/components/ExplorePost/ExplorePost";
 
+import SurfboardSVG from "../../../public/surfboard.svg";
+
 export enum ExploreViewType {
   TOP,
   CREATORS,
@@ -39,7 +41,7 @@ const Explore = () => {
       videoRefs.current[post_id].pause();
     }
   };
-  
+
   const handleFetchExplore = async () => {
     //start loading animation and skeleton screen
     try {
@@ -66,7 +68,6 @@ const Explore = () => {
       }
 
       setIsLoading(false);
-
     } catch (error) {
       setIsLoading(false);
       console.error(error);
@@ -81,8 +82,8 @@ const Explore = () => {
       return;
     }
 
-    if(q) {
-        handleFetchExplore();
+    if (q) {
+      handleFetchExplore();
     }
   }, [q, router]);
 
@@ -121,21 +122,32 @@ const Explore = () => {
             </li>
           </ul>
         </div>
-        <div className={`${styles.exploreBody} ${isLoading ? loaders.loadingJustify : ''}`}>
-          {viewType !== ExploreViewType.CREATORS
-            ? (isLoading ? 
+        <div
+          className={`${styles.exploreBody} ${
+            isLoading || posts.length === 0 ? loaders.loadingJustify : ""
+          }`}
+        >
+          {viewType !== ExploreViewType.CREATORS ? (
+            isLoading ? (
               <div className={loaders.loader}></div>
-              : 
-              (posts.length > 0 ? posts.map((post: any) => 
-            <ExplorePost 
-                postID={post.postID}
-                profileImg={post.profileImg}
-                username={post.username}
-                mediaSrc={post.media}
-                caption={post.caption}
-                setEnlarge={setEnlarge}
-            />) : null))
-            : null}
+            ) : posts.length > 0 ? (
+              posts.map((post: any) => (
+                <ExplorePost
+                  postID={post.postID}
+                  profileImg={post.profileImg}
+                  username={post.username}
+                  mediaSrc={post.media}
+                  caption={post.caption}
+                  setEnlarge={setEnlarge}
+                />
+              ))
+            ) : (
+              <span className={styles.nothingFound}>
+                <SurfboardSVG />
+                Nothing found. Keep surfing!
+              </span>
+            )
+          ) : null}
         </div>
       </div>
     </div>
