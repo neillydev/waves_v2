@@ -7,15 +7,23 @@ import UserSVG from '../../../public/user.svg';
 import styles from '../../styles/Navbar/Navbar.module.css';
 import Dropdown from '../Dropdown/Dropdown';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Navbar = () => {
+  const router = useRouter();
   const { authState } = useContext(AuthContext);
   const { modalState, modalDispatch } = useContext(ModalContext);
   const [avatar, setAvatar] = useState<string | undefined>();
+  const [search, setSearch] = useState<string>('')
+
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    router.push(`/explore?q=${search}`);
+  };
 
   useEffect(() => {
     setAvatar(localStorage?.getItem('avatar') || 'https://surfwaves.b-cdn.net/user_picture.png');
-  }, [])
+  }, []);
 
   return (
     <div className={styles.navContainer}>
@@ -27,8 +35,19 @@ const Navbar = () => {
           </a>
         </div>
         <div className={styles.navCenter}>
-          <form action="/search" className={styles.navSearchForm}>
-            <input placeholder="Search videos or accounts" autoComplete="off" type="search" className={styles.navSearch} />
+          <form className={styles.navSearchForm} onSubmit={handleSearch} >
+            <input placeholder="Search videos or accounts" autoComplete="off" type="search" className={styles.navSearch}
+            onChange={(e: any) => {
+              let value: string = e.currentTarget.value;
+              if(value.includes('#')) value = value.split('#')[1];
+              setSearch(value)
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSearch(e);
+              }
+            }} 
+            />
           </form>
         </div>
         <div className={styles.navRight}>
