@@ -70,7 +70,20 @@
   border-radius: 100px;
   overflow: hidden;
   padding: 12px;
-  width: 500px;
+  width: 400px;
+}
+
+.navSearchForm > svg {
+  height: 18px;
+  width: 18px;
+  fill: rgba(22, 24, 35, .4);
+}
+
+.navSearchSeparator {
+  width: 1px;
+  height: 22px;
+  margin: -3px 8px;
+  background: rgba(22, 24, 35, .12);
 }
 
 .navSearch {
@@ -78,7 +91,7 @@
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-weight: 400;
   font-size: 14px;
-  width: 1000px;
+  width: 100%;
   border: none;
   background: transparent;
   outline: none;

@@ -2,7 +2,7 @@ import { AuthContext } from '@/context/AuthContext';
 import { ModalContext } from '@/context/ModalContext';
 import React, { useContext, useEffect, useState } from 'react';
 import WaveSVG from '../../../public/wave.svg';
-import UserSVG from '../../../public/user.svg';
+import SearchSVG from '../../../public/search.svg';
 
 import styles from '../../styles/Navbar/Navbar.module.css';
 import Dropdown from '../Dropdown/Dropdown';
@@ -36,6 +36,8 @@ const Navbar = () => {
         </div>
         <div className={styles.navCenter}>
           <form className={styles.navSearchForm} onSubmit={handleSearch} >
+            <SearchSVG />
+            <span className={styles.navSearchSeparator}></span>
             <input placeholder="Search videos or accounts" autoComplete="off" type="search" className={styles.navSearch}
             onChange={(e: any) => {
               let value: string = e.currentTarget.value;
