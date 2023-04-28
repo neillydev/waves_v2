@@ -109,6 +109,7 @@
   cursor: pointer;
   background-color: rgba(22, 24, 35, 0.06);
   margin: 8px 0 6px 0;
+  transition: all 200ms ease-in-out 0s;
 }
 
 .postControl > svg {
@@ -118,7 +119,7 @@
 }
 
 .liked {
-    background-color: #2ba0ff !important;
+    background-color: #2ba0ff;
 }
 
 .liked + h3 {
@@ -158,6 +159,10 @@
 
 .postControl:active {
   background-color: rgba(22, 24, 35, 0.35);
+}
+
+.postControl:hover {
+  background-color: rgba(22, 24, 35, 0.15);
 }
 
 .stat {
