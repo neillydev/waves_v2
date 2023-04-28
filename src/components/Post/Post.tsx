@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { LegacyRef, useContext, useEffect, useRef, useState } from "react";
 
 import SoundSVG from "../../../public/sound.svg";
 import WaveBwSVG from "../../../public/wave_bw.svg";
@@ -16,6 +16,7 @@ export type PostProps = {
   postID: string;
   isFollowing: boolean;
   hasLiked: boolean;
+  hasViewed: boolean;
   profileImg: string;
   username: string;
   name: string;
@@ -32,6 +33,7 @@ const Post = ({
   postID,
   isFollowing,
   hasLiked,
+  hasViewed,
   profileImg,
   username,
   name,
@@ -47,9 +49,13 @@ const Post = ({
   const { modalState, modalDispatch } = useContext(ModalContext);
   const [following, setFollowing] = useState(isFollowing || false);
   const [enlarge, setEnlarge] = useState(false);
+  
 
   const [likeAmount, setLikeAmount] = useState(likes);
   const [likeBoolean, setLikeBoolean] = useState(hasLiked);
+
+  const postRef = useRef<HTMLVideoElement>(null);
+  const [viewed, setViewed] = useState(hasViewed);
 
   const myUsername = localStorage.getItem("username") || "";
 
@@ -158,8 +164,68 @@ const Post = ({
     }
   };
 
+  const handleViewPost = async () => {
+    if (!authState) {
+      return;
+    }
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch(`/api/posts/${postID}/view`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 201) {
+        setViewed(true);
+      } else {
+        // switch errors and handle accordingly
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if(viewed) return;
+
+    if(!postRef.current) return;
+
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const incrementViewCount = async () => {
+            if (!viewed) {
+              handleViewPost();
+            }
+          };
+
+          incrementViewCount();
+        }
+      });
+    }, options);
+    observer.observe(postRef.current);
+
+    return () => {
+      if(!postRef.current) return;
+      observer.unobserve(postRef.current);
+    };
+  }, [viewed]);
+
   return (
-    <div className={styles.postContainer} key={postID}>
+    <div 
+    className={styles.postContainer} 
+    key={postID}
+    >
       {enlarge ? (
         <BigPost
           postID={postID}
@@ -220,7 +286,7 @@ const Post = ({
                 className={styles.postMediaVideoContainer}
                 onClick={() => setEnlarge(!enlarge)}
               >
-                <video src={mediaSrc} autoPlay loop playsInline />
+                <video src={mediaSrc} autoPlay loop playsInline ref={postRef} />
               </div>
               <div className={styles.postControls}>
                 <button
