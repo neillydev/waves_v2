@@ -55,6 +55,8 @@ const Main = () => {
 
   const [followingList, setFollowingList] = useState<any>([]);
 
+  const [featuredUsers, setFeaturedUsers] = useState<any>([]);
+
   const removePost = (post_id: string) => {
     if (!posts || posts.length === 0) return;
 
@@ -112,7 +114,7 @@ const Main = () => {
         const data = await response.json(); //Data is dependent on what is returned from the trending algorithm
         let postsData = data;
         if (!isEmptyObject(postState)) {
-          //postsData = [postState, ...data]; //fix when changing the trending algorithm 
+          //postsData = [postState, ...data]; //fix when changing the trending algorithm
           postDispatch({ type: "SET_DATA", payload: {} }); //resetting the postState
         }
 
@@ -128,8 +130,31 @@ const Main = () => {
     }
   };
 
+  const handleFetchFeatured = async () => {
+    //start loading animation and skeleton screen
+    try {
+      const response = await fetch("/api/featured", {
+        method: "GET",
+      });
+
+      if (response.status === 200) {
+        const data = await response.json();
+        setFeaturedUsers(data);
+        setTimeout(() => {
+          //loading_dispatch({ loading: true, type: "bar" });
+        }, 200);
+      } else {
+        // switch errors and handle accordingly
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    if (featuredUsers.length === 0) handleFetchFeatured();
 
     switch (viewType) {
       case ViewType.FOLLOWING:
@@ -219,20 +244,17 @@ const Main = () => {
             <div className={styles.separator} />
             <div className={styles.leftSection}>
               <h2 className={styles.leftTitle}>Featured Creators</h2>
-              <SideItem
-                icon="https://surfwaves.b-cdn.net/neillydev.png"
-                header="Vernon Neilly III"
-                subHeader="@neillydev"
-                path="/"
-                account
-              />
-              <SideItem
-                icon="https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80"
-                header="Pistachio The Cat"
-                subHeader="@pistachio"
-                path="/"
-                account
-              />
+              {featuredUsers.length > 0
+                ? featuredUsers.map((user: any) => (
+                    <SideItem
+                      icon={user.avatar}
+                      header={user.name}
+                      subHeader={`@${user.username}`}
+                      path="/"
+                      account
+                    />
+                  ))
+                : null}
             </div>
             <div className={styles.separator} />
             <div className={styles.leftSection}>
