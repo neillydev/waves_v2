@@ -8,6 +8,7 @@ import MenuSVG from "../../../public/dots.svg";
 
 import styles from "../../styles/BigPost/BigPost.module.css";
 import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/router";
 
 type BigPostProps = {
   postID: string;
@@ -46,6 +47,7 @@ const BigPost = ({
   handleLike,
   handleDeleteLike,
 }: BigPostProps) => {
+  const router = useRouter();
   const myUserID = localStorage.getItem("user_id") || "";
   const myUsername = localStorage.getItem("username") || "";
 
@@ -334,7 +336,7 @@ const BigPost = ({
               <img src={profileImg} />
             </div>
             <div className={styles.profileMeta}>
-              <div className={styles.profileUsername}>{username}</div>
+              <div className={styles.profileUsername} onClick={() => router.push(`/@${username}`)}>{username}</div>
               <div className={styles.nameMeta}>
                 <div className={styles.profileName}>{name}</div>
                 <span> · </span>

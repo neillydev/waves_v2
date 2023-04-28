@@ -11,6 +11,7 @@ import { AuthContext } from "@/context/AuthContext";
 import { ModalContext } from "@/context/ModalContext";
 import BigPost from "../BigPost/BigPost";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export type PostProps = {
   postID: string;
@@ -45,6 +46,7 @@ const Post = ({
   comments,
   removePost,
 }: PostProps) => {
+  const router = useRouter();
   const { authState } = useContext(AuthContext);
   const { modalState, modalDispatch } = useContext(ModalContext);
   const [following, setFollowing] = useState(isFollowing || false);
@@ -247,13 +249,13 @@ const Post = ({
         />
       ) : (
         <div className={styles.postWrapper}>
-          <div className={styles.postProfile}>
+          <div className={styles.postProfile} onClick={() => router.push(`/@${username}`)}>
             <img src={profileImg} />
           </div>
           <div className={styles.post}>
             <div className={styles.postProfileContainer}>
               <div className={styles.profileMeta}>
-                <div className={styles.profileUsername}>{username}</div>
+                <div className={styles.profileUsername} onClick={() => router.push(`/@${username}`)}>{username}</div>
                 <div className={styles.profileName}>{name}</div>
               </div>
               <div className={styles.followContainer}>

@@ -120,6 +120,10 @@
     font-size: 14px;
     letter-spacing: .5px;
 }
+.profileUsername:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 
 .followBtnWrapper {
