@@ -223,11 +223,32 @@ const Post = ({
                 <video src={mediaSrc} autoPlay loop playsInline />
               </div>
               <div className={styles.postControls}>
-                <button className={`${styles.postControl} ${hasLiked ? styles.liked : ''}`}>
+                <button
+                  className={`${styles.postControl} ${
+                    likeBoolean ? styles.liked : ""
+                  }`}
+                  onClick={() => {
+                    if (!authState) {
+                      modalDispatch({ type: true });
+                      return;
+                    }
+
+                    likeBoolean !== true ? handleLike() : handleDeleteLike()
+                  }}
+                >
                   <WaveBwSVG />
                 </button>
                 <span className={styles.stat}>{likeAmount}</span>
-                <button className={styles.postControl}>
+                <button
+                  className={styles.postControl}
+                  onClick={() => {
+                    if (!authState) {
+                      modalDispatch({ type: true });
+                      return;
+                    }
+
+                    setEnlarge(true);
+                  }}>
                   <CommentSVG />
                 </button>
                 <span className={styles.stat}>{comments.length}</span>
