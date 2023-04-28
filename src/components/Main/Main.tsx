@@ -33,6 +33,7 @@ type PostType = {
   audiodesc: string;
   likes: number;
   comments: any;
+  timestamp: string;
   following: boolean;
   hasLiked: boolean;
   hasViewed: boolean;
@@ -304,6 +305,7 @@ const Main = () => {
                   soundSrc=""
                   likes={post.likes}
                   comments={post.comments}
+                  timestamp={post.timestamp}
                   removePost={removePost}
                 />
               ))

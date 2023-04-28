@@ -27,6 +27,7 @@ export type PostProps = {
   soundSrc: string;
   likes: number;
   comments: any;
+  timestamp: string;
   removePost: (post_id: string) => void;
 };
 
@@ -44,6 +45,7 @@ const Post = ({
   soundSrc,
   likes,
   comments,
+  timestamp,
   removePost,
 }: PostProps) => {
   const router = useRouter();
@@ -233,6 +235,7 @@ const Post = ({
           postID={postID}
           isFollowing={isFollowing}
           hasLiked={likeBoolean}
+          hasViewed={viewed}
           profileImg={profileImg}
           username={username}
           name={name}
@@ -242,6 +245,7 @@ const Post = ({
           soundSrc={soundSrc}
           likes={likeAmount}
           comments={comments}
+          timestamp={timestamp}
           removePost={removePost}
           setEnlarge={setEnlarge}
           handleLike={handleLike}

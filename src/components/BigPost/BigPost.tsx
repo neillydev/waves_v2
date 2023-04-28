@@ -10,10 +10,13 @@ import styles from "../../styles/BigPost/BigPost.module.css";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/router";
 
+import formatTimestamp from "@/util/formatTimestamp";
+
 type BigPostProps = {
   postID: string;
   isFollowing: boolean;
   hasLiked: boolean;
+  hasViewed: boolean;
   profileImg: string;
   username: string;
   name: string;
@@ -23,6 +26,7 @@ type BigPostProps = {
   soundSrc: string;
   likes: number;
   comments: any;
+  timestamp: string;
   removePost: (post_id: string) => void;
   setEnlarge: React.Dispatch<React.SetStateAction<boolean>>;
   handleLike: () => void;
@@ -33,6 +37,7 @@ const BigPost = ({
   postID,
   isFollowing,
   hasLiked,
+  hasViewed,
   profileImg,
   username,
   name,
@@ -42,6 +47,7 @@ const BigPost = ({
   soundSrc,
   likes,
   comments,
+  timestamp,
   removePost,
   setEnlarge,
   handleLike,
@@ -60,6 +66,8 @@ const BigPost = ({
   const [commentsArray, setCommentsArray] = useState(comments);
   const [replies, setReplies] = useState(0);
   const [replying, setReplying] = useState<any>();
+
+  const [viewed, setViewed] = useState(hasViewed);
 
   const manageCommentRefs = useRef<any>([]);
 
@@ -304,8 +312,35 @@ const BigPost = ({
     }
   };
 
+  const handleViewPost = async () => {
+    if (!authState) {
+      return;
+    }
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch(`/api/posts/${postID}/view`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 201) {
+        setViewed(true);
+      } else {
+        // switch errors and handle accordingly
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     handleFetchPost(Number(postID));
+
+    if(!viewed) handleViewPost();
 
     const replyLength = commentsArray.reduce((acc: any, comment: any) => {
       return acc + comment.replies.length;
@@ -340,7 +375,7 @@ const BigPost = ({
               <div className={styles.nameMeta}>
                 <div className={styles.profileName}>{name}</div>
                 <span> · </span>
-                <h4>12h ago</h4>
+                <h4>{formatTimestamp(timestamp)}</h4>
               </div>
             </div>
           </div>
@@ -428,7 +463,7 @@ const BigPost = ({
                         </div>
                         <div className={styles.commentMetaControls}>
                           <div className={styles.commentTimestamp}>
-                            <h3>{commentObj.timestamp}</h3>
+                            <h3>{formatTimestamp(commentObj.timestamp)}</h3>
                           </div>
                           <button
                             className={styles.commentReplyBtn}
