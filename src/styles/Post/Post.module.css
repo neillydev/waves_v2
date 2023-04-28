@@ -118,7 +118,7 @@
 }
 
 .liked {
-    background-color: #2ba0ff;
+    background-color: #2ba0ff !important;
 }
 
 .liked + h3 {
@@ -154,6 +154,10 @@
 
 .postControl:hover {
   background-color: #00000011;
+}
+
+.postControl:active {
+  background-color: rgba(22, 24, 35, 0.35);
 }
 
 .stat {
