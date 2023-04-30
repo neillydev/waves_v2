@@ -29,6 +29,14 @@
     width: 12px;
 }
 
+.trendContainer:hover {
+    background: rgb(229, 229, 229);
+}
+
+.trendContainer:active {
+    background: rgb(209, 209, 209);
+}
+
 .trendTitle {
     display: flex;
     align-items: center;

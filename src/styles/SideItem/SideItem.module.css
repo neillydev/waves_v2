@@ -19,7 +19,7 @@
 .sideItemHeader {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 14px;
     letter-spacing: .75px;
     margin-left: 8px;
@@ -89,6 +89,11 @@
 .selected {
     color: #2ba0ff;
     
+}
+
+.disabled {
+    color: #7e7e7e;
+    fill: #7e7e7e;
 }
 
 /*.selected:hover {
