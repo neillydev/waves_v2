@@ -219,6 +219,7 @@ const Profile = ({ user_id }: any) => {
                     postID={post.post_id}
                     isFollowing={profile.isFollowing}
                     hasLiked={likeBoolean}
+                    hasViewed={post.viewed}
                     profileImg={profile.avatar}
                     username={profile.username}
                     name={profile.name}
@@ -228,6 +229,7 @@ const Profile = ({ user_id }: any) => {
                     soundSrc={``}
                     likes={likeAmount}
                     comments={[]}
+                    timestamp={post.timestamp}
                     removePost={() => {}}
                     setEnlarge={setEnlarge}
                     handleLike={handleLike}
