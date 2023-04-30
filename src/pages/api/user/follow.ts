@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import getAPI from "@/util/getAPI";
 
 type FollowReqBody = {
   following_username: string;
@@ -14,6 +15,7 @@ export default async function handler(
   res: NextApiResponse<FollowResBody>
 ) {
   const { method } = req;
+  const API = getAPI();
 
   switch (method) {
     case "POST":
@@ -21,7 +23,7 @@ export default async function handler(
         const token = req.headers.authorization?.split(' ')[1];
         const { following_username }: FollowReqBody = req.body;
         
-        const response = await axios.post("http://localhost:8022/follow", {following_username: following_username}, {
+        const response = await axios.post(`${API}/follow`, {following_username: following_username}, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

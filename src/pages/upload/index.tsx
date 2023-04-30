@@ -7,6 +7,7 @@ import styles from "../../styles/Upload/Upload.module.css";
 import { AuthContext } from "@/context/AuthContext";
 import { PostContext } from "@/context/PostContext";
 import { useRouter } from "next/router";
+import getAPI from "@/util/getAPI";
 
 enum ACCESS {
   PUBLIC = 0,
@@ -15,6 +16,7 @@ enum ACCESS {
 
 const Upload = () => {
   const router = useRouter();
+  const API = getAPI();
   const { authState } = useContext(AuthContext);
   const { postDispatch } = useContext(PostContext);
 
@@ -62,7 +64,7 @@ const Upload = () => {
       formData.append("caption", caption);
       formData.append("access", access);
       try {
-        const response = await fetch("http://localhost:8022/post", {
+        const response = await fetch(`${API}/post`, {
           method: "POST",
           body: formData,
           headers: {

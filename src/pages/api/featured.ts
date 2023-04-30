@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import getAPI from "@/util/getAPI";
 
 type FeaturedResBody = {
   message?: string;
@@ -10,11 +11,12 @@ export default async function handler(
   res: NextApiResponse<FeaturedResBody>
 ) {
   const { method } = req;
+  const API = getAPI();
 
   switch (method) {
     case "GET":
       try {
-        const response = await axios.get(`http://localhost:8022/featured`);
+        const response = await axios.get(`${API}/featured`);
         if (response.status === 200) {
           const data = await response.data;
 

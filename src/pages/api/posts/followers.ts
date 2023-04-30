@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import getAPI from "@/util/getAPI";
 
 type PostsResBody = {
   message?: string;
@@ -10,12 +11,13 @@ export default async function handler(
   res: NextApiResponse<PostsResBody>
 ) {
   const { method } = req;
+  const API = getAPI();
 
   switch (method) {
     case "GET":
       try {
         const token = req.headers.authorization?.split(" ")[1];
-        const response = await axios.get('http://localhost:8022/posts/followers',{
+        const response = await axios.get(`${API}/posts/followers`,{
           headers: {
             Authorization: `Bearer ${token}`,
           },

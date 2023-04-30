@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import getAPI from '@/util/getAPI';
 
 type LoginReqBody = {
   login: string;
@@ -16,13 +17,13 @@ export default async function handler(
   res: NextApiResponse<LoginResBody>
 ) {
   const {method} = req;
+  const API = getAPI();
 
   switch(method) {
     case "POST":
       const { login, password }: LoginReqBody = req.body;
-
       try{
-        const response = await axios.post('http://localhost:8022/auth/login', {
+        const response = await axios.post(`${API}/auth/login`, {
           login,
           password,
         });

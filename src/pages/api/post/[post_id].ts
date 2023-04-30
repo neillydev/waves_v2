@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import formidable from "formidable";
+import getAPI from "@/util/getAPI";
 
 type PostResBody = {
   message?: string;
@@ -11,6 +12,7 @@ export default async function handler(
   res: NextApiResponse<PostResBody>
 ) {
   const { method } = req;
+  const API = getAPI();
 
   switch (method) {
     case "GET":
@@ -18,7 +20,7 @@ export default async function handler(
         const { post_id } = req.query;
         const response = await axios({
           method: "GET",
-          url: `http://localhost:8022/post/${post_id}`,
+          url: `${API}/post/${post_id}`,
         });
 
         if (response.status === 200) {
@@ -37,7 +39,7 @@ export default async function handler(
         const { post_id } = req.query;
         const response = await axios({
           method: "DELETE",
-          url: `http://localhost:8022/post/${post_id}`,
+          url: `${API}/post/${post_id}`,
         });
 
         if (response.status === 201) {

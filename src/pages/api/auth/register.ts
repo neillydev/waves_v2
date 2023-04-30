@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
+import getAPI from '@/util/getAPI';
 
 type RegisterReqBody = {
   email: string;
@@ -16,6 +17,7 @@ export default async function handler(
   res: NextApiResponse<RegisterResBody>
 ) {
   const { method } = req;
+  const API = getAPI();
 
   switch (method) {
     case "POST":
@@ -23,7 +25,7 @@ export default async function handler(
 
 
       try {
-        const response = await axios.post('http://localhost:8022/auth/register', {
+        const response = await axios.post(`${API}/auth/register`, {
           username,
           email,
           password,

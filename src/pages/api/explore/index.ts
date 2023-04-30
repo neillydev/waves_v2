@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import getAPI from "@/util/getAPI";
 
 type ExploreResBody = {
   message?: string;
@@ -10,6 +11,7 @@ export default async function handler(
   res: NextApiResponse<ExploreResBody>
 ) {
   const { method } = req;
+  const API = getAPI();
 
   switch (method) {
     case "GET":
@@ -18,7 +20,7 @@ export default async function handler(
 
         const response = await axios({
           method: "GET",
-          url: `http://localhost:8022/search/${q}`,
+          url: `${API}/search/${q}`,
         });
 
         if (response.status === 200) {

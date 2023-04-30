@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import getAPI from "@/util/getAPI";
 
 type ProfileResBody = {
   message?: string;
@@ -10,6 +11,7 @@ export default async function handler(
   res: NextApiResponse<ProfileResBody>
 ) {
   const { method } = req;
+  const API = getAPI();
 
   switch (method) {
     case "PUT":
@@ -19,7 +21,7 @@ export default async function handler(
         const header: any = token ? { Authorization: `Bearer ${token}` } : {};
         const {email} = JSON.parse(req.body);
         
-        const response = await axios.put(`http://localhost:8022/account/@${user_id}`, {
+        const response = await axios.put(`${API}/account/@${user_id}`, {
           email: email
         },{
           headers: {...header}
@@ -46,7 +48,7 @@ export default async function handler(
         const token = req.headers.authorization?.split(' ')[1];
         const header: any = token ? { Authorization: `Bearer ${token}` } : {};
         
-        const response = await axios.get(`http://localhost:8022/user/@${user_id}`, {
+        const response = await axios.get(`${API}/user/@${user_id}`, {
           headers: {...header}
         });
 

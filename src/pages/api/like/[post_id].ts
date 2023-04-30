@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 import formidable from "formidable";
+import getAPI from "@/util/getAPI";
 
 type LikeResBody = {
   message?: string;
@@ -11,6 +12,7 @@ export default async function handler(
   res: NextApiResponse<LikeResBody>
 ) {
   const { method } = req;
+  const API = getAPI();
 
   switch (method) {
     case "PUT":
@@ -19,7 +21,7 @@ export default async function handler(
         const { post_id } = req.query;
         const response = await axios({
           method: "PUT",
-          url: `http://localhost:8022/like/${post_id}`,
+          url: `${API}/like/${post_id}`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -40,7 +42,7 @@ export default async function handler(
         const { post_id } = req.query;
         const response = await axios({
           method: "DELETE",
-          url: `http://localhost:8022/like/${post_id}`,
+          url: `${API}/like/${post_id}`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
