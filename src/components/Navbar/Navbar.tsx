@@ -11,10 +11,11 @@ import { useRouter } from 'next/router';
 
 const Navbar = () => {
   const router = useRouter();
+  const { q } = router.query;
   const { authState } = useContext(AuthContext);
   const { modalState, modalDispatch } = useContext(ModalContext);
   const [avatar, setAvatar] = useState<string | undefined>();
-  const [search, setSearch] = useState<string>('')
+  const [search, setSearch] = useState<string>()
 
   const handleSearch = (e: any) => {
     e.preventDefault();
@@ -38,7 +39,8 @@ const Navbar = () => {
           <form className={styles.navSearchForm} onSubmit={handleSearch} >
             <SearchSVG />
             <span className={styles.navSearchSeparator}></span>
-            <input placeholder="Search videos or accounts" autoComplete="off" type="search" className={styles.navSearch}
+            <input placeholder={"Search videos or accounts"} autoComplete="off" type="search" className={styles.navSearch}
+            value={q && typeof search !== 'string' ? q.toString() : search}
             onChange={(e: any) => {
               let value: string = e.currentTarget.value;
               if(value.includes('#')) value = value.split('#')[1];

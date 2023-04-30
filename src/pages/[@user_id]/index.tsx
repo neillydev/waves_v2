@@ -79,9 +79,42 @@ const Profile = ({ user_id }: any) => {
     }
   };
 
+  const handleFollow = async () => {
+    try {
+      if (!authState) {
+        console.log('test');
+        modalDispatch({ type: true });
+        return;
+      }
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch("/api/user/follow", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          following_id: profile?.user_id,
+        }),
+      });
+
+      switch (response.status) {
+        case 200:
+          handleFetchProfile();
+          break;
+        default:
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleLike = async () => {
     try {
       if (!authState) {
+        modalDispatch({ type: true });
         return;
       }
       const token = localStorage.getItem("token");
@@ -218,8 +251,8 @@ const Profile = ({ user_id }: any) => {
                   <BigPost
                     postID={post.post_id}
                     isFollowing={profile.isFollowing}
-                    hasLiked={likeBoolean}
-                    hasViewed={post.viewed}
+                    hasLiked={authState ? likeBoolean : false}
+                    hasViewed={authState ? post.viewed : true}
                     profileImg={profile.avatar}
                     username={profile.username}
                     name={profile.name}
@@ -232,6 +265,7 @@ const Profile = ({ user_id }: any) => {
                     timestamp={post.timestamp}
                     removePost={() => {}}
                     setEnlarge={setEnlarge}
+                    handleFollow={handleFollow}
                     handleLike={handleLike}
                     handleDeleteLike={handleDeleteLike}
                   />

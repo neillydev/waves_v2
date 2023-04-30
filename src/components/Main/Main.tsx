@@ -22,6 +22,7 @@ export enum ViewType {
 
 type PostType = {
   post_id: string;
+  user_id: any;
   avatar: string;
   name: string;
   wavecreators_id: string;
@@ -192,6 +193,7 @@ const Main = () => {
                 path=""
                 account={false}
                 selected={viewType === ViewType.TRENDING}
+                authRequired={false}
                 viewType={ViewType.TRENDING}
                 setViewType={setViewType}
               />
@@ -208,6 +210,7 @@ const Main = () => {
                 path=""
                 account={false}
                 selected={viewType === ViewType.FOLLOWING}
+                authRequired={true}
                 viewType={ViewType.FOLLOWING}
                 setViewType={setViewType}
               />
@@ -222,8 +225,10 @@ const Main = () => {
                 path=""
                 account={false}
                 selected={viewType === ViewType.LIVE}
+                authRequired={false}
                 viewType={ViewType.LIVE}
                 setViewType={setViewType}
+                disabled
               />
             </div>
             {authState ? (
@@ -251,8 +256,9 @@ const Main = () => {
                       icon={user.avatar}
                       header={user.name}
                       subHeader={`@${user.username}`}
-                      path="/"
+                      path={`/@${user.username}`}
                       account
+                      authRequired={false}
                     />
                   ))
                 : null}
@@ -261,13 +267,13 @@ const Main = () => {
             <div className={styles.leftSection}>
               <h2 className={styles.leftTitle}>Surf Trends</h2>
               <div className={styles.trendsWrapper}>
-                <Trend title="waves" />
-                <Trend title="surf" />
+                <Trend title="waves" path={`waves`} />
+                <Trend title="surf" path={`surf`} />
               </div>
             </div>
             <div className={styles.separator} />
             <div className={styles.leftSection}>
-              <div className={styles.leftSubRow}>
+              {/* <div className={styles.leftSubRow}>
                 <a
                   href="/about"
                   className={`${styles.leftSubtitle} ${styles.leftSublink}`}
@@ -280,7 +286,7 @@ const Main = () => {
                 >
                   Contact
                 </a>
-              </div>
+              </div> */}
               <h3 className={styles.leftSubtitle}>© 2023 Waves</h3>
             </div>
           </div>
@@ -293,6 +299,7 @@ const Main = () => {
             ? posts.map((post) => (
                 <Post
                   postID={post.post_id}
+                  userID={post.user_id}
                   isFollowing={post.following}
                   hasLiked={post.hasLiked}
                   hasViewed={post.hasViewed}

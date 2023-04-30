@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 
 export type PostProps = {
   postID: string;
+  userID: any;
   isFollowing: boolean;
   hasLiked: boolean;
   hasViewed: boolean;
@@ -33,6 +34,7 @@ export type PostProps = {
 
 const Post = ({
   postID,
+  userID,
   isFollowing,
   hasLiked,
   hasViewed,
@@ -51,7 +53,7 @@ const Post = ({
   const router = useRouter();
   const { authState } = useContext(AuthContext);
   const { modalState, modalDispatch } = useContext(ModalContext);
-  const [following, setFollowing] = useState(isFollowing || false);
+  const [following, setFollowing] = useState(isFollowing);
   const [enlarge, setEnlarge] = useState(false);
   
 
@@ -65,6 +67,11 @@ const Post = ({
 
   const handleFollow = async () => {
     try {
+      if (!authState) {
+        console.log('test')
+        modalDispatch({ type: true });
+        return;
+      }
       const token = localStorage.getItem("token");
       if (!token) return;
 
@@ -75,7 +82,7 @@ const Post = ({
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          following_username: username,
+          following_id: userID,
         }),
       });
 
@@ -119,6 +126,7 @@ const Post = ({
   const handleLike = async () => {
     try {
       if (!authState) {
+        modalDispatch({ type: true });
         return;
       }
       const token = localStorage.getItem("token");
@@ -145,6 +153,7 @@ const Post = ({
   const handleDeleteLike = async () => {
     try {
       if (!authState) {
+        modalDispatch({ type: true });
         return;
       }
       const token = localStorage.getItem("token");
@@ -248,6 +257,7 @@ const Post = ({
           timestamp={timestamp}
           removePost={removePost}
           setEnlarge={setEnlarge}
+          handleFollow={handleFollow}
           handleLike={handleLike}
           handleDeleteLike={handleDeleteLike}
         />
@@ -273,14 +283,7 @@ const Post = ({
                 ) : (
                   <button
                     className={styles.followBtn}
-                    onClick={() => {
-                      if (!authState) {
-                        modalDispatch({ type: true });
-                        return;
-                      }
-
-                      handleFollow();
-                    }}
+                    onClick={handleFollow}
                   >
                     {following === true ? "Following" : "Follow"}
                   </button>
@@ -300,10 +303,6 @@ const Post = ({
                     likeBoolean ? styles.liked : ""
                   }`}
                   onClick={() => {
-                    if (!authState) {
-                      modalDispatch({ type: true });
-                      return;
-                    }
 
                     likeBoolean !== true ? handleLike() : handleDeleteLike()
                   }}

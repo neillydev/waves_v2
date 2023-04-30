@@ -11,6 +11,7 @@ import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/router";
 
 import formatTimestamp from "@/util/formatTimestamp";
+import { ModalContext } from "@/context/ModalContext";
 
 type BigPostProps = {
   postID: string;
@@ -29,6 +30,7 @@ type BigPostProps = {
   timestamp: string;
   removePost: (post_id: string) => void;
   setEnlarge: React.Dispatch<React.SetStateAction<boolean>>;
+  handleFollow: () => void;
   handleLike: () => void;
   handleDeleteLike: () => void;
 };
@@ -50,6 +52,7 @@ const BigPost = ({
   timestamp,
   removePost,
   setEnlarge,
+  handleFollow,
   handleLike,
   handleDeleteLike,
 }: BigPostProps) => {
@@ -60,6 +63,7 @@ const BigPost = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { authState } = useContext(AuthContext);
+  const { modalState, modalDispatch } = useContext(ModalContext);
 
   const [likeAmount, setLikeAmount] = useState(likes);
   const [comment, setComment] = useState("");
@@ -74,6 +78,7 @@ const BigPost = ({
   const handleComment = async () => {
     try {
       if (!authState) {
+        modalDispatch({ type: true })
         return;
       }
       if (comment.length === 0) {
@@ -381,7 +386,7 @@ const BigPost = ({
           </div>
           {username !== myUsername ? (
             <div className={styles.followBtnWrapper}>
-              <button className={styles.postFollowBtn}>
+              <button className={styles.postFollowBtn} onClick={handleFollow}>
                 {isFollowing ? "Following" : "Follow"}
               </button>
             </div>
@@ -541,7 +546,7 @@ const BigPost = ({
                             </div>
                             <div className={styles.commentMetaControls}>
                               <div className={styles.commentTimestamp}>
-                                <h3>{commentObj.timestamp}</h3>
+                                <h3>{formatTimestamp(reply.timestamp)}</h3>
                               </div>
                             </div>
                           </div>
