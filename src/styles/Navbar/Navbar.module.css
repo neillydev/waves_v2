@@ -307,8 +307,21 @@
   background: rgba(235, 235, 235, 0.726);
 }
 
+@media (max-width: 1000px){
+  .navDisabled {
+    display: none;
+  }
+}
+
 @media (max-width: 750px) {
   .navCenter {
     max-width: 20rem;
   }
+  
+  .navRight {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 450px) {
 }

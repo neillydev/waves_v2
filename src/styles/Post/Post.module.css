@@ -261,3 +261,50 @@
 .followBtn:hover {
   background-color: #2ba0ff21;
 }
+
+@media (max-width: 450px) {
+  .post {
+    margin-left: 8px;
+  }
+
+  .postMediaVideoContainer {
+    height: calc(350px + (100vw - 768px) / 1152 * 200);
+  }
+
+  .profileUsername {
+    font-size: 12px;
+  }
+
+  .profileName {
+    font-size: 9px;
+  }
+
+  .postProfile > img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .followBtn {
+    border-radius: 2px;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+
+  .caption {
+    font-size: 14px;
+  }
+
+  .postControl {
+    width: 32px;
+    height: 32px;
+  }
+
+  .postControl > svg {
+    height: 16px;
+    width: 16px;
+  }
+
+  .soundCaption {
+    font-size: 12px;
+  }
+}

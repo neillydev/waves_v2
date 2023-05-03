@@ -35,7 +35,7 @@ const Navbar = () => {
             <h2>Waves</h2>
           </a>
         </div>
-        <div className={styles.navCenter}>
+        <div className={`${styles.navDisabled} ${styles.navCenter}`}>
           <form className={styles.navSearchForm} onSubmit={handleSearch} >
             <SearchSVG />
             <span className={styles.navSearchSeparator}></span>
