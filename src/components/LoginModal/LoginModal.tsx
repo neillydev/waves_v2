@@ -5,6 +5,8 @@ import styles from '../../styles/LoginModal/LoginModal.module.css';
 import LoginForm from '../Forms/LoginForm';
 import RegisterForm from '../Forms/RegisterForm';
 
+import ExitSVG from "../../../public/close.svg";
+
 enum FormType {
     LOGIN = 0,
     REGISTER = 1
@@ -15,12 +17,15 @@ const LoginModal = () => {
 
     const [loginForm, setLoginForm] = useState<FormType | null>(null);
 
+    const handleExitModal = () => {
+        setLoginForm(null);
+        modalDispatch({ type: false })
+    };
+
     return (
         <div className={`${modalState ? styles.modalActive : ''} ${styles.modalContainer}`}>
-            <div className={styles.modalWrapper} onClick={() => {
-                setLoginForm(null);
-                modalDispatch({ type: false })
-            }}>
+            <ExitSVG className={styles.back} onClick={handleExitModal} />
+            <div className={styles.modalWrapper} onClick={handleExitModal}>
                 <div className={styles.loginModalContainer} onClick={(e) => {
                     e.stopPropagation();
                 }}>
