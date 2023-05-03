@@ -175,7 +175,7 @@ const Main = () => {
 
   return (
     <div className={styles.mainWrapper}>
-      <SideBar />
+      <SideBar viewType={viewType} />
       <div className={styles.mainLeft}>
         <div className={styles.mainLeftContainer}>
           <div className={styles.mainLeftWrapper}>

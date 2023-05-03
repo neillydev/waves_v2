@@ -5,8 +5,13 @@ import FollowersSVG from "../../../public/followers.svg";
 import VideoSVG from "../../../public/video.svg";
 
 import styles from "../../styles/SideBar/SideBar.module.css";
+import { ViewType } from "../Main/Main";
 
-const SideBar = () => {
+type SideBarProps = {
+  viewType: ViewType;
+};
+
+const SideBar = ({ viewType }: SideBarProps) => {
   const [featuredUsers, setFeaturedUsers] = useState<any>([]);
 
   const handleFetchFeatured = async () => {
@@ -39,13 +44,19 @@ const SideBar = () => {
       <div className={styles.sideBarWrapper}>
         <div className={styles.sideBarControlsWrapper}>
           <div className={styles.sideBarItem}>
-            <FireSVG />
+            <FireSVG
+              className={viewType !== ViewType.TRENDING || styles.selected}
+            />
           </div>
           <div className={styles.sideBarItem}>
-            <FollowersSVG />
+            <FollowersSVG
+              className={viewType !== ViewType.FOLLOWING || styles.selected}
+            />
           </div>
           <div className={styles.sideBarItem}>
-            <VideoSVG />
+            <VideoSVG
+              className={viewType !== ViewType.LIVE || styles.selected}
+            />
           </div>
         </div>
         <span className={styles.separator} />
