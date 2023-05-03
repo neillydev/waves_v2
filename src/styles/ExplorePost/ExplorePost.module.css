@@ -62,3 +62,13 @@
     display: inline-block;
     width: 4px;
 }
+
+@media (max-width: 450px) { 
+  .explorePostWrapper {
+    max-width: 150px;
+  }
+  
+  .explorePostVideo {
+    max-height: 215px;
+  }
+}

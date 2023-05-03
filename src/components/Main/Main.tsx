@@ -102,6 +102,9 @@ const Main = () => {
   const handleFetchFollowingPosts = async () => {
     //start loading animation and skeleton screen
     try {
+      if (!authState) {
+        return;
+      }
       const token = localStorage.getItem("token");
       if (!token) return;
       const header = { Authorization: `Bearer ${token}` };
@@ -158,8 +161,14 @@ const Main = () => {
 
     if (featuredUsers.length === 0) handleFetchFeatured();
 
+
+
     switch (viewType) {
       case ViewType.FOLLOWING:
+        if (!authState) {
+          modalDispatch({ type: true });
+          return;
+        }
         handleFetchFollowingPosts();
         break;
       case ViewType.TRENDING:
@@ -175,7 +184,7 @@ const Main = () => {
 
   return (
     <div className={styles.mainWrapper}>
-      <SideBar viewType={viewType} />
+      <SideBar viewType={viewType} setViewType={setViewType} />
       <div className={styles.mainLeft}>
         <div className={styles.mainLeftContainer}>
           <div className={styles.mainLeftWrapper}>

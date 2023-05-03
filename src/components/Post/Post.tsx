@@ -68,7 +68,6 @@ const Post = ({
   const handleFollow = async () => {
     try {
       if (!authState) {
-        console.log('test')
         modalDispatch({ type: true });
         return;
       }

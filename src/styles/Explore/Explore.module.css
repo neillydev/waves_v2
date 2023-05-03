@@ -82,3 +82,18 @@
   height: 148px;
   margin: 16px 0;
 }
+
+@media (max-width: 450px) {
+  .exploreContainer {
+    min-width: auto;
+    max-width: 390px;
+  }
+
+  .exploreBody {
+    justify-content: center;
+  }
+
+  .exploreTabsWrapper {
+    width: auto;
+  }
+}

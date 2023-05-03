@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import FireSVG from "../../../public/fire.svg";
 import FollowersSVG from "../../../public/followers.svg";
@@ -6,12 +6,17 @@ import VideoSVG from "../../../public/video.svg";
 
 import styles from "../../styles/SideBar/SideBar.module.css";
 import { ViewType } from "../Main/Main";
+import { AuthContext } from "@/context/AuthContext";
+import { ModalContext } from "@/context/ModalContext";
 
 type SideBarProps = {
   viewType: ViewType;
+  setViewType: React.Dispatch<React.SetStateAction<any>>;
 };
 
-const SideBar = ({ viewType }: SideBarProps) => {
+const SideBar = ({ viewType, setViewType }: SideBarProps) => {
+  const { authState } = useContext(AuthContext);
+  const { modalDispatch } = useContext(ModalContext);
   const [featuredUsers, setFeaturedUsers] = useState<any>([]);
 
   const handleFetchFeatured = async () => {
@@ -46,16 +51,27 @@ const SideBar = ({ viewType }: SideBarProps) => {
           <div className={styles.sideBarItem}>
             <FireSVG
               className={viewType !== ViewType.TRENDING || styles.selected}
+              onClick={() => setViewType(ViewType.TRENDING)}
             />
           </div>
           <div className={styles.sideBarItem}>
             <FollowersSVG
               className={viewType !== ViewType.FOLLOWING || styles.selected}
+              onClick={() => {
+                if (!authState) {
+                  modalDispatch({ type: true });
+                  return;
+                }
+                setViewType(ViewType.FOLLOWING);
+              }}
             />
           </div>
           <div className={styles.sideBarItem}>
             <VideoSVG
               className={viewType !== ViewType.LIVE || styles.selected}
+              onClick={() => {
+                //setViewType(ViewType.LIVE);
+              }}
             />
           </div>
         </div>
