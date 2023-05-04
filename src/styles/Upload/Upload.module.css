@@ -303,6 +303,7 @@
   .uploadBodyContainer {
     align-items: center;
     flex-direction: column;
+    margin-top: 0;
   }
 
   .uploadMeta {
@@ -320,5 +321,9 @@
 
   .uploadPreviewBefore {
     padding: 24px 56px;
+  }
+
+  .uploadSubmitControls {
+    margin-top: 0;
   }
 }
