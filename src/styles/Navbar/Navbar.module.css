@@ -324,4 +324,8 @@
 }
 
 @media (max-width: 450px) {
+
+  .navLeft {
+    min-width: 0;
+  }
 }
