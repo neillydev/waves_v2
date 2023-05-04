@@ -261,4 +261,13 @@
     height: 170px;
     margin-bottom: 16px;
   }
+
+  .headerCenter {
+    flex-direction: column;
+    margin: 0 1rem 4px 1rem;
+  }
+
+  .headerCenterName {
+    margin: 0 0 16px 0;
+  }
 }
