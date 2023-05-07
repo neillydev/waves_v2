@@ -124,15 +124,18 @@ const Explore = () => {
         </div>
         <div
           className={`${styles.exploreBody} ${
-            isLoading || (posts.length === 0 && !isLoading) ? loaders.loadingJustify : ""
+            isLoading || (posts.length === 0 && !isLoading)
+              ? loaders.loadingJustify
+              : ""
           }`}
         >
           {viewType !== ExploreViewType.CREATORS ? (
             isLoading ? (
               <div className={loaders.loader}></div>
             ) : posts.length > 0 ? (
-              posts.map((post: any) => (
+              posts.map((post: any, index: number) => (
                 <ExplorePost
+                  key={index}
                   postID={post.postID}
                   profileImg={post.profileImg}
                   username={post.username}

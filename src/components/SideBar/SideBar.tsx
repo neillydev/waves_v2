@@ -79,7 +79,7 @@ const SideBar = ({ viewType, setViewType }: SideBarProps) => {
         <ul className={styles.featuredAccountList}>
           {featuredUsers.length > 0
             ? featuredUsers.map((user: any) => (
-                <li className={styles.featuredAccountItem}>
+                <li key={user.username} className={styles.featuredAccountItem}>
                   <a href={`/@${user.username}`} className={styles.account}>
                     <img src={user.avatar} alt={user.name} />
                   </a>

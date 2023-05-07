@@ -262,6 +262,7 @@ const Main = () => {
               {featuredUsers.length > 0
                 ? featuredUsers.map((user: any) => (
                     <SideItem
+                      key={user.username}
                       icon={user.avatar}
                       header={user.name}
                       subHeader={`@${user.username}`}
@@ -305,8 +306,9 @@ const Main = () => {
       <div className={styles.mainRight}>
         <div className={styles.mainRightWrapper}>
           {posts
-            ? posts.map((post) => (
+            ? posts.map((post: any, index: number) => (
                 <Post
+                  key={index}
                   postID={post.post_id}
                   userID={post.user_id}
                   isFollowing={post.following}

@@ -177,7 +177,7 @@ const Profile = ({ user_id }: any) => {
     if (typeof window !== "undefined" && !localUserID) {
       setLocalUserID(localStorage?.getItem("username"));
     }
-  }, [, enlarge]);
+  }, [enlarge]);
 
   return (
     <div className={styles.profileContainer}>
@@ -235,8 +235,9 @@ const Profile = ({ user_id }: any) => {
         </div>
         <div className={styles.profileBodyWrapper}>
           {profile && profile.posts.length > 0 ? (
-            profile.posts.map((post: any) => (
+            profile.posts.map((post: any, index: number) => (
               <div
+                key={index}
                 className={styles.profilePostContainer}
                 onMouseEnter={() => handleMouseEnter(post.post_id)}
                 onMouseLeave={() => handleMouseLeave(post.post_id)}

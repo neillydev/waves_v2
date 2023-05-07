@@ -151,8 +151,8 @@ const ProfileSettingsForm = () => {
                     value={username}
                     onChange={handleUsernameChange}
                   />
-                  {usernameErrors.map((error: any) => (
-                    <span className={styles.settingsInputErrorMessage}>{getErrorMessage(error)}</span>
+                  {usernameErrors.map((error: any, index: number) => (
+                    <span key={index} className={styles.settingsInputErrorMessage}>{getErrorMessage(error)}</span>
                   ))}
                 </div>
               ) : (

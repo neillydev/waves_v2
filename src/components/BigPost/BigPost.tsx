@@ -516,8 +516,8 @@ const BigPost = ({
                     ) : null}
                   </div>
                   {commentObj.replies && commentObj.replies.length > 0
-                    ? commentObj.replies.map((reply: any) => (
-                        <div className={styles.replyWrapper}>
+                    ? commentObj.replies.map((reply: any, index: number) => (
+                        <div key={index} className={styles.replyWrapper}>
                           <div className={styles.replyAvatar}>
                             <img src={reply.avatar} />
                           </div>

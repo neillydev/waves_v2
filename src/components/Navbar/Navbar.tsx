@@ -30,10 +30,10 @@ const Navbar = () => {
     <div className={styles.navContainer}>
       <div className={styles.navWrapper}>
         <div className={styles.navLeft}>
-          <a href="/" className={styles.navLogo}>
+          <Link href="/" className={styles.navLogo}>
             <WaveSVG className={styles.navSvg} />
             <h2>Waves</h2>
-          </a>
+          </Link>
         </div>
         <div className={`${styles.navDisabled} ${styles.navCenter}`}>
           <form className={styles.navSearchForm} onSubmit={handleSearch} >
