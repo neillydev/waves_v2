@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "../../styles/EditProfile/EditProfile.module.css";
 import { useRouter } from "next/router";
-import { AuthContext } from "@/context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 type AccountSettingsProps = {
   email: string;

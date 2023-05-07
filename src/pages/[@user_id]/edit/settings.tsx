@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import styles from "../../../styles/EditProfile/EditProfile.module.css";
 import { useRouter } from "next/router";
-import ProfileSettingsForm from "@/components/Forms/ProfileSettingsForm";
-import AccountSettingsForm from "@/components/Forms/AccountSettingsForm";
+import ProfileSettingsForm from "../../../components/Forms/ProfileSettingsForm";
+import AccountSettingsForm from "../../../components/Forms/AccountSettingsForm";
 
 const EditProfile = () => {
   const router = useRouter();

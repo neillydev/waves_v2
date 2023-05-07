@@ -5,10 +5,10 @@ import MenuSVG from "../../../public/dots.svg";
 import ViewSVG from "../../../public/view.svg";
 
 import { useRouter } from "next/router";
-import BigPost from "@/components/BigPost/BigPost";
-import { AuthContext } from "@/context/AuthContext";
+import BigPost from "../../components/BigPost/BigPost";
+import { AuthContext } from "../../context/AuthContext";
 import Link from "next/link";
-import { ModalContext } from "@/context/ModalContext";
+import { ModalContext } from "../../context/ModalContext";
 
 type Profile = {
   user_id: string;

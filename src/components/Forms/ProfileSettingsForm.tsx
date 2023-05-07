@@ -18,14 +18,14 @@ const ProfileSettingsForm = () => {
   const router = useRouter();
   const { authState } = useContext(AuthContext);
 
+  const [localAvatar, setLocalAvatar] = useState('');
+  const [token, setToken] = useState('');
+
   let user_id: any = router.query["@user_id"];
-  let localAvatar: string =
-    localStorage.getItem("avatar") ||
-    "https://surfwaves.b-cdn.net/user_picture.png";
 
   const [avatar, setAvatar] = useState<any>(localAvatar);
   const [avatarBlob, setAvatarBlob] = useState<any>();
-  const [username, setUsername] = useState(user_id.split('@')[1]);
+  const [username, setUsername] = useState(user_id?.split('@')[1] || "");
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -70,7 +70,6 @@ const ProfileSettingsForm = () => {
         return;
       }
 
-      const token = localStorage.getItem("token");
       if(!token || token.length === 0) return;
 
       const formData = new FormData();
@@ -131,6 +130,15 @@ const ProfileSettingsForm = () => {
         setAvatarBlob(e.target.files[0]);
       }
   };
+
+  useEffect(() => {
+    if(typeof window !== "undefined") {
+
+      setLocalAvatar(localStorage.getItem("avatar") ||
+      "https://surfwaves.b-cdn.net/user_picture.png");
+      setToken(localStorage.getItem("token") || "")
+    }
+  }, [])
 
   return (
     <div className={styles.settingsContainer}>
