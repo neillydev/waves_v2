@@ -8,34 +8,24 @@ import AccountSettingsForm from "@/components/Forms/AccountSettingsForm";
 const EditProfile = () => {
   const router = useRouter();
 
-  const [email, setEmail] = useState('');
-  
+  const [email, setEmail] = useState("");
+
   let user_id: any = router.query["@user_id"];
-
-
 
   const [tabs, setTabs] = useState<any>([
     {
       id: "settings_profile",
       label: "Profile Settings",
-      selected: true
+      selected: true,
     },
     {
       id: "settings_account",
       label: "Account Settings",
-      selected: false
+      selected: false,
     },
   ]);
 
-  const [selected, setSelected] = useState<string>('settings_profile');
-
-  if (!user_id || !user_id.includes("@")) {
-    if (typeof window !== "undefined") {
-      router.push("/");
-    }
-    return null;
-  }
-  user_id = user_id.split("@")[1];
+  const [selected, setSelected] = useState<string>("settings_profile");
 
   const handleSelect = (index: number) => {
     const updatedTabs = tabs.map((tab: any, i: number) => {
@@ -48,9 +38,8 @@ const EditProfile = () => {
     });
     setTabs(updatedTabs);
   };
-  
-  const handleFetchAccount = async () => {
 
+  const handleFetchAccount = async () => {
     //start loading animation and skeleton screen
     try {
       const token = localStorage.getItem("token") || "";
@@ -76,9 +65,17 @@ const EditProfile = () => {
     }
   };
 
-  useEffect(()=>{
-    handleFetchAccount()
-  },[])
+  useEffect(() => {
+    if (!user_id || !user_id.includes("@")) {
+      if (typeof window !== "undefined") {
+        router.push("/");
+      }
+      return;
+    }
+    user_id = user_id.split("@")[1];
+
+    handleFetchAccount();
+  }, []);
 
   return (
     <div className={styles.editContainer}>
@@ -86,14 +83,24 @@ const EditProfile = () => {
         <div className={styles.editLeftWrapper}>
           <ul className={styles.tabsList}>
             {tabs.map((tab: any, index: any) => (
-              <li key={index} className={`${styles.tabItem} ${tab.selected ? styles.tabSelected : ''}`} onClick={() => handleSelect(index)}>
+              <li
+                key={index}
+                className={`${styles.tabItem} ${
+                  tab.selected ? styles.tabSelected : ""
+                }`}
+                onClick={() => handleSelect(index)}
+              >
                 <h3>{tab.label}</h3>
               </li>
             ))}
           </ul>
         </div>
         <div className={styles.editRightWrapper}>
-          {selected === 'settings_profile' ? <ProfileSettingsForm /> : <AccountSettingsForm email={email} setEmail={setEmail} />}
+          {selected === "settings_profile" ? (
+            <ProfileSettingsForm />
+          ) : (
+            <AccountSettingsForm email={email} setEmail={setEmail} />
+          )}
         </div>
       </div>
     </div>

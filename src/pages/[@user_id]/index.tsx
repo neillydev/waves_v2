@@ -38,15 +38,6 @@ const Profile = ({ user_id }: any) => {
   const [likeBoolean, setLikeBoolean] = useState<any>(false);
   const [postID, setPostID] = useState<any>();
 
-  if (!user_id || !user_id.includes("@")) {
-    if (typeof window !== "undefined") {
-      router.push("/");
-    }
-    return null;
-  }
-
-  user_id = user_id.replace("@", "");
-
   const handleMouseEnter = (post_id: string) => {
     if (videoRefs.current[post_id]) {
       videoRefs.current[post_id].currentTime = 0;
@@ -82,7 +73,7 @@ const Profile = ({ user_id }: any) => {
   const handleFollow = async () => {
     try {
       if (!authState) {
-        console.log('test');
+        console.log("test");
         modalDispatch({ type: true });
         return;
       }
@@ -173,6 +164,15 @@ const Profile = ({ user_id }: any) => {
   };
 
   useEffect(() => {
+    if (!user_id || !user_id.includes("@")) {
+      if (typeof window !== "undefined") {
+        router.push("/");
+      }
+      return;
+    }
+
+    user_id = user_id.replace("@", "");
+
     handleFetchProfile();
     if (typeof window !== "undefined" && !localUserID) {
       setLocalUserID(localStorage?.getItem("username"));
