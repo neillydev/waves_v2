@@ -261,6 +261,7 @@
   }
 
   .profilePostContainer {
+    flex-basis: 33.33%;
     max-width: 125px;
     margin-bottom: 16px;
     height: 200px;
