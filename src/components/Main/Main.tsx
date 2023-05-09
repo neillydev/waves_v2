@@ -72,7 +72,7 @@ const Main = () => {
     try {
       const token = localStorage.getItem("token") || "";
       const header = token ? { Authorization: `Bearer ${token}` } : undefined;
-      const response = await fetch("http://localhost:8022/posts", {
+      const response = await fetch("/api/posts", {
         method: "GET",
         headers: {
           ...header,

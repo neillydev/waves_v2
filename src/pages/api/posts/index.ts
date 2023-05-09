@@ -1,14 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
-import getAPI from "../../util/getAPI";
+import getAPI from "@/util/getAPI";
 
-type FeaturedResBody = {
+type PostsResBody = {
   message?: string;
 };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<FeaturedResBody>
+  res: NextApiResponse<PostsResBody>
 ) {
   const { method } = req;
   const API = getAPI();
@@ -16,7 +16,14 @@ export default async function handler(
   switch (method) {
     case "GET":
       try {
-        const response = await axios.get(`${API}/featured`);
+        const { user_id } = req.query;
+        const token = req.headers.authorization?.split(' ')[1];
+        const header: any = token ? { Authorization: `Bearer ${token}` } : {};
+        
+        const response = await axios.get(`${API}/posts`, {
+          headers: {...header}
+        });
+
         if (response.status === 200) {
           const data = await response.data;
 
