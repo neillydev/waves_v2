@@ -16,7 +16,6 @@ export default async function handler(
   switch (method) {
     case "GET":
       try {
-        const { user_id } = req.query;
         const token = req.headers.authorization?.split(' ')[1];
         const header: any = token ? { Authorization: `Bearer ${token}` } : {};
         
