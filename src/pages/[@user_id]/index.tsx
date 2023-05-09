@@ -276,6 +276,8 @@ const Profile = ({ user_id }: any) => {
                     ref={(ref) => (videoRefs.current[post.post_id] = ref)}
                     src={post.media}
                     muted
+                    playsInline
+                    autoPlay
                   ></video>
                 </div>
                 <div className={styles.profilePostStats}>

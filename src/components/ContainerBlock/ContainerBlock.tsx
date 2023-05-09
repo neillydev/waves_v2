@@ -60,6 +60,7 @@ export default function ContainerBlock({ children, ...customMeta }: any) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           property="og:url"
           content={`https://neilly.dev${router.asPath}`}

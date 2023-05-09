@@ -22,11 +22,10 @@ const ExplorePost = ({
 }: ExplorePostProps) => {
   //TO-DO: ADD LOADING SPINNER
 
-
   return (
     <div className={styles.explorePostWrapper}>
       <div className={styles.explorePostVideo}>
-        <video src={mediaSrc} muted />
+        <video src={mediaSrc} muted playsInline autoPlay />
       </div>
       <div className={styles.explorePostFooter}>
         <span className={styles.explorePostCaption}>
