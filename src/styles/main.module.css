@@ -174,7 +174,9 @@
 @media (max-width: 450px) {
   .mainRight {
     margin: 0;
-    margin-left: 90px;
+    margin-left: 100px;
     width: auto;
   }
+
+
 }

@@ -324,8 +324,22 @@
 }
 
 @media (max-width: 450px) {
-
   .navLeft {
     min-width: 0;
+  }
+
+  .uploadBtn {
+    min-width: 75px;
+    height: 30px;
+    font-size: 12px;
+    margin: 10px;
+    padding: 0;
+  }
+
+  .loginBtn {
+    min-width: 75px;
+    height: 30px;
+    font-size: 12px;
+    padding: 0;
   }
 }

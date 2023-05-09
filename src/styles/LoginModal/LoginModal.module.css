@@ -216,6 +216,10 @@
     min-width: 325px;
   }
 
+  .loginModalWrapper > h2 {
+    font-size: 28px;
+  }
+
   .loginList {
     padding: 1rem;
   }
@@ -230,5 +234,13 @@
     border-radius: 50%;
     margin-left: 1rem;
     margin-top: 1rem;
+  }
+
+  .loginForm {
+    padding: 1rem 5rem;
+  }
+
+  .loginInput {
+    height: 40px;
   }
 }

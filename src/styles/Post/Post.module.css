@@ -269,6 +269,7 @@
 
   .postMediaVideoContainer {
     height: calc(350px + (100vw - 768px) / 1152 * 200);
+    width: calc(0.35 * (475px + ((100vw - 768px) / 1152) * 100));
   }
 
   .profileUsername {
