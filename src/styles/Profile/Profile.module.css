@@ -247,8 +247,12 @@
   }
 
   .profileWrapper {
-    max-width: 390px;
+    
     height: 100%;
+  }
+
+  .profileHeaderWrapper {
+    margin-bottom: 4px;
   }
 
   .profileBodyWrapper {
@@ -257,9 +261,20 @@
   }
 
   .profilePostContainer {
-    min-width: 80px;
-    height: 170px;
+    max-width: 125px;
     margin-bottom: 16px;
+    height: 200px;
+    min-width: 0px;
+    margin: 0;
+  }
+
+  .profilePost {
+    border-radius: 0px;
+  }
+
+  .profilePostStats {
+
+    border-radius: 0px;
   }
 
   .headerCenter {
