@@ -73,7 +73,7 @@ const Upload = () => {
 
         if (response.status === 200) {
           const data = await response.json();
-          postDispatch({ type: "SET_DATA", payload: data });
+          //postDispatch({ type: "SET_DATA", payload: data });
           setLoading(false);
           router.push("/");
         } else {

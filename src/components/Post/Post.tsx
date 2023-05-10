@@ -321,7 +321,7 @@ const Post = ({
                   }}>
                   <CommentSVG />
                 </button>
-                <span className={styles.stat}>{comments.reduce((acc: any, commentObj: any) => acc + commentObj.replies.length, comments.length)}</span>
+                <span className={styles.stat}>{comments ? comments.reduce((acc: any, commentObj: any) => acc + commentObj.replies.length, comments.length) : 0}</span>
                 <button className={styles.postControl}>
                   <ShareSVG />
                 </button>
