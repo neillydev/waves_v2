@@ -50,7 +50,6 @@ const Upload = () => {
       //If not, log user out and send to home page
       return;
     }
-    const formData = new FormData();
     const reader: any = new FileReader();
 
     reader.readAsArrayBuffer(media);
@@ -64,7 +63,7 @@ const Upload = () => {
       formData.append("caption", caption);
       formData.append("access", access);
       try {
-        const response = await fetch(`${API}/post`, {
+        const response = await fetch(`api/upload`, {
           method: "POST",
           body: formData,
           headers: {
