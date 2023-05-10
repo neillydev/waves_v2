@@ -292,12 +292,19 @@
 }
 
 @media (max-width: 450px) {
+  .mainUpload {
+    background-color: #fff;
+  }
+
   .uploadContainer {
     padding: 0;
+    overflow-y: scroll;
+    background-color: #fff;
   }
 
   .uploadWrapper {
     width: 390px;
+    box-shadow: none;
   }
 
   .uploadBodyContainer {
@@ -321,9 +328,14 @@
 
   .uploadPreviewBefore {
     padding: 24px 56px;
+    margin-bottom: 6rem;
   }
 
   .uploadSubmitControls {
+    margin-top: 0;
+  }
+
+  .mediaSelectBtn {
     margin-top: 0;
   }
 }
