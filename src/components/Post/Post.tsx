@@ -321,7 +321,7 @@ const Post = ({
                   }}>
                   <CommentSVG />
                 </button>
-                <span className={styles.stat}>{comments.length}</span>
+                <span className={styles.stat}>{comments.reduce((acc: any, commentObj: any) => acc + commentObj.replies.length, comments.length)}</span>
                 <button className={styles.postControl}>
                   <ShareSVG />
                 </button>
@@ -331,13 +331,13 @@ const Post = ({
             <div className={styles.postCaption}>
               <h2 className={styles.caption}>
                 {caption.includes("#")
-                  ? caption.split(" ").map((word) =>
+                  ? caption.split(" ").map((word: string, index: number) =>
                       word.includes("#") ? (
                         <>
-                          <Link href={`/explore?q=${word.split("#")[1]}`}>
+                          <Link key={index} href={`/explore?q=${word.split("#")[1]}`}>
                             <span className={styles.hashtag}>{`${word}`}</span>
                           </Link>
-                          <span className={styles.hashtagSpace}></span>
+                          <span key={`#${index}`} className={styles.hashtagSpace}></span>
                         </>
                       ) : (
                         `${word} `

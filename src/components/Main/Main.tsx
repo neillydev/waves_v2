@@ -306,8 +306,7 @@ const Main = () => {
       <div className={styles.mainRight}>
         <div className={styles.mainRightWrapper}>
           {posts
-            ? posts.map((post: any, index: number) => (
-                <Post
+            ? posts.map((post: any, index: number) => (<Post
                   key={index}
                   postID={post.post_id}
                   userID={post.user_id}
@@ -326,7 +325,7 @@ const Main = () => {
                   timestamp={post.timestamp}
                   removePost={removePost}
                 />
-              ))
+            ))
             : null}
         </div>
       </div>
